@@ -1,0 +1,191 @@
+.podcasts-page {
+  padding: 120px 0 80px;
+}
+
+.container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 0 25px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.page-header p {
+  color: #999;
+  margin-top: 10px;
+}
+
+.podcast-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.podcast-card {
+  display: flex;
+  gap: 30px;
+
+  background: var(--dark-grey);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  transition: 0.3s;
+}
+
+.podcast-card:hover {
+  transform: translateY(-4px);
+}
+
+.podcast-card img {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.podcast-content {
+  padding: 30px;
+  flex: 1;
+}
+
+.genre {
+  display: inline-block;
+
+  padding: 6px 14px;
+
+  border-radius: 30px;
+
+  background: var(--dark-grey);
+
+  color: var(--white);
+
+  font-size: 0.8rem;
+
+  margin-bottom: 15px;
+}
+
+.podcast-content h3 {
+  color: white;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.podcast-content p {
+  color: #ccc;
+  line-height: 1.8;
+}
+
+.listen-btn {
+  margin-top: 25px;
+
+  padding: 12px 28px;
+
+  border: none;
+
+  border-radius: 40px;
+
+  background: var(--surface-light);
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 60px;
+}
+
+.page-btn {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: #1d1d1d;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: var(--white);
+  color: var(--dark-grey);
+}
+
+.page-btn.active {
+  background: var(--white);
+  color: var(--dark-grey);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .podcast-card {
+    flex-direction: column;
+  }
+
+  .podcast-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .page-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 6px;
+    margin-top: 35px;
+  }
+
+  .page-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    gap: 4px;
+  }
+
+  .page-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,111 @@
+@if (track) {
+  <section class="episode-details">
+    <div class="episode-container">
+      <div class="episode-artwork">
+        <img [src]="track.artworkUrl" [alt]="track.title" />
+      </div>
+
+      <div class="episode-info">
+        <span class="episode-type">
+          <i class="bi bi-broadcast"></i>
+          Podcast Episode
+        </span>
+
+        <h1>{{ track.title }}</h1>
+
+        <div class="episode-meta">
+          <span>
+            <i class="bi bi-person-circle"></i>
+            {{ getArtistName(track.title) }}
+          </span>
+
+          <span>
+            <i class="bi bi-calendar3"></i>
+            {{ track.createdAt | date: "dd MMM yyyy" }}
+          </span>
+
+          <span>
+            <i class="bi bi-clock"></i>
+            {{ formatDuration(track.duration) }}
+          </span>
+
+          <span>
+            <i class="bi bi-music-note-beamed"></i>
+            {{ track.genre }}
+          </span>
+        </div>
+
+        <div class="episode-actions">
+          <button class="btn-primary" (click)="player.toggle(track)">
+            <i class="bi bi-play-fill"></i>
+            Play
+          </button>
+
+          <button class="btn-secondary" (click)="shareEpisode(track)">
+            <i class="bi bi-share"></i>
+            Share
+          </button>
+
+          <button class="btn-secondary">
+            <i class="bi bi-heart"></i>
+            Favourite
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="episode-body">
+    <div class="episode-description">
+      <h2>About this Episode</h2>
+
+      <p>
+        {{ track.description }}
+      </p>
+    </div>
+
+    <!-- <aside class="episode-info">
+      <h3>Episode Information</h3>
+
+      <div class="info-row">
+        <span>Genre</span>
+        <strong>{{ track.genre }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Guest</span>
+        <strong>{{ getArtistName(track.title) }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Released</span>
+        <strong>{{ track.createdAt }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Duration</span>
+        <strong>{{ formatDuration(track.duration) }}</strong>
+      </div>
+    </aside> -->
+  </section>
+
+  <section class="more-episodes">
+    <div class="section-header">
+      <h2>More Episodes</h2>
+
+      <a routerLink="/podcasts"> View All </a>
+    </div>
+
+    <div class="episode-grid">
+      <div
+        class="episode-card"
+        *ngFor="let podcast of relatedTracks"
+        (click)="openEpisode(podcast.slug)"
+      >
+        <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
+
+        <h4>{{ podcast.title }}</h4>
+      </div>
+    </div>
+  </section>
+}

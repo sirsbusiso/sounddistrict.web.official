@@ -1,0 +1,45 @@
+<div class="player" *ngIf="player.currentTrack$ | async as track">
+  <!-- Artwork -->
+
+  <div class="player-left">
+    <img [src]="track.artworkUrl" [alt]="track.title" />
+
+    <div>
+      <h4>{{ track.title }}</h4>
+
+      <small>Sound District</small>
+    </div>
+  </div>
+
+  <!-- Controls -->
+
+  <div class="player-center">
+    <button (click)="player.pause()">
+      <i
+        class="bi"
+        [ngClass]="{
+          'bi-play-fill': !(player.isPlaying$ | async),
+
+          'bi-pause-fill': player.isPlaying$ | async,
+        }"
+      >
+      </i>
+    </button>
+  </div>
+
+  <!-- Progress -->
+
+  <div class="player-progress">
+    <span>{{ formatTime(player.currentTime$ | async) }}</span>
+
+    <input
+      type="range"
+      min="0"
+      [max]="player.duration$ | async"
+      [value]="player.currentTime$ | async"
+      (input)="player.seek(+$any($event.target).value)"
+    />
+
+    <span>{{ formatTime(player.duration$ | async) }}</span>
+  </div>
+</div>

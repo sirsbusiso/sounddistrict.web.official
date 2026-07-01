@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+/* ------------------------------
+   GLOBAL STYLES
+-------------------------------*/
+
+:root {
+  --background: #0a0a0a;
+  --surface: #111111;
+  --surface-light: #171717;
+
+  --border: #242424;
+
+  --white: #ffffff;
+  --light-grey: #cfcfcf;
+  --grey: #9a9a9a;
+  --dark-grey: #6b6b6b;
+
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark-grey);
+  color: var(--white);
+
+  font-family: "Inter", sans-serif;
+
+  overflow-x: hidden;
+
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+section {
+  padding: 100px 0;
+}
+
+.container {
+  width: min(1400px, 92%);
+  margin: auto;
+}
+
+a {
+  color: var(--white);
+  text-decoration: none;
+
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--light-grey);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+
+  border: none;
+
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+
+  outline: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}

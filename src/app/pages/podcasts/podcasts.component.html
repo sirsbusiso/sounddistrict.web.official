@@ -1,0 +1,65 @@
+<section class="podcasts-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>Podcast Episodes</h1>
+      <p>Explore every episode of the Sound District Music Show.</p>
+    </div>
+
+    <div class="podcast-list">
+      <article class="podcast-card" *ngFor="let podcast of pagedTracks">
+        <img
+          [src]="podcast.artworkUrl"
+          [alt]="podcast.title"
+          (click)="openEpisode(podcast.slug)"
+        />
+
+        <div class="podcast-content">
+          <span class="genre">{{ podcast.genre }}</span>
+
+          <h3 (click)="openEpisode(podcast.slug)">
+            {{ podcast.title }}
+          </h3>
+
+          <div class="meta">
+            <span>{{ podcast.createdAt | date: "dd MMM yyyy" }}</span>
+            <span>•</span>
+            <span>{{ formatDuration(podcast.duration) }}</span>
+          </div>
+
+          <p>{{ podcast.description | slice: 0 : 180 }}...</p>
+
+          <button class="listen-btn" (click)="openEpisode(podcast.slug)">
+            Listen Now
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <div class="pagination">
+      <button
+        class="page-btn"
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      <button
+        *ngFor="let page of pages"
+        class="page-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+
+      <button
+        class="page-btn"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>

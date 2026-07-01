@@ -1,0 +1,45 @@
+<section class="hero" *ngIf="tracks.length">
+  <div class="hero-artwork">
+    <img
+      [src]="tracks[currentTrack].artworkUrl"
+      [alt]="tracks[currentTrack].title"
+    />
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-subtitle"> LISTEN TO OUR MIXES </span>
+
+    <h1>
+      {{ tracks[currentTrack].title }}
+    </h1>
+
+    <p>
+      Curated underground house music, exclusive guest mixes and the latest
+      Sound District podcast.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="hero-btn" (click)="player.toggle(tracks[currentTrack])">
+        @if (player.isPlaying$ | async) {
+          <i class="bi bi-pause-fill"></i>
+        } @else {
+          <i class="bi bi-play-fill"></i>
+        }
+
+        {{ (player.isPlaying$ | async) ? "Pause Mix" : "Play Mix" }}
+      </button>
+
+      <a class="hero-outline" (click)="goToEpisode(tracks[currentTrack])">
+        Episode Details
+      </a>
+    </div>
+
+    <div class="hero-progress">
+      <span
+        *ngFor="let track of tracks; let i = index"
+        [class.active]="i == currentTrack"
+      >
+      </span>
+    </div>
+  </div>
+</section>
