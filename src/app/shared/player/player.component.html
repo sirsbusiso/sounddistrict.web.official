@@ -1,6 +1,5 @@
 <div class="player" *ngIf="player.currentTrack$ | async as track">
   <!-- Artwork -->
-
   <div class="player-left">
     <img [src]="track.artworkUrl" [alt]="track.title" />
 
@@ -12,14 +11,15 @@
   </div>
 
   <!-- Controls -->
-
   <div class="player-center">
-    <button (click)="player.pause()">
+    <button
+      *ngIf="player.currentTrack$ | async as track"
+      (click)="player.toggle(track)"
+    >
       <i
         class="bi"
         [ngClass]="{
           'bi-play-fill': !(player.isPlaying$ | async),
-
           'bi-pause-fill': player.isPlaying$ | async,
         }"
       >
@@ -28,7 +28,6 @@
   </div>
 
   <!-- Progress -->
-
   <div class="player-progress">
     <span>{{ formatTime(player.currentTime$ | async) }}</span>
 
@@ -41,5 +40,16 @@
     />
 
     <span>{{ formatTime(player.duration$ | async) }}</span>
+  </div>
+  <div class="player-stats">
+    <span>
+      <i class="bi bi-headphones"></i>
+      {{ track.plays | number }}
+    </span>
+
+    <span>
+      <i class="bi bi-download"></i>
+      {{ track.downloads | number }}
+    </span>
   </div>
 </div>

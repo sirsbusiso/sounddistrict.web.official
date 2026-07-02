@@ -1,11 +1,15 @@
 @if (track) {
   <section class="episode-details">
     <div class="episode-container">
+      <!-- Artwork -->
+
       <div class="episode-artwork">
         <img [src]="track.artworkUrl" [alt]="track.title" />
       </div>
 
-      <div class="episode-info">
+      <!-- Hero Content -->
+
+      <div class="episode-content">
         <span class="episode-type">
           <i class="bi bi-broadcast"></i>
           Podcast Episode
@@ -45,11 +49,6 @@
             <i class="bi bi-share"></i>
             Share
           </button>
-
-          <button class="btn-secondary">
-            <i class="bi bi-heart"></i>
-            Favourite
-          </button>
         </div>
       </div>
     </div>
@@ -59,41 +58,44 @@
     <div class="episode-description">
       <h2>About this Episode</h2>
 
-      <p>
-        {{ track.description }}
-      </p>
+      <p>{{ track.description }}</p>
     </div>
 
-    <!-- <aside class="episode-info">
+    <!-- Uncomment if you want the info card later -->
+
+    <!--
+  <aside class="episode-sidebar">
+
       <h3>Episode Information</h3>
 
       <div class="info-row">
-        <span>Genre</span>
-        <strong>{{ track.genre }}</strong>
+          <span>Genre</span>
+          <strong>{{ track.genre }}</strong>
       </div>
 
       <div class="info-row">
-        <span>Guest</span>
-        <strong>{{ getArtistName(track.title) }}</strong>
+          <span>Artist</span>
+          <strong>{{ getArtistName(track.title) }}</strong>
       </div>
 
       <div class="info-row">
-        <span>Released</span>
-        <strong>{{ track.createdAt }}</strong>
+          <span>Released</span>
+          <strong>{{ track.createdAt | date:'dd MMM yyyy' }}</strong>
       </div>
 
       <div class="info-row">
-        <span>Duration</span>
-        <strong>{{ formatDuration(track.duration) }}</strong>
+          <span>Duration</span>
+          <strong>{{ formatDuration(track.duration) }}</strong>
       </div>
-    </aside> -->
-  </section>
+
+  </aside>
+  --></section>
 
   <section class="more-episodes">
     <div class="section-header">
       <h2>More Episodes</h2>
 
-      <a routerLink="/podcasts"> View All </a>
+      <a (click)="viewAllEpisodes()"> View All </a>
     </div>
 
     <div class="episode-grid">

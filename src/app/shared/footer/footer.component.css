@@ -1,0 +1,326 @@
+.footer {
+  background: #111;
+
+  padding: 70px 0 30px;
+
+  margin-top: 100px;
+}
+
+.footer-container {
+  max-width: 1400px;
+
+  margin: auto;
+
+  padding: 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  gap: 70px;
+}
+
+.footer-logo {
+  height: 55px;
+
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  margin-bottom: 20px;
+
+  color: #fff;
+
+  font-size: 1rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+}
+
+.footer-column p {
+  color: #999;
+
+  line-height: 1.8;
+
+  margin-bottom: 14px;
+}
+
+.footer-column a {
+  display: block;
+
+  color: #999;
+
+  text-decoration: none;
+
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.footer-column a:hover {
+  color: var(--primary-color);
+}
+
+.footer-column i {
+  width: 22px;
+
+  color: var(--primary-color);
+}
+
+.footer-social {
+  display: flex;
+
+  gap: 14px;
+
+  margin-top: 25px;
+}
+
+.footer-social a {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #1d1d1d;
+
+  color: white;
+
+  transition: 0.25s;
+}
+
+.footer-social a:hover {
+  background: var(--primary-color);
+
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  margin-top: 55px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid var(--btn-primary);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+.developer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.developer strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.developer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--primary-color);
+
+  transition: 0.25s;
+}
+
+.developer a:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.footer-bottom p {
+  color: #777;
+}
+
+.back-top {
+  width: 50px;
+  height: 50px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #1d1d1d;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.back-top:hover {
+  background: var(--primary-color);
+
+  transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+  .footer {
+    padding: 50px 0 25px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    gap: 20px;
+
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-social a {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #1d1d1d;
+
+  color: #fff;
+  text-decoration: none;
+
+  transition: 0.25s;
+}
+
+.footer-social a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.footer-social a:hover {
+  background: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #999;
+  text-decoration: none;
+
+  transition: 0.25s;
+}
+
+.contact-link i {
+  color: var(--primary-color);
+}
+
+.contact-link:hover {
+  color: #fff;
+}
+
+.contact-link:hover i {
+  transform: scale(1.1);
+}
+.developer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.developer strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.developer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: var(--primary-color);
+
+  transition: 0.25s;
+}
+
+.developer a:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .developer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    font-size: 0.85rem;
+
+    margin-top: 15px;
+  }
+
+  .developer strong {
+    display: block;
+  }
+
+  .developer a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .developer a i {
+    font-size: 1rem;
+  }
+}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Track } from '../../../models/podcast/podcast.models';
 import { PodcastService } from '../../../services/podcast.service/podcast.service';
@@ -18,9 +18,10 @@ export class EpisodeComponent implements OnInit {
   constructor(
     private podcastService: PodcastService,
     public player: PlayerService,
+    private router: Router,
   ) {}
 
-  track!: Track;
+  track?: Track;
 
   relatedTracks: Track[] = [];
 
@@ -99,7 +100,7 @@ export class EpisodeComponent implements OnInit {
     this.podcastService.getTracks().subscribe({
       next: (response) => {
         const tracks = response.data.filter(
-          (x) => x.title !== this.track.title,
+          (x) => x.title !== this.track?.title,
         );
 
         this.shuffle(tracks);
@@ -117,5 +118,8 @@ export class EpisodeComponent implements OnInit {
   }
   openEpisode(slug: string): void {
     window.location.href = `/episode/${slug}`;
+  }
+  viewAllEpisodes(): void {
+    this.router.navigate(['/podcasts']);
   }
 }

@@ -8,4 +8,6 @@ export interface Track {
   genre: string;
   createdAt: string;
   duration: number;
+  plays: number;
+  downloads: number;
 }

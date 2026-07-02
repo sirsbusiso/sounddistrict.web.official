@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 export class NavComponent {
   constructor(private router: Router) {}
   gotoMusic(): void {
-    this.router.navigate(['/music']);
+    window.open(
+      'https://music.apple.com/gh/artist/360-project/1821068616',
+      '_blank',
+    );
   }
   gotoPodcast(): void {
     this.router.navigate(['/podcasts']);
@@ -20,9 +23,12 @@ export class NavComponent {
     window.open('https://shop.sounddistrict.co.za', '_blank');
   }
   gotoDonate(): void {
-    this.router.navigate(['/donate']);
+    window.open('https://pay.yoco.com/sound-district', '_blank');
   }
   gotoHome(): void {
     this.router.navigate(['/']);
+  }
+  gotoUpload() {
+    this.router.navigate(['/upload']);
   }
 }

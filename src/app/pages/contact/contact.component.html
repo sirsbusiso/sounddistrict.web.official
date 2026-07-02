@@ -1,0 +1,96 @@
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <span class="section-tag">
+        <i class="bi bi-chat-dots"></i>
+        Contact Us
+      </span>
+
+      <h2>Let's Connect</h2>
+
+      <p>
+        Whether you're an artist, listener, promoter or brand looking to
+        collaborate, we'd love to hear from you.
+      </p>
+
+      <div class="contact-item">
+        <i class="bi bi-envelope"></i>
+
+        <div>
+          <h4>Email</h4>
+          <span>info&#64;sounddistrict.co.za</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="bi bi-geo-alt"></i>
+
+        <div>
+          <h4>Location</h4>
+          <span>Johannesburg, South Africa</span>
+        </div>
+      </div>
+
+      <div class="contact-socials">
+        <a href="https://instagram.com/sounddistrict.za" target="_blank"
+          ><i class="bi bi-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
+          target="_blank"
+          ><i class="bi bi-facebook"></i
+        ></a>
+        <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank">
+          <i class="fa-brands fa-tiktok"></i
+        ></a>
+        <a
+          href="https://wa.me/27712505601?text=Hi%20Sound%20District,%20I'd%20like%20to%20know%20more."
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="bi bi-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" (ngSubmit)="sendMessage()">
+      <input
+        type="text"
+        placeholder="Your Name"
+        [(ngModel)]="contact.name"
+        name="name"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="Email Address"
+        [(ngModel)]="contact.email"
+        name="email"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Subject"
+        [(ngModel)]="contact.subject"
+        name="subject"
+        required
+      />
+
+      <textarea
+        rows="6"
+        placeholder="Your Message"
+        [(ngModel)]="contact.message"
+        name="message"
+        required
+      >
+      </textarea>
+
+      <button type="submit">
+        Send Message
+        <i class="bi bi-send-fill"></i>
+      </button>
+    </form>
+  </div>
+</section>

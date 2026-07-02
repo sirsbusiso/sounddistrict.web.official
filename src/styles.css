@@ -14,7 +14,10 @@
   --light-grey: #cfcfcf;
   --grey: #9a9a9a;
   --dark-grey: #6b6b6b;
-
+  --btn-primary: #3cbce7;
+  --btn-hover: #171717;
+  --color-primary: #7dd3fc;
+  --color-primary-hover: #38bdf8;
   --transition: 0.3s ease;
 }
 
@@ -85,4 +88,66 @@ textarea {
 hr {
   border: none;
   border-top: 1px solid var(--border);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+}
+/* Backdrop */
+
+.upload-dialog-backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+/* Dialog */
+
+.upload-dialog-panel .mat-mdc-dialog-container,
+.upload-dialog-panel .mat-mdc-dialog-surface {
+  background: #181818 !important;
+  color: #fff;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+/* Remove Material padding */
+
+.upload-dialog-panel .mat-mdc-dialog-content {
+  padding: 0 !important;
+}
+
+/* Desktop animation */
+
+.upload-dialog-panel .mat-mdc-dialog-container {
+  animation: dialogIn 0.3s ease;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .upload-dialog-panel .mat-mdc-dialog-container,
+  .upload-dialog-panel .mat-mdc-dialog-surface {
+    width: 100%;
+    border-radius: 24px;
+  }
 }

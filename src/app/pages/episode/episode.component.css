@@ -43,7 +43,7 @@
 
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
+  color: var(--btn-primary);
 
   font-size: 0.8rem;
   font-weight: 600;
@@ -104,13 +104,14 @@
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: var(--btn-primary);
   color: #fff;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: var(--primary-hover);
+  background: var(--border);
+  color: var(--white);
 }
 
 .btn-secondary {
@@ -146,7 +147,7 @@
 .btn-primary {
   border: none;
 
-  background: #fff;
+  background: var(--btn-primary);
 
   color: #111;
 
@@ -319,51 +320,172 @@
    MOBILE
 =========================== */
 
+/* ======================================
+   MOBILE
+====================================== */
+
 @media (max-width: 991px) {
   .episode {
-    padding: 0 20px;
-
-    margin-top: 90px;
+    margin: 80px auto 50px;
+    padding: 0 16px;
   }
 
-  .episode-header {
-    grid-template-columns: 1fr;
+  .episode-details {
+    padding: 80px 0 40px;
+  }
 
-    gap: 35px;
+  .episode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 0;
   }
 
   .episode-artwork {
-    max-width: 340px;
+    width: 100%;
+    max-width: 240px;
+  }
 
-    margin: auto;
+  .episode-artwork img {
+    width: 100%;
+    border-radius: 18px;
   }
 
   .episode-content {
+    width: 80%;
     text-align: center;
   }
 
+  .episode-type {
+    margin-bottom: 18px;
+  }
+
   .episode-content h1 {
-    font-size: 2.3rem;
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .episode-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-top: 0;
+    margin-bottom: 28px;
+  }
+
+  .episode-meta span {
+    font-size: 0.95rem;
   }
 
   .episode-actions {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 0;
   }
 
   .btn-primary,
   .btn-secondary {
     width: 100%;
-
     justify-content: center;
+
+    height: 52px;
+
+    padding: 0 20px;
   }
+
+  /* Body */
 
   .episode-body {
     grid-template-columns: 1fr;
+    gap: 40px;
 
-    padding: 0 20px;
+    margin: 50px auto;
+
+    padding: 0 16px;
   }
 
+  .episode-description {
+    margin-top: 0;
+  }
+
+  .episode-description h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .episode-description p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  /* Sidebar */
+
+  .episode-sidebar {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .info-row {
+    padding: 14px 0;
+    font-size: 0.9rem;
+  }
+
+  /* Related */
+
   .more-episodes {
-    padding: 0 20px;
+    margin: 60px auto;
+    padding: 0 16px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .episode-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .episode-card img {
+    border-radius: 14px;
+  }
+
+  .episode-card h4 {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 576px) {
+  .episode-artwork {
+    max-width: 210px;
+  }
+
+  .episode-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .episode-meta {
+    gap: 12px;
+  }
+
+  .episode-grid {
+    grid-template-columns: 1fr;
   }
 }

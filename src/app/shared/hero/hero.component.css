@@ -111,9 +111,9 @@
 
   gap: 10px;
 
-  background: #fff;
+  background: var(--btn-primary);
 
-  color: #111;
+  color: var(--border);
 
   padding: 16px 30px;
 

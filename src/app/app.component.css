@@ -1,0 +1,77 @@
+.upload-fab {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  height: 58px;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 999px;
+
+  background: var(--btn-primary);
+  color: var(--border);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  z-index: 1000;
+
+  transition: all 0.25s ease;
+}
+
+.upload-fab i {
+  font-size: 1.3rem;
+}
+
+.upload-fab:hover {
+  transform: translateY(-3px);
+}
+
+.upload-fab:active {
+  transform: scale(0.96);
+}
+@media (max-width: 768px) {
+  .upload-fab {
+    position: fixed !important;
+
+    right: 16px !important;
+    bottom: 90px !important;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    background: var(--btn-primary);
+    color: var(--border);
+
+    z-index: 99999;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    transform: none !important;
+  }
+
+  .upload-fab span {
+    display: none;
+  }
+
+  .upload-fab i {
+    font-size: 1.5rem;
+  }
+}

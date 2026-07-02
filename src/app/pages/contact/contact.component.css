@@ -1,0 +1,145 @@
+.contact-section {
+  padding: 100px 25px;
+}
+
+.contact-container {
+  max-width: 1300px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+
+  align-items: start;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contact-info h2 {
+  margin: 20px 0;
+  font-size: 3rem;
+  color: #fff;
+}
+
+.contact-info p {
+  color: #bdbdbd;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.contact-item i {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.contact-item h4 {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.contact-item span {
+  color: #aaa;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.contact-socials a {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  background: var(--dark-grey);
+
+  color: white;
+  text-decoration: none;
+
+  transition: 0.25s;
+}
+
+.contact-socials a:hover {
+  background: var(--color-primary);
+  color: var(--border);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  background: #161616;
+  padding: 35px;
+  border-radius: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+
+  padding: 16px 18px;
+
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+
+  color: white;
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.contact-form button {
+  height: 56px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: var(--btn-primary);
+  color: var(--border);
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.contact-form button:hover {
+  background: var(--border);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-info h2 {
+    font-size: 2.3rem;
+  }
+}

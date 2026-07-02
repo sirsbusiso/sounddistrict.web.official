@@ -1,0 +1,34 @@
+<div class="upload-popup">
+  <button class="close-btn" (click)="onClose()">
+    <i class="bi bi-x-lg"></i>
+  </button>
+
+  <div class="dialog-icon">
+    <i class="bi bi-cloud-arrow-up-fill"></i>
+  </div>
+
+  <h2>Submit Your Mix</h2>
+
+  <p class="dialog-description">
+    Share your latest mix with the Sound District community.
+  </p>
+
+  <div class="dialog-note">
+    <i class="bi bi-info-circle-fill"></i>
+
+    <span>
+      • MP3 format (320kbps recommended)<br />
+      • Maximum upload size 500MB<br />
+    </span>
+  </div>
+
+  <div class="dialog-actions">
+    <button class="btn-cancel" (click)="onClose()">Maybe Later</button>
+
+    <button class="btn-continue" (click)="onContinue()">
+      Continue
+
+      <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+</div>

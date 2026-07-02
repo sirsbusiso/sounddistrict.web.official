@@ -1,0 +1,71 @@
+<section class="upload-page">
+  <div class="upload-container">
+    <span class="upload-label"> SOUND DISTRICT </span>
+
+    <h1>Upload Your Mix</h1>
+
+    <p class="upload-description">
+      Drag and drop your mix below, then tell listeners a little about it. Our
+      team will professionally design your artwork before publishing.
+    </p>
+
+    <!-- Drag & Drop -->
+
+    <div
+      class="drop-zone"
+      [class.dragging]="dragging"
+      (click)="fileInput.click()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <input
+        #fileInput
+        type="file"
+        hidden
+        accept=".mp3,audio/mpeg"
+        (change)="onFileSelected($event)"
+      />
+
+      <i class="bi bi-cloud-arrow-up-fill"></i>
+
+      <h3 *ngIf="!selectedFile">Drag & Drop your MP3</h3>
+
+      <h3 *ngIf="selectedFile">
+        {{ selectedFile.name }}
+      </h3>
+
+      <p>or click to browse</p>
+
+      <small> MP3 • Maximum 500MB </small>
+    </div>
+
+    <!-- Description -->
+
+    <div class="form-group">
+      <label> Description / Tracklist </label>
+
+      <textarea
+        rows="10"
+        maxlength="2000"
+        [(ngModel)]="description"
+        placeholder="Welcome to another episode...
+
+Tell listeners about your mix or paste your tracklist here."
+      >
+      </textarea>
+
+      <div class="textarea-footer">
+        <small> Optional </small>
+
+        <span> {{ description.length || 0 }}/2000 </span>
+      </div>
+    </div>
+
+    <button class="continue-btn" [disabled]="!selectedFile">
+      Continue
+
+      <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+</section>

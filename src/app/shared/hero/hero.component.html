@@ -20,13 +20,13 @@
 
     <div class="hero-buttons">
       <button class="hero-btn" (click)="player.toggle(tracks[currentTrack])">
-        @if (player.isPlaying$ | async) {
+        <!-- @if (player.isPlaying$ | async) {
           <i class="bi bi-pause-fill"></i>
         } @else {
-          <i class="bi bi-play-fill"></i>
-        }
-
-        {{ (player.isPlaying$ | async) ? "Pause Mix" : "Play Mix" }}
+         
+        } -->
+        <i class="bi bi-play-fill"></i>Play Mix
+        <!-- {{ (player.isPlaying$ | async) ? "Pause Mix" : "Play Mix" }} -->
       </button>
 
       <a class="hero-outline" (click)="goToEpisode(tracks[currentTrack])">

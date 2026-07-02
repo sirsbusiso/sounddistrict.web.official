@@ -1,1 +1,11 @@
 <app-hero></app-hero>
+<app-merch></app-merch>
+<app-subscribe></app-subscribe>
+<app-about></app-about>
+<app-contact></app-contact>
+<app-upload-dialog
+  *ngIf="showUploadPopup"
+  (close)="closePopup()"
+  (continue)="continueUpload()"
+>
+</app-upload-dialog>

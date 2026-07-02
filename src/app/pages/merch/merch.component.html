@@ -1,0 +1,22 @@
+<section class="featured-merch">
+  <div class="section-header">
+    <h2>Wear the Sound</h2>
+    <p>Official Sound District merchandise.</p>
+  </div>
+
+  <div class="merch-grid">
+    <a *ngFor="let item of merch" class="merch-card">
+      <img [src]="item.productImages[0].imageUrl" [alt]="item.name" />
+
+      <div class="merch-overlay">
+        <span> R {{ item.price | number: "1.2-2" : "en-ZA" }} ZAR </span>
+        <h3>{{ item.name }}</h3>
+
+        <button class="shop-btn" (click)="gotoProductDetails(item.slug)">
+          Shop Now
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+    </a>
+  </div>
+</section>

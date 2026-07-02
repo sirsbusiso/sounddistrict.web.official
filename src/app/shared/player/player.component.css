@@ -44,7 +44,7 @@
 .player-left h4 {
   margin: 0;
 
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .player-left small {
@@ -69,11 +69,17 @@
 
   border: none;
 
-  background: white;
+  background: var(--primary-color);
 
-  color: black;
+  color: var(--white);
 
   font-size: 22px;
+}
+
+.player-center button:hover {
+  background: var(--btn-primary);
+  color: var(--border);
+  transform: scale(1.1);
 }
 
 /* ===========================
@@ -232,7 +238,8 @@
   .player-center button {
     width: 42px;
     height: 42px;
-
+    background: var(--btn-primary);
+    color: var(--border);
     font-size: 18px;
   }
 
@@ -252,5 +259,36 @@
 
   .player-progress input[type="range"] {
     flex: 1;
+  }
+}
+
+.player-stats {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.player-stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 0.8rem;
+  color: #b5b5b5;
+}
+
+.player-stats i {
+  color: #b5b5b5;
+}
+@media (max-width: 768px) {
+  .player-left {
+    align-items: flex-start;
+  }
+
+  .player-stats {
+    margin-top: 2px;
+    gap: 10px;
+    font-size: 0.7rem;
   }
 }

@@ -21,4 +21,14 @@ export const routes: Routes = [
         (m) => m.PodcastsComponent,
       ),
   },
+  {
+    path: 'upload',
+    loadComponent: () =>
+      import('./pages/upload/upload.component').then((m) => m.UploadComponent),
+  },
+  {
+    path: 'donate',
+    loadComponent: () =>
+      import('./pages/donate/donate.component').then((m) => m.DonateComponent),
+  },
 ];
