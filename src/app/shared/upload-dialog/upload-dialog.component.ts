@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-upload-dialog',
-  standalone: true,
-  imports: [],
-  templateUrl: './upload-dialog.component.html',
-  styleUrl: './upload-dialog.component.css',
+    selector: 'app-upload-dialog',
+    imports: [],
+    templateUrl: './upload-dialog.component.html',
+    styleUrl: './upload-dialog.component.css'
 })
 export class UploadDialogComponent {
   @Output() close = new EventEmitter<void>();

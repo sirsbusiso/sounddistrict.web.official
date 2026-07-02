@@ -9,19 +9,18 @@ import { UploadDialogComponent } from '../../shared/upload-dialog/upload-dialog.
 import { AboutComponent } from '../about/about.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    HeroComponent,
-    MerchComponent,
-    SubscribeComponent,
-    ContactComponent,
-    CommonModule,
-    UploadDialogComponent,
-    AboutComponent,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+    selector: 'app-home',
+    imports: [
+        HeroComponent,
+        MerchComponent,
+        SubscribeComponent,
+        ContactComponent,
+        CommonModule,
+        UploadDialogComponent,
+        AboutComponent,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
   showUploadPopup = false;

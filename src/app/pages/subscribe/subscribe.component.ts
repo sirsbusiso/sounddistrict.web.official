@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-subscribe',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './subscribe.component.html',
-  styleUrl: './subscribe.component.css',
+    selector: 'app-subscribe',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './subscribe.component.html',
+    styleUrl: './subscribe.component.css'
 })
 export class SubscribeComponent {
   email: string = '';
