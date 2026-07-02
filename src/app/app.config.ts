@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { requestInterceptor } from './interceptors/request.interceptor';
 import { loaderInterceptor } from './interceptors/loading.interceptor';
+import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(
       withInterceptors([requestInterceptor, loaderInterceptor]),
-    ),
+    ), provideClientHydration(),
   ],
 };
