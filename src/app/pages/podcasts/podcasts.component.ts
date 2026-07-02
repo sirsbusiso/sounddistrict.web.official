@@ -5,11 +5,10 @@ import { Router } from '@angular/router';
 import { CommonModule, SlicePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-podcasts',
-  standalone: true,
-  imports: [SlicePipe, CommonModule],
-  templateUrl: './podcasts.component.html',
-  styleUrl: './podcasts.component.css',
+    selector: 'app-podcasts',
+    imports: [SlicePipe, CommonModule],
+    templateUrl: './podcasts.component.html',
+    styleUrl: './podcasts.component.css'
 })
 export class PodcastsComponent {
   tracks: any[] = [];

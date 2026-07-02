@@ -7,11 +7,10 @@ import { PodcastService } from '../../../services/podcast.service/podcast.servic
 import { PlayerService } from '../../../services/shared/player.service';
 
 @Component({
-  selector: 'app-episode',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './episode.component.html',
-  styleUrl: './episode.component.css',
+    selector: 'app-episode',
+    imports: [CommonModule],
+    templateUrl: './episode.component.html',
+    styleUrl: './episode.component.css'
 })
 export class EpisodeComponent implements OnInit {
   private route = inject(ActivatedRoute);

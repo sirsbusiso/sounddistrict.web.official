@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-upload',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './upload.component.html',
-  styleUrl: './upload.component.css',
+    selector: 'app-upload',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './upload.component.html',
+    styleUrl: './upload.component.css'
 })
 export class UploadComponent {
   selectedFile: File | null = null;

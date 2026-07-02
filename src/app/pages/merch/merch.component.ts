@@ -4,11 +4,10 @@ import { ProductDto } from '../../../models/merch/merch.models';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-merch',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './merch.component.html',
-  styleUrl: './merch.component.css',
+    selector: 'app-merch',
+    imports: [CommonModule],
+    templateUrl: './merch.component.html',
+    styleUrl: './merch.component.css'
 })
 export class MerchComponent {
   merch: ProductDto[] = [];

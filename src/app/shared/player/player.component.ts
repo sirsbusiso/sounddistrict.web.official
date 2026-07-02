@@ -3,11 +3,10 @@ import { PlayerService } from '../../../services/shared/player.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-player',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './player.component.html',
-  styleUrl: './player.component.css',
+    selector: 'app-player',
+    imports: [CommonModule],
+    templateUrl: './player.component.html',
+    styleUrl: './player.component.css'
 })
 export class PlayerComponent {
   constructor(public player: PlayerService) {}
