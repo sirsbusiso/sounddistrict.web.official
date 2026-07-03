@@ -18,31 +18,61 @@
         <h1>{{ track.title }}</h1>
 
         <div class="episode-meta">
-          <span>
+          <div class="meta-item">
             <i class="bi bi-person-circle"></i>
-            {{ getArtistName(track.title) }}
-          </span>
+            <span>{{ getArtistName(track.title) }}</span>
+          </div>
 
-          <span>
+          <div class="meta-item">
             <i class="bi bi-calendar3"></i>
-            {{ track.createdAt | date: "dd MMM yyyy" }}
-          </span>
+            <span>{{ track.createdAt | date: "dd MMM yyyy" }}</span>
+          </div>
 
-          <span>
+          <div class="meta-item">
             <i class="bi bi-clock"></i>
-            {{ formatDuration(track.duration) }}
-          </span>
+            <span>{{ formatDuration(track.duration) }}</span>
+          </div>
 
-          <span>
+          <div class="meta-item">
             <i class="bi bi-music-note-beamed"></i>
-            {{ track.genre }}
-          </span>
+            <span>{{ track.genre }}</span>
+          </div>
+
+          <div class="meta-item" *ngIf="track.bpm">
+            <i class="bi bi-speedometer2"></i>
+            <span>{{ track.bpm }} BPM</span>
+          </div>
+
+          <div class="meta-item" *ngIf="track.key">
+            <i class="bi bi-key"></i>
+            <span>{{ track.key }}</span>
+          </div>
         </div>
 
         <div class="episode-actions">
           <button class="btn-primary" (click)="player.toggle(track)">
-            <i class="bi bi-play-fill"></i>
-            Play
+            <i
+              class="bi"
+              [ngClass]="{
+                'bi-play-fill': !(
+                  (player.isPlaying$ | async) &&
+                  (player.currentTrack$ | async)?.streamUrl === track.streamUrl
+                ),
+                'bi-pause-fill':
+                  (player.isPlaying$ | async) &&
+                  (player.currentTrack$ | async)?.streamUrl === track.streamUrl,
+              }"
+            ></i>
+            {{
+              (player.isPlaying$ | async) &&
+              (player.currentTrack$ | async)?.streamUrl === track.streamUrl
+                ? "Pause"
+                : "Play"
+            }}
+          </button>
+          <button class="btn-secondary" (click)="downloadTrack(track)">
+            <i class="bi bi-download"></i>
+            Download
           </button>
 
           <button class="btn-secondary" (click)="shareEpisode(track)">
@@ -90,14 +120,30 @@
 
   </aside>
   --></section>
+  <section class="more-episodes">
+    <div class="section-header">
+      <h2>More for this artist</h2>
+    </div>
+    <div class="episode-grid">
+      <div
+        class="episode-card"
+        *ngFor="let podcast of artistRelated"
+        (click)="openEpisode(podcast.slug)"
+      >
+        <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 
+        <div class="episode-card-content">
+          <h4>{{ podcast.title }}</h4>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="more-episodes">
     <div class="section-header">
       <h2>More Episodes</h2>
 
       <a (click)="viewAllEpisodes()"> View All </a>
     </div>
-
     <div class="episode-grid">
       <div
         class="episode-card"
@@ -106,7 +152,9 @@
       >
         <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 
-        <h4>{{ podcast.title }}</h4>
+        <div class="episode-card-content">
+          <h4>{{ podcast.title }}</h4>
+        </div>
       </div>
     </div>
   </section>

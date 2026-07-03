@@ -3,19 +3,25 @@ import { PlayerService } from '../../../services/shared/player.service';
 import { PodcastService } from '../../../services/podcast.service/podcast.service';
 import { Router } from '@angular/router';
 import { CommonModule, SlicePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Track } from '../../../models/podcast/podcast.models';
 
 @Component({
-    selector: 'app-podcasts',
-    imports: [SlicePipe, CommonModule],
-    templateUrl: './podcasts.component.html',
-    styleUrl: './podcasts.component.css'
+  selector: 'app-podcasts',
+  imports: [SlicePipe, CommonModule, FormsModule],
+  templateUrl: './podcasts.component.html',
+  styleUrl: './podcasts.component.css',
 })
 export class PodcastsComponent {
-  tracks: any[] = [];
-  pagedTracks: any[] = [];
+  tracks: Track[] = [];
+  pagedTracks: Track[] = [];
 
   currentPage = 1;
   pageSize = 5;
+  searchTerm = '';
+
+  searchResults: Track[] = [];
+  showResults = false;
 
   constructor(
     private podcastService: PodcastService,
@@ -33,6 +39,35 @@ export class PodcastsComponent {
 
   ngOnInit(): void {
     this.loadTracks();
+  }
+
+  onSearch(): void {
+    const term = this.searchTerm.trim().toLowerCase();
+
+    if (term.length < 2) {
+      this.searchResults = [];
+      this.showResults = false;
+      return;
+    }
+
+    this.searchResults = this.tracks
+      .filter(
+        (track) =>
+          track.title.toLowerCase().includes(term) ||
+          track.genre.toLowerCase().includes(term) ||
+          this.getArtistName(track.title).toLowerCase().includes(term) ||
+          track.description.toLocaleLowerCase().includes(term),
+      )
+      .slice(0, 8);
+
+    this.showResults = true;
+  }
+
+  openSearchResult(track: Track): void {
+    this.showResults = false;
+    this.searchTerm = '';
+
+    this.openEpisode(track.slug);
   }
 
   loadTracks() {
@@ -74,7 +109,7 @@ export class PodcastsComponent {
   }
 
   openEpisode(slug: string): void {
-    this.router.navigate(['/episode', slug]);
+    window.location.href = `/episode/${slug}`;
   }
   formatDuration(seconds: string | number): string {
     const totalSeconds = Number(seconds);
@@ -90,5 +125,10 @@ export class PodcastsComponent {
     }
 
     return `${minutes}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  getArtistName(title: string): string {
+    const match = title.match(/(?:by|-)\s*(.+)$/i);
+    return match ? match[1].trim() : title;
   }
 }

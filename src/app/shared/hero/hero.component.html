@@ -33,13 +33,17 @@
         Episode Details
       </a>
     </div>
+    <div class="hero-progress-wrapper">
+      <div class="hero-progress">
+        <div
+          class="hero-progress-fill"
+          [style.width.%]="((currentTrack + 1) / tracks.length) * 100"
+        ></div>
+      </div>
 
-    <div class="hero-progress">
-      <span
-        *ngFor="let track of tracks; let i = index"
-        [class.active]="i == currentTrack"
-      >
-      </span>
+      <div class="hero-progress-text">
+        {{ currentTrack + 1 }} / {{ tracks.length }}
+      </div>
     </div>
   </div>
 </section>

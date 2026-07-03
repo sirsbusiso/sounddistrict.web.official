@@ -148,53 +148,168 @@
 /* ===========================
    PAGINATION
 =========================== */
-
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  gap: 12px;
+  gap: 24px;
 
   margin-top: 60px;
+}
 
-  flex-wrap: wrap;
+.page-info {
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: center;
 }
 
 .page-btn {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d6d6d6;
   border: none;
   border-radius: 50%;
 
-  background: #1d1d1d;
+  cursor: pointer;
 
+  transition: 0.25s ease;
+}
+
+.page-btn i {
+  font-size: 1.1rem;
+}
+
+.page-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.page-btn:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.75rem 1.5rem;
+
+  background: transparent;
   color: #fff;
+
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+  background: #ff4fa3;
+  border-color: #ff4fa3;
+  color: #fff;
+}
+
+.btn-download i {
+  font-size: 1.1rem;
+}
+
+.podcast-search {
+  position: relative;
+  max-width: 650px;
+  margin: 2rem auto;
+}
+
+.podcast-search input {
+  width: 100%;
+  height: 56px;
+  padding: 0 20px 0 50px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+
+  background: var(--light-grey);
+  color: var(--border);
+}
+
+.podcast-search i {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+
+  background: #6f6f6f;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+
+  z-index: 100;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
 
   cursor: pointer;
 
   transition: 0.25s;
 }
 
-.page-btn:hover:not(:disabled) {
-  background: #fff;
-  color: #111;
+.search-item:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.page-btn.active {
-  background: #fff;
-  color: #111;
+.search-item img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
-.page-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.search-info h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 0.95rem;
 }
 
-/* ======================================
-   TABLET
-====================================== */
+.search-info small {
+  color: #999;
+}
+
+.no-results {
+  padding: 1rem;
+  text-align: center;
+  color: #888;
+}
 
 @media (max-width: 991px) {
   .podcasts-page {
@@ -207,6 +322,7 @@
 
   .page-header {
     margin-bottom: 35px;
+    margin-top: -50px;
   }
 
   .page-header h1 {
@@ -276,17 +392,39 @@
     width: 100%;
     margin-top: 22px;
   }
-
   .pagination {
-    gap: 6px;
-    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 40px;
   }
 
   .page-btn {
-    width: 36px;
-    height: 36px;
+    width: 52px;
+    height: 52px;
 
-    font-size: 0.8rem;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+  }
+
+  .page-btn i {
+    font-size: 1.2rem;
+  }
+
+  .page-info {
+    min-width: 110px;
+
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 600;
   }
 }
 
@@ -300,11 +438,11 @@
   }
 
   .page-header h1 {
-    font-size: 1.9rem;
+    font-size: 1rem;
   }
 
   .page-header p {
-    font-size: 0.9rem;
+    font-size: 0.6rem;
   }
 
   .podcast-content {
@@ -329,13 +467,73 @@
   }
 
   .pagination {
-    gap: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 40px;
   }
 
   .page-btn {
-    width: 32px;
-    height: 32px;
+    width: 52px;
+    height: 52px;
 
-    font-size: 0.75rem;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+  }
+
+  .page-btn i {
+    font-size: 1.2rem;
+  }
+
+  .page-info {
+    min-width: 110px;
+
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+@media (max-width: 768px) {
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 40px;
+  }
+
+  .page-btn {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+  }
+
+  .page-btn i {
+    font-size: 1.2rem;
+  }
+
+  .page-info {
+    min-width: 110px;
+
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 600;
   }
 }

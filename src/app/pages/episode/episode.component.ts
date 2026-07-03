@@ -5,12 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Track } from '../../../models/podcast/podcast.models';
 import { PodcastService } from '../../../services/podcast.service/podcast.service';
 import { PlayerService } from '../../../services/shared/player.service';
+import { SeoService } from '../../../services/shared/seo.service';
 
 @Component({
-    selector: 'app-episode',
-    imports: [CommonModule],
-    templateUrl: './episode.component.html',
-    styleUrl: './episode.component.css'
+  selector: 'app-episode',
+  imports: [CommonModule],
+  templateUrl: './episode.component.html',
+  styleUrl: './episode.component.css',
 })
 export class EpisodeComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -18,11 +19,13 @@ export class EpisodeComponent implements OnInit {
     private podcastService: PodcastService,
     public player: PlayerService,
     private router: Router,
+    private seo: SeoService,
   ) {}
 
   track?: Track;
 
   relatedTracks: Track[] = [];
+  artistRelated: Track[] = [];
 
   loading = true;
 
@@ -45,37 +48,56 @@ export class EpisodeComponent implements OnInit {
 
     return `${minutes}:${secs.toString().padStart(2, '0')}`;
   }
+
+  isMobile(): boolean {
+    return window.innerWidth <= 768;
+  }
+
   getArtistName(title: string): string {
     const match = title.match(/(?:by|-)\s*(.+)$/i);
     return match ? match[1].trim() : title;
   }
 
   loadEpisode(): void {
-    const slug = this.route.snapshot.paramMap.get('slug');
+    this.route.paramMap.subscribe((params) => {
+      const slug = params.get('slug');
 
-    if (!slug) {
-      console.error('Episode slug not found');
+      if (!slug) {
+        console.error('Episode slug not found');
+        return;
+      }
 
-      return;
-    }
+      this.loading = true;
 
-    this.podcastService.getTrack(slug).subscribe({
-      next: (response) => {
-        this.track = response;
+      this.podcastService.getTrack(slug).subscribe({
+        next: (response) => {
+          this.track = response;
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
 
-        this.loading = false;
+          this.loading = false;
 
-        this.loadRelated();
-      },
+          this.seo.update({
+            title: `${this.track?.title} ?? Sound District`,
+            description: this.track?.description,
+            image: this.track?.artworkUrl,
+            url: `https://sounddistrict.co.za/episode/${this.track?.slug}`,
+            keywords: 'Deep House, Soulful House, Afro House, Podcast, DJ Mix',
+            type: 'music.song',
+          });
 
-      error: (error) => {
-        console.error(error);
-
-        this.loading = false;
-      },
+          this.loadRelated();
+          this.loadRelatedArtist();
+        },
+        error: (error) => {
+          console.error(error);
+          this.loading = false;
+        },
+      });
     });
   }
-
   async shareEpisode(track: any): Promise<void> {
     const url = `${window.location.origin}/episode/${track.slug}`;
 
@@ -88,7 +110,6 @@ export class EpisodeComponent implements OnInit {
         });
       } else {
         await navigator.clipboard.writeText(url);
-        alert('Episode link copied to clipboard!');
       }
     } catch (error) {
       console.error('Share failed:', error);
@@ -108,6 +129,26 @@ export class EpisodeComponent implements OnInit {
       },
     });
   }
+  loadRelatedArtist() {
+    this.podcastService.getTracks().subscribe({
+      next: (response) => {
+        const currentArtist = this.getArtistName(this.track!.title);
+
+        const tracks = response.data.filter(
+          (x) =>
+            x.slug !== this.track?.slug &&
+            this.getArtistName(x.title) === currentArtist,
+        );
+
+        this.shuffle(tracks);
+        if (!this.isMobile()) {
+          this.artistRelated = tracks.slice(0, 5);
+        } else {
+          this.artistRelated = tracks.slice(0, 3);
+        }
+      },
+    });
+  }
 
   private shuffle<T>(array: T[]): void {
     for (let i = array.length - 1; i > 0; i--) {
@@ -116,9 +157,14 @@ export class EpisodeComponent implements OnInit {
     }
   }
   openEpisode(slug: string): void {
-    window.location.href = `/episode/${slug}`;
+    console.log(slug);
+    this.router.navigate(['/episode', slug]);
   }
   viewAllEpisodes(): void {
     this.router.navigate(['/podcasts']);
+  }
+
+  downloadTrack(track: Track): void {
+    window.open(track.downloadUrl, '_blank', 'noopener,noreferrer');
   }
 }

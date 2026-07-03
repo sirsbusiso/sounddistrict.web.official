@@ -10,4 +10,8 @@ export interface Track {
   duration: number;
   plays: number;
   downloads: number;
+  downloadUrl: string;
+  bpm: string;
+  key: string;
+  dominantColor: string;
 }

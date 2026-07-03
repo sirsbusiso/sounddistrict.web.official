@@ -4,7 +4,41 @@
       <h1>Podcast Episodes</h1>
       <p>Explore every episode of the Sound District Music Show.</p>
     </div>
+    <div class="podcast-search">
+      <i class="bi bi-search"></i>
 
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search episodes, artists or genres..."
+        (input)="onSearch()"
+        (focus)="onSearch()"
+      />
+
+      <div class="search-results" *ngIf="showResults">
+        <div
+          class="search-item"
+          *ngFor="let track of searchResults"
+          (click)="openSearchResult(track)"
+        >
+          <img [src]="track.artworkUrl" [alt]="track.title" />
+
+          <div class="search-info">
+            <h4>{{ track.title }}</h4>
+
+            <small>
+              {{ getArtistName(track.title) }}
+              •
+              {{ track.genre }}
+            </small>
+          </div>
+        </div>
+
+        <div class="no-results" *ngIf="!searchResults.length">
+          No episodes found.
+        </div>
+      </div>
+    </div>
     <div class="podcast-list">
       <article class="podcast-card" *ngFor="let podcast of pagedTracks">
         <img
@@ -29,7 +63,7 @@
           <p>{{ podcast.description | slice: 0 : 180 }}...</p>
 
           <button class="listen-btn" (click)="openEpisode(podcast.slug)">
-            Listen Now
+            View More
           </button>
         </div>
       </article>
@@ -44,14 +78,7 @@
         <i class="bi bi-chevron-left"></i>
       </button>
 
-      <button
-        *ngFor="let page of pages"
-        class="page-btn"
-        [class.active]="page === currentPage"
-        (click)="goToPage(page)"
-      >
-        {{ page }}
-      </button>
+      <div class="page-info">Page {{ currentPage }} of {{ totalPages }}</div>
 
       <button
         class="page-btn"
