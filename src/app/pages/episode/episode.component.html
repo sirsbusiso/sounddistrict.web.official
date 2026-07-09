@@ -128,7 +128,7 @@
       <div
         class="episode-card"
         *ngFor="let podcast of artistRelated"
-        (click)="openEpisode(podcast.slug)"
+        (click)="openEpisode(podcast)"
       >
         <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 
@@ -148,7 +148,7 @@
       <div
         class="episode-card"
         *ngFor="let podcast of relatedTracks"
-        (click)="openEpisode(podcast.slug)"
+        (click)="openEpisode(podcast)"
       >
         <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 

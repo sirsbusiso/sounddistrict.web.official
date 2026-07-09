@@ -177,6 +177,7 @@
 .mini-skip-button {
   display: none;
 }
+
 /* ==========================================
    MOBILE PLAYER
 ========================================== */
@@ -185,6 +186,12 @@
 =========================== */
 
 @media (max-width: 768px) {
+  .player button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
   .player {
     position: fixed;
     left: 0;
@@ -199,8 +206,6 @@
 
     display: flex;
     align-items: center;
-
-    border-radius: 20px 20px 0 0;
 
     transition: all 0.35s ease;
 

@@ -7,26 +7,30 @@ import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { PlayerService } from '../services/shared/player.service';
 
 @Component({
-    selector: 'app-root',
-    imports: [
-        RouterOutlet,
-        NavComponent,
-        PlayerComponent,
-        CommonModule,
-        FooterComponent,
-        LoaderComponent,
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+  selector: 'app-root',
+  imports: [
+    RouterOutlet,
+    NavComponent,
+    PlayerComponent,
+    CommonModule,
+    FooterComponent,
+    LoaderComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Sound District Official';
 
   isHome = false;
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    public player: PlayerService,
+  ) {}
 
   gotoUpload() {
     this.router.navigate(['/upload']);

@@ -1,0 +1,10 @@
+<div class="brand-assets">
+  <div class="card-grid">
+    <div class="logo-card" *ngFor="let logo of logos">
+      <a [href]="logo.file" download>
+        <img [src]="logo.file" [alt]="logo.name + ' logo'" />
+      </a>
+      <p>{{ logo.name }}</p>
+    </div>
+  </div>
+</div>

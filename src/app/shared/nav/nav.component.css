@@ -128,6 +128,22 @@
     color: #fff;
   }
 
+  .mobile-short {
+    display: flex;
+    gap: 16px;
+  }
+
+  .mobile-short a {
+    color: #d7d7d7;
+    font-size: 20px;
+
+    transition: 0.3s;
+  }
+
+  .mobile-shorta:hover {
+    color: #fff;
+  }
+
   .mobile-menu {
     display: flex;
     justify-content: space-around;

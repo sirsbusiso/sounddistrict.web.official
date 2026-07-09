@@ -6,6 +6,7 @@ import { Track } from '../../../models/podcast/podcast.models';
 import { PodcastService } from '../../../services/podcast.service/podcast.service';
 import { PlayerService } from '../../../services/shared/player.service';
 import { SeoService } from '../../../services/shared/seo.service';
+import { ShareService } from '../../../services/shared/share.service';
 
 @Component({
   selector: 'app-episode',
@@ -20,6 +21,7 @@ export class EpisodeComponent implements OnInit {
     public player: PlayerService,
     private router: Router,
     private seo: SeoService,
+    private shareService: ShareService,
   ) {}
 
   track?: Track;
@@ -98,19 +100,10 @@ export class EpisodeComponent implements OnInit {
       });
     });
   }
-  async shareEpisode(track: any): Promise<void> {
-    const url = `${window.location.origin}/episode/${track.slug}`;
-
+  async shareEpisode(track: Track): Promise<void> {
     try {
-      if (navigator.share) {
-        await navigator.share({
-          title: track.title,
-          text: `🎧 ${track.title}\n\nListen now on Sound District.`,
-          url,
-        });
-      } else {
-        await navigator.clipboard.writeText(url);
-      }
+      var description = `Listen to ${track.title} exclusively on Sound District.`;
+      this.shareService.shareEpisode(track.slug, track.title, description);
     } catch (error) {
       console.error('Share failed:', error);
     }
@@ -156,9 +149,9 @@ export class EpisodeComponent implements OnInit {
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-  openEpisode(slug: string): void {
-    console.log(slug);
-    this.router.navigate(['/episode', slug]);
+  openEpisode(track: Track): void {
+    this.player.setBackPlayerBackground();
+    this.router.navigate(['/episode', track.slug]);
   }
   viewAllEpisodes(): void {
     this.router.navigate(['/podcasts']);

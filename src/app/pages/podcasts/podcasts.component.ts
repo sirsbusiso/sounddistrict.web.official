@@ -109,7 +109,7 @@ export class PodcastsComponent {
   }
 
   openEpisode(slug: string): void {
-    window.location.href = `/episode/${slug}`;
+    this.router.navigate(['/episode', slug]);
   }
   formatDuration(seconds: string | number): string {
     const totalSeconds = Number(seconds);

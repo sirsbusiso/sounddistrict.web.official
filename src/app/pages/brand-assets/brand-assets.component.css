@@ -1,0 +1,56 @@
+/* container for the brand assets */
+.brand-assets {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: var(--main-font);
+  margin-top: -150px;
+}
+
+/* make logos inline */
+.card-grid {
+  display: flex; /* use flex instead of grid */
+  gap: 1rem; /* space between logos */
+  flex-wrap: wrap; /* wrap on smaller screens */
+  justify-content: center; /* center horizontally */
+  margin-top: 1rem;
+}
+
+.logo-card {
+  background: white;
+  border-radius: 8px; /* slightly rounded corners */
+  padding: 0.5rem 1rem; /* smaller padding */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.logo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-card img {
+  width: 50px; /* smaller width */
+  height: auto;
+  display: block;
+  margin-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.logo-card p {
+  margin: 0;
+  font-size: 0.75rem; /* smaller text */
+  color: black;
+}
+.payment-logos {
+  margin-top: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+}

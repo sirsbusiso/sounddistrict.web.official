@@ -44,6 +44,8 @@
     >
       <i class="bi bi-apple"></i>
     </a>
+    <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
+    <a (click)="checkout()" target="_blank"><i class="bi bi-bag-fill"></i></a>
   </div>
 </header>
 <div class="mobile-header">
@@ -52,7 +54,12 @@
       <img src="main-logo-2.png" alt="Sound District" />
     </a>
 
-    <div class="mobile-social">
+    <div class="mobile-short" *ngIf="isMusicRelease">
+      <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
+      <a (click)="checkout()" target="_blank"><i class="bi bi-bag-fill"></i></a>
+    </div>
+
+    <div class="mobile-social" *ngIf="!isMusicRelease">
       <a
         href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
         target="_blank"

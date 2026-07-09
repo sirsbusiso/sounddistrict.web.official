@@ -1,21 +1,40 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { PlayerService } from '../../../services/shared/player.service';
+import { filter } from 'rxjs';
 
 @Component({
-    selector: 'app-nav',
-    imports: [],
-    templateUrl: './nav.component.html',
-    styleUrl: './nav.component.css'
+  selector: 'app-nav',
+  imports: [CommonModule],
+  templateUrl: './nav.component.html',
+  styleUrl: './nav.component.css',
 })
 export class NavComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public player: PlayerService,
+  ) {}
+
+  isMusicRelease = false;
+  show = true;
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        const url = this.router.url.toLowerCase();
+        this.isMusicRelease =
+          url.includes('/music') ||
+          url.includes('/release') ||
+          url.includes('/checkout');
+      });
+  }
   gotoMusic(): void {
-    window.open(
-      'https://music.apple.com/gh/artist/360-project/1821068616',
-      '_blank',
-    );
+    this.router.navigate(['/music']);
   }
   gotoPodcast(): void {
+    this.player.setBackPlayerBackground();
     this.router.navigate(['/podcasts']);
   }
   gotoShop(): void {
@@ -29,5 +48,18 @@ export class NavComponent {
   }
   gotoUpload() {
     this.router.navigate(['/upload']);
+  }
+  checkout() {
+    debugger;
+    this.router.navigate(['/checkout']);
+  }
+
+  goToAccount(): void {
+    const returnUrl = encodeURIComponent(window.location.href);
+
+    window.open(
+      `https://accounts.sounddistrict.co.za?returnUrl=${returnUrl}`,
+      '_self',
+    );
   }
 }

@@ -1,0 +1,184 @@
+<section class="music-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>Music</h1>
+      <p>Discover and purchase underground house music.</p>
+    </div>
+
+    <div class="music-search">
+      <i class="bi bi-search"></i>
+
+      <input
+        type="text"
+        placeholder="Search releases..."
+        [(ngModel)]="search"
+        (input)="onSearch()"
+        (focus)="onSearch()"
+      />
+
+      <div class="search-results" *ngIf="showResults">
+        <div
+          class="search-item"
+          *ngFor="let release of searchResults"
+          (click)="viewRelease(release)"
+        >
+          <img [src]="release.artworkUrl" [alt]="release.title" />
+
+          <div class="search-info">
+            <h4>{{ release.title }}</h4>
+
+            <small>
+              {{ release.artistName }}
+            </small>
+          </div>
+        </div>
+
+        <div class="no-results" *ngIf="!searchResults.length">
+          No episodes found.
+        </div>
+      </div>
+    </div>
+
+    <div class="music-filters">
+      <button
+        [class.active]="selectedType === undefined"
+        (click)="filter(undefined)"
+      >
+        All
+      </button>
+
+      <button
+        [class.active]="selectedType === ReleaseType.Single"
+        (click)="filter(ReleaseType.Single)"
+      >
+        Singles
+      </button>
+
+      <button
+        [class.active]="selectedType === ReleaseType.EP"
+        (click)="filter(ReleaseType.EP)"
+      >
+        EPs
+      </button>
+
+      <button
+        [class.active]="selectedType === ReleaseType.Album"
+        (click)="filter(ReleaseType.Album)"
+      >
+        Albums
+      </button>
+    </div>
+
+    <div class="release-list">
+      <article class="release-row" *ngFor="let release of releases">
+        <div class="release-image">
+          <div class="release-artwork">
+            <img [src]="release.artworkUrl" [alt]="release.title" />
+
+            <div
+              class="release-ribbon"
+              *ngIf="!release.isPublished && release.scheduleDate"
+            >
+              Forthcoming
+            </div>
+          </div>
+        </div>
+
+        <div class="release-body">
+          <div class="release-header">
+            <h2>{{ release.title }}</h2>
+
+            <span class="price"> R{{ release.price }} </span>
+          </div>
+
+          <p class="artist">
+            {{ release.artistName }}
+          </p>
+
+          <div class="release-meta">
+            <span>
+              {{ ReleaseType[release.releaseType] }}
+            </span>
+
+            <span>•</span>
+
+            <span>
+              {{ release.genre }}
+            </span>
+
+            <span>•</span>
+
+            <span> {{ countTracks(release.tracks) }} Tracks </span>
+          </div>
+
+          <div class="release-footer">
+            <span class="date" *ngIf="release.scheduleDate; else released">
+              <i class="fa-regular fa-calendar"></i>
+              Coming out on {{ release.scheduleDate | date: "dd MMM yyyy" }}
+            </span>
+
+            <ng-template #released>
+              <span class="date">
+                <i class="fa-regular fa-calendar"></i>
+                Released {{ release.releaseDate | date: "dd MMM yyyy" }}
+              </span>
+            </ng-template>
+            <button class="view-btn" (click)="viewRelease(release)">
+              View Release
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="release-mobile" *ngFor="let release of releases">
+      <img
+        class="mobile-artwork"
+        [src]="release.artworkUrl"
+        [alt]="release.title"
+      />
+
+      <div class="mobile-content">
+        <h3>
+          {{ release.title }}
+        </h3>
+
+        <p>
+          {{ release.artistName }}
+        </p>
+
+        <small>
+          {{ ReleaseType[release.releaseType] }}
+
+          •
+
+          {{ release.genre }}
+
+          •
+
+          {{ countTracks(release.tracks) }} Tracks
+        </small>
+
+        <span class="mobile-date">
+          <ng-container *ngIf="release.scheduleDate; else mobileReleased">
+            Coming {{ release.scheduleDate | date: "dd MMM yyyy" }}
+          </ng-container>
+
+          <ng-template #mobileReleased>
+            Released {{ release.releaseDate | date: "dd MMM yyyy" }}
+          </ng-template>
+        </span>
+      </div>
+
+      <div class="mobile-right">
+        <span class="mobile-price"> R{{ release.price }} </span>
+
+        <button class="mobile-view" (click)="viewRelease(release)">
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

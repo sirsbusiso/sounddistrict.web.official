@@ -31,4 +31,23 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/donate/donate.component').then((m) => m.DonateComponent),
   },
+  {
+    path: 'music',
+    loadComponent: () =>
+      import('./pages/music/music.component').then((m) => m.MusicComponent),
+  },
+  {
+    path: 'release/:slug',
+    loadComponent: () =>
+      import('./pages/view-release/view-release.component').then(
+        (m) => m.ViewReleaseComponent,
+      ),
+  },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./pages/checkout/checkout.component').then(
+        (m) => m.CheckoutComponent,
+      ),
+  },
 ];

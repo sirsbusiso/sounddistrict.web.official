@@ -245,6 +245,9 @@
 
   background: var(--light-grey);
   color: var(--border);
+
+  font-size: 16px !important;
+  line-height: 1.4;
 }
 
 .podcast-search i {
@@ -502,6 +505,9 @@
   }
 }
 @media (max-width: 768px) {
+  .podcast-search input {
+    font-size: 14px;
+  }
   .pagination {
     display: flex;
     justify-content: center;

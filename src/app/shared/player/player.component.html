@@ -1,11 +1,16 @@
 <div
   class="player"
   [class.expanded]="player.expanded$ | async"
-  [style.background]="getPlayerBackground(track)"
-  [style.borderTop]="getPlayerBorder()"
+  [style.background]="player.playerBackground$ | async"
+  [style.borderTop]="player.getPlayerBorder()"
+  (touchend)="preventDoubleTapZoom($event)"
   *ngIf="player.currentTrack$ | async as track"
 >
-  <button class="player-toggle" (click)="player.toggleExpanded()">
+  <button
+    class="player-toggle"
+    (click)="player.toggleExpanded()"
+    *ngIf="!isMusic"
+  >
     <i
       class="bi"
       [ngClass]="
@@ -23,7 +28,9 @@
     <div>
       <h4 (click)="openEpisode(track.slug)">{{ track.title }}</h4>
 
-      <small (click)="openEpisode(track.slug)">Sound District Music Show</small>
+      <small (click)="onSubtitleClick(track)">
+        {{ track.artistName || "Sound District Music Show" }}
+      </small>
     </div>
   </div>
 
@@ -36,15 +43,17 @@
       type="range"
       min="0"
       [max]="player.duration$ | async"
-      [value]="player.currentTime$ | async"
-      (input)="player.seek(+$any($event.target).value)"
+      [value]="sliderValue"
+      (pointerdown)="dragging = true"
+      (pointerup)="onSeek()"
+      (input)="sliderValue = +$any($event.target).value"
     />
 
     <span>{{ formatTime(player.duration$ | async) }}</span>
   </div>
 
   <div class="player-center">
-    @if (player.expanded$ | async) {
+    @if ((player.expanded$ | async) && !isMusic) {
       <button
         class="skip-back-button"
         (click)="player.skipBackward(15)"
@@ -77,6 +86,7 @@
       </button>
     } @else {
       <button
+        *ngIf="!isMusic"
         class="mini-skip-button"
         (click)="player.skipForward(30)"
         title="Forward 30 seconds"
@@ -87,13 +97,18 @@
     }
   </div>
   <div class="player-stats">
-    <span>
+    <span *ngIf="!isMusic">
       <i class="bi bi-headphones"></i>
 
       {{ track.plays | number }}
     </span>
+    <span *ngIf="isMusic">
+      <i class="bi bi-headphones"></i>
 
-    <span>
+      {{ previewCount }}
+    </span>
+
+    <span *ngIf="!isMusic">
       <i class="bi bi-download"></i>
 
       {{ track.downloads | number }}

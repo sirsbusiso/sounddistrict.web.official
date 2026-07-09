@@ -1,0 +1,303 @@
+<section class="musicRelease-page" *ngIf="musicRelease">
+  <div class="container">
+    <div class="musicRelease-hero">
+      <!-- Artwork -->
+
+      <div class="musicRelease-artwork">
+        <img [src]="musicRelease.artworkUrl" [alt]="musicRelease.title" />
+
+        <div
+          class="musicRelease-ribbon"
+          *ngIf="!musicRelease.isPublished && musicRelease.scheduleDate"
+        >
+          COMING SOON
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="musicRelease-info">
+        <div class="musicRelease-title">
+          <h1>{{ musicRelease.title }}</h1>
+
+          <span class="musicRelease-type">
+            {{ ReleaseType[musicRelease.releaseType] }}
+          </span>
+        </div>
+
+        <h2 class="musicRelease-artist">
+          {{ musicRelease.artistName }}
+        </h2>
+
+        <div class="musicRelease-meta">
+          <span>
+            <i class="fa-solid fa-music"></i>
+            {{ countTracks(musicRelease.tracks) }} Tracks
+          </span>
+
+          <span>
+            <i class="fa-solid fa-compact-disc"></i>
+            {{ musicRelease.genre }}
+          </span>
+
+          <span>
+            <i class="fa-solid fa-tag"></i>
+            R {{ musicRelease.price | number: "1.2-2" : "en-ZA" }}
+          </span>
+        </div>
+
+        <div class="musicRelease-date">
+          <i class="fa-regular fa-calendar"></i>
+
+          <span *ngIf="!musicRelease.isPublished">
+            Coming out on
+            {{ musicRelease.scheduleDate | date: "dd MMM yyyy" }}
+          </span>
+
+          <span *ngIf="musicRelease.isPublished">
+            Released
+            {{ musicRelease.releaseDate | date: "dd MMM yyyy" }}
+          </span>
+        </div>
+
+        <p class="musicRelease-description">
+          {{ musicRelease.description }}
+        </p>
+
+        <div class="musicRelease-buttons">
+          <div class="musicRelease-buttons">
+            <button
+              class="btn-buy-musicRelease"
+              *ngIf="musicRelease.isPublished"
+              (click)="buyRelease(musicRelease)"
+            >
+              Buy Release
+            </button>
+
+            <button class="btn-coming" *ngIf="!musicRelease.isPublished">
+              Coming Soon
+            </button>
+
+            <button class="btn-share" (click)="shareRelease(musicRelease)">
+              <i class="fa-solid fa-share-nodes"></i>
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===========================================
+     TRACKS
+=========================================== -->
+
+<div class="tracks-section">
+  <div class="section-title">
+    <h2>Tracks</h2>
+
+    <span> {{ countTracks(musicRelease?.tracks) }} Tracks </span>
+  </div>
+
+  <div
+    class="desktop-track"
+    *ngFor="let track of musicRelease?.tracks; let i = index"
+  >
+    <!-- Number -->
+
+    <div class="track-number">
+      {{ i + 1 }}
+    </div>
+
+    <!-- Play -->
+
+    <button
+      class="play-btn"
+      *ngIf="musicRelease?.isPublished"
+      (click)="play(track)"
+    >
+      <i class="fa-solid" [ngClass]="isPlaying(track) ? 'fa-pause' : 'fa-play'">
+      </i>
+    </button>
+
+    <div class="play-placeholder" *ngIf="!musicRelease?.isPublished">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <!-- Track -->
+
+    <div class="track-info">
+      <h4>
+        {{ track.title }}
+      </h4>
+
+      <small>
+        {{ track.musicalKey }}
+
+        •
+
+        {{ track.bpm }} BPM
+      </small>
+    </div>
+
+    <!-- Duration -->
+
+    <div class="track-duration">
+      {{ formatDuration(track.durationSeconds) }}
+    </div>
+    <div class="track-preview-count">
+      <i class="bi bi-headphones"></i>
+      {{ getPreviewCount(track) }}
+    </div>
+    <div class="track-price">
+      R {{ track.price | number: "1.2-2" : "en-ZA" }}
+    </div>
+
+    <button
+      class="buy-track"
+      *ngIf="musicRelease?.isPublished"
+      (click)="buyTrack(track)"
+    >
+      Buy
+    </button>
+
+    <span class="coming-label" *ngIf="!musicRelease?.isPublished">
+      Coming Soon
+    </span>
+  </div>
+
+  <div class="track-row-mobile" *ngFor="let track of musicRelease?.tracks">
+    <div class="mobile-header">
+      <button
+        class="play-btn"
+        *ngIf="musicRelease?.isPublished"
+        (click)="play(track)"
+      >
+        <i
+          class="fa-solid"
+          [ngClass]="isPlaying(track) ? 'fa-pause' : 'fa-play'"
+        >
+        </i>
+      </button>
+
+      <div class="play-placeholder" *ngIf="!musicRelease?.isPublished">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+
+      <div class="mobile-track">
+        <h4>{{ track.title }}</h4>
+
+        <small>
+          {{ track.musicalKey }}
+
+          •
+
+          {{ track.bpm }} BPM
+        </small>
+      </div>
+    </div>
+
+    <div class="mobile-footer">
+      <span>
+        {{ formatDuration(track.durationSeconds) }}
+      </span>
+
+      <span>
+        <i class="bi bi-headphones"></i>
+        {{ getPreviewCount(track) }}
+      </span>
+
+      <strong> R {{ track.price | number: "1.2-2" : "en-ZA" }} </strong>
+
+      <button class="mobile-buy-btn" *ngIf="musicRelease?.isPublished">
+        Buy
+      </button>
+
+      <span class="mobile-coming" *ngIf="!musicRelease?.isPublished">
+        Coming Soon
+      </span>
+    </div>
+  </div>
+</div>
+<!-- ===========================================
+     ABOUT
+=========================================== -->
+<!-- 
+<section class="about-section" *ngIf="musicRelease">
+  <h2>About this Release</h2>
+
+  <p *ngIf="musicRelease">
+    {{ musicRelease.description }}
+  </p>
+</section> -->
+<!-- ===========================================
+     RELEASE INFO
+=========================================== -->
+
+<section class="musicRelease-information">
+  <h2>Release Information</h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="label"> Artist </span>
+
+      <strong *ngIf="musicRelease">
+        {{ musicRelease.artistName }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span class="label"> Label </span>
+
+      <strong *ngIf="musicRelease">
+        {{ musicRelease.labelName }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span class="label"> Genre </span>
+
+      <strong *ngIf="musicRelease">
+        {{ musicRelease.genre }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span class="label"> Sub Genre </span>
+
+      <strong *ngIf="musicRelease">
+        {{ musicRelease.subGenre }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span class="label"> Catalogue </span>
+
+      <strong *ngIf="musicRelease">
+        {{ musicRelease.catalogNumber }}
+      </strong>
+    </div>
+
+    <div class="info-card">
+      <span class="label"> Type </span>
+
+      <span *ngIf="musicRelease">
+        {{ ReleaseType[musicRelease.releaseType] }}
+      </span>
+    </div>
+  </div>
+</section>
+<section class="related-releases" *ngIf="relatedReleases.length">
+  <div class="related-grid">
+    <div class="related-card" *ngFor="let item of relatedReleases">
+      <img [src]="item.artworkUrl" />
+
+      <h4>
+        {{ item.title }}
+      </h4>
+
+      <small>
+        {{ ReleaseType[item.releaseType] }}
+      </small>
+    </div>
+  </div>
+</section>

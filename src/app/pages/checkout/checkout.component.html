@@ -1,0 +1,75 @@
+<div class="checkout-page">
+  <!-- Information Banner -->
+  <div class="checkout-info">
+    <p class="note">
+      <strong>Note:</strong> Use the same email address for your account and
+      your purchase to ensure your downloads are automatically linked.
+    </p>
+  </div>
+
+  <div class="checkout">
+    <div class="left">
+      <h2>Checkout</h2>
+
+      <!-- Release -->
+      <div
+        class="card"
+        *ngIf="purchase && purchase.type === PurchaseType.Release"
+      >
+        <img [src]="purchase.release?.artworkUrl" />
+
+        <div class="info">
+          <h3>{{ purchase.release?.title }}</h3>
+
+          <p>{{ purchase.release?.artistName }}</p>
+
+          <span class="badge">
+            {{ purchase.release?.releaseType }}
+          </span>
+
+          <h4>R {{ purchase.release?.price | number: "1.2-2" : "en-ZA" }}</h4>
+        </div>
+      </div>
+
+      <!-- Tracks -->
+      <div *ngIf="purchase && purchase.type === PurchaseType.Tracks">
+        <div class="track" *ngFor="let track of purchase?.tracks">
+          <div>
+            <h4>{{ track.title }}</h4>
+            <small>{{ purchase.release?.artistName }}</small>
+          </div>
+
+          <div class="actions">
+            <span>R {{ track.price | number: "1.2-2" : "en-ZA" }}</span>
+
+            <button (click)="removeTrack(track.id)">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <h3>Your Details</h3>
+
+      <label>Name</label>
+      <input [(ngModel)]="name" type="text" />
+
+      <label>Email</label>
+      <input [(ngModel)]="email" type="email" />
+
+      <div class="summary">
+        <div>
+          <span>Total</span>
+          <strong>R {{ total | number: "1.2-2" : "en-ZA" }}</strong>
+        </div>
+      </div>
+
+      <button class="pay" (click)="checkout()">Proceed to Payment</button>
+
+      <!-- Payment Methods -->
+    </div>
+  </div>
+</div>
+<section class="payment-logos">
+  <app-brand-assets></app-brand-assets>
+</section>

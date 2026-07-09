@@ -1,14 +1,16 @@
-<app-nav></app-nav>
-<app-loader></app-loader>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
-<app-player></app-player>
-<a
-  *ngIf="showUploadFab && router.url === '/'"
-  class="upload-fab"
-  (click)="gotoUpload()"
->
-  <i class="bi bi-cloud-arrow-up-fill"></i>
+<div class="app-shell">
+  <app-nav></app-nav>
+  <app-loader></app-loader>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  <app-player></app-player>
+  <a
+    *ngIf="showUploadFab && router.url === '/'"
+    class="upload-fab"
+    (click)="gotoUpload()"
+  >
+    <i class="bi bi-cloud-arrow-up-fill"></i>
 
-  <span>Upload</span>
-</a>
+    <span>Upload</span>
+  </a>
+</div>

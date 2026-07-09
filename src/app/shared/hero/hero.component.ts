@@ -73,12 +73,14 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   nextSlide(): void {
+    this.player.setBackPlayerBackground();
     if (!this.tracks.length) return;
 
     this.currentTrack = (this.currentTrack + 1) % this.tracks.length;
   }
 
   previousSlide(): void {
+    this.player.setBackPlayerBackground();
     if (!this.tracks.length) return;
 
     this.currentTrack =
@@ -92,57 +94,5 @@ export class HeroComponent implements OnInit, OnDestroy {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
-  }
-
-  getDominantColor(imageUrl: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-
-        if (!ctx) {
-          reject('Canvas not supported');
-          return;
-        }
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        ctx.drawImage(img, 0, 0);
-
-        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-
-        let r = 0;
-        let g = 0;
-        let b = 0;
-        let count = 0;
-
-        for (let i = 0; i < pixels.length; i += 40) {
-          const pr = pixels[i];
-          const pg = pixels[i + 1];
-          const pb = pixels[i + 2];
-          const alpha = pixels[i + 3];
-
-          if (alpha < 128) continue;
-
-          r += pr;
-          g += pg;
-          b += pb;
-          count++;
-        }
-
-        r = Math.round(r / count);
-        g = Math.round(g / count);
-        b = Math.round(b / count);
-
-        resolve(`rgb(${r}, ${g}, ${b})`);
-      };
-
-      img.onerror = reject;
-      img.src = imageUrl;
-    });
   }
 }

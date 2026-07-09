@@ -10,38 +10,55 @@ import { Track } from '../../../models/podcast/podcast.models';
   styleUrl: './player.component.css',
 })
 export class PlayerComponent {
+  isMusic = false;
+  previewCount = 0;
   constructor(
     public player: PlayerService,
     private router: Router,
-  ) {}
+  ) {
+    this.player.currentTime$.subscribe((time) => {
+      if (!this.dragging) {
+        this.sliderValue = time;
+      }
+    });
+    this.player.currentTrack$.subscribe((track) => {
+      this.isMusic = track?.isMusic!;
+    });
+    player.previewCount$.subscribe((previews) => {
+      this.previewCount = previews;
+    });
+  }
 
   isExpanded = false;
 
+  private lastTouchEnd = 0;
+
+  dragging = false;
+  sliderValue = 0;
+
+  onSeek() {
+    this.dragging = false;
+    this.player.seek(this.sliderValue);
+  }
+
+  preventDoubleTapZoom(event: TouchEvent): void {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('button')) {
+      return;
+    }
+
+    const now = Date.now();
+
+    if (now - this.lastTouchEnd < 300) {
+      event.preventDefault();
+    }
+
+    this.lastTouchEnd = now;
+  }
+
   togglePlayer(): void {
     this.isExpanded = !this.isExpanded;
-  }
-
-  isMobile(): boolean {
-    return window.innerWidth <= 768;
-  }
-
-  getPlayerBackground(track: Track): string {
-    if (!this.isMobile()) {
-      return '#6b6b6b';
-    }
-
-    return `linear-gradient(
-    180deg,
-    ${track.dominantColor || '#6b6b6b'} 0%,
-    #6b6b6b 100%
-  )`;
-  }
-  getPlayerBorder(): string {
-    if (!this.isMobile()) {
-      return '1px solid #6b6b6b';
-    }
-
-    return 'none';
   }
 
   formatTime(seconds: number | null): string {
@@ -63,6 +80,18 @@ export class PlayerComponent {
   }
   openEpisode(slug: string): void {
     this.player.collapse();
+
     this.router.navigate(['/episode', slug]);
+  }
+
+  openArtist(releaseId: string) {
+    this.router.navigate(['/release', releaseId]);
+  }
+  onSubtitleClick(track: Track): void {
+    if (track.releaseId) {
+      this.openArtist(track.releaseId!);
+    } else {
+      this.openEpisode(track.slug);
+    }
   }
 }

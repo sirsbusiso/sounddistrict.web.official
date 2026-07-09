@@ -14,4 +14,7 @@ export interface Track {
   bpm: string;
   key: string;
   dominantColor: string;
+  artistName?: string;
+  releaseId?: string;
+  isMusic?: boolean;
 }
