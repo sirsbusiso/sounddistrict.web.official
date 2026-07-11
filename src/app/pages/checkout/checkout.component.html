@@ -1,5 +1,4 @@
 <div class="checkout-page">
-  <!-- Information Banner -->
   <div class="checkout-info">
     <p class="note">
       <strong>Note:</strong> Use the same email address for your account and
@@ -11,41 +10,70 @@
     <div class="left">
       <h2>Checkout</h2>
 
-      <!-- Release -->
+      <!-- Empty -->
       <div
-        class="card"
-        *ngIf="purchase && purchase.type === PurchaseType.Release"
+        class="empty-state"
+        *ngIf="
+          purchase &&
+          purchase.releases.length === 0 &&
+          purchase.tracks.length === 0
+        "
       >
-        <img [src]="purchase.release?.artworkUrl" />
-
-        <div class="info">
-          <h3>{{ purchase.release?.title }}</h3>
-
-          <p>{{ purchase.release?.artistName }}</p>
-
-          <span class="badge">
-            {{ purchase.release?.releaseType }}
-          </span>
-
-          <h4>R {{ purchase.release?.price | number: "1.2-2" : "en-ZA" }}</h4>
-        </div>
+        <h3>Your cart is empty.</h3>
       </div>
 
-      <!-- Tracks -->
-      <div *ngIf="purchase && purchase.type === PurchaseType.Tracks">
-        <div class="track" *ngFor="let track of purchase?.tracks">
-          <div>
-            <h4>{{ track.title }}</h4>
-            <small>{{ purchase.release?.artistName }}</small>
+      <!-- Releases -->
+      <div *ngIf="purchase?.releases?.length">
+        <div class="release-item" *ngFor="let release of purchase!.releases">
+          <div class="release-info">
+            <img
+              [src]="release.artworkUrl"
+              [alt]="release.title"
+              (click)="goToRelease(release)"
+            />
+
+            <div class="details">
+              <h3>{{ release.title }}</h3>
+              <small>{{ release.artistName }}</small>
+
+              <span class="badge">
+                {{ ReleaseType[release.releaseType] }}
+              </span>
+            </div>
           </div>
 
           <div class="actions">
-            <span>R {{ track.price | number: "1.2-2" : "en-ZA" }}</span>
+            <span> R {{ release.price | number: "1.2-2" : "en-ZA" }} </span>
 
-            <button (click)="removeTrack(track.id)">✕</button>
+            <button type="button" (click)="removeRelease(release.id)">✕</button>
           </div>
         </div>
       </div>
+      <!-- Tracks -->
+      <ng-container *ngIf="purchase?.tracks?.length">
+        <div class="track" *ngFor="let track of purchase!.tracks">
+          <div class="track-info">
+            <img
+              class="track-artwork"
+              [src]="track.artworkUrl"
+              [alt]="track.title"
+              (click)="routeBackToRelease(track)"
+            />
+
+            <div class="track-details">
+              <h4>{{ track.title }}</h4>
+
+              <small>{{ track.artistName }}</small>
+            </div>
+          </div>
+
+          <div class="actions">
+            <span> R {{ track.price | number: "1.2-2" : "en-ZA" }} </span>
+
+            <button type="button" (click)="removeTrack(track.id)">✕</button>
+          </div>
+        </div>
+      </ng-container>
     </div>
 
     <div class="right">
@@ -60,16 +88,22 @@
       <div class="summary">
         <div>
           <span>Total</span>
-          <strong>R {{ total | number: "1.2-2" : "en-ZA" }}</strong>
+
+          <strong> R {{ purchaseTotal | number: "1.2-2" : "en-ZA" }} </strong>
         </div>
       </div>
 
-      <button class="pay" (click)="checkout()">Proceed to Payment</button>
-
-      <!-- Payment Methods -->
+      <button
+        class="pay"
+        (click)="checkout()"
+        [disabled]="!purchaseService.hasItems()"
+      >
+        Proceed to Payment
+      </button>
     </div>
   </div>
 </div>
+
 <section class="payment-logos">
   <app-brand-assets></app-brand-assets>
 </section>

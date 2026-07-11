@@ -50,4 +50,11 @@ export const routes: Routes = [
         (m) => m.CheckoutComponent,
       ),
   },
+  {
+    path: 'payment/:status',
+    loadComponent: () =>
+      import('./shared/payment-result/payment-result.component').then(
+        (m) => m.PaymentResultComponent,
+      ),
+  },
 ];

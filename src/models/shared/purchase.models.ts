@@ -6,24 +6,21 @@ export interface PurchaseRelease {
   artistName: string;
   artworkUrl: string;
   releaseType: ReleaseType;
+  slug: string;
   price: number;
 }
 
 export interface PurchaseTrack {
   id: string;
+  releaseId: string;
   title: string;
   artistName: string;
-  artworkUrl?: string;
+  artworkUrl: string;
+  slug: string;
   price: number;
 }
 
 export interface Purchase {
-  type: PurchaseType;
-  release?: PurchaseRelease;
+  releases: PurchaseRelease[];
   tracks: PurchaseTrack[];
-}
-
-export enum PurchaseType {
-  Release = 'release',
-  Tracks = 'tracks',
 }

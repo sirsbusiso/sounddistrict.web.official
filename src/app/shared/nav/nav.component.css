@@ -18,6 +18,15 @@
 
   border-bottom: var(--dark-grey);
 }
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #6d6d6d;
+}
 
 .left-menu,
 .right-menu {
@@ -52,7 +61,7 @@
   color: #d7d7d7;
 
   font-size: 24px;
-
+  cursor: pointer;
   transition: 0.3s ease;
 }
 
@@ -109,7 +118,7 @@
   }
 
   .mobile-logo img {
-    height: 46px;
+    height: 36px;
   }
 
   .mobile-social {
@@ -262,4 +271,82 @@
   color: var(--primary-color) !important;
 
   transform: translateY(-2px);
+}
+
+.bag-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  position: absolute;
+
+  top: -6px;
+  right: -8px;
+
+  min-width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: white;
+  background: #d70040;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  animation:
+    badgePulse 10s infinite,
+    badgeColor 10s infinite;
+}
+.badge {
+  animation:
+    badgePulse 5s infinite,
+    badgeColor 5s infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  85%,
+  100% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.2);
+  }
+
+  95% {
+    transform: scale(0.95);
+  }
+
+  98% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes badgeColor {
+  0%,
+  85%,
+  100% {
+    background: #d70040;
+  }
+
+  90% {
+    background: #28a745;
+  }
+
+  95% {
+    background: #ffc107;
+  }
+
+  98% {
+    background: #d70040;
+  }
 }

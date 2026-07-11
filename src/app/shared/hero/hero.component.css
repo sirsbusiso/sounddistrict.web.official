@@ -40,6 +40,9 @@
   white-space: nowrap;
 }
 @media (max-width: 768px) {
+  .hero {
+    margin-top: 180px !important;
+  }
   .hero-progress-wrapper {
     flex-direction: column;
     align-items: stretch;
@@ -255,7 +258,7 @@
 
     padding: 20px;
 
-    margin-top: 80px;
+    margin-top: 180px !important;
   }
 
   .hero-artwork {
@@ -296,6 +299,19 @@
    MOBILE
 ========================================== */
 
+@media (max-width: 780px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+
+    gap: 35px;
+
+    margin: 40px auto 60px;
+    padding: 0 20px;
+    margin-top: 80px;
+  }
+}
+
 @media (max-width: 991px) {
   .hero {
     display: flex;
@@ -305,6 +321,7 @@
 
     margin: 40px auto 60px;
     padding: 0 20px;
+    margin-top: 180px !important;
   }
 
   /* Artwork */

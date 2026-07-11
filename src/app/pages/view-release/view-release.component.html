@@ -208,7 +208,11 @@
 
       <strong> R {{ track.price | number: "1.2-2" : "en-ZA" }} </strong>
 
-      <button class="mobile-buy-btn" *ngIf="musicRelease?.isPublished">
+      <button
+        class="mobile-buy-btn"
+        (click)="buyTrack(track)"
+        *ngIf="musicRelease?.isPublished"
+      >
         Buy
       </button>
 

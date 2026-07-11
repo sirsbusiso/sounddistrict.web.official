@@ -1,0 +1,42 @@
+<div class="payment-container">
+  <div class="icon" [class.success]="success" [class.failed]="!success">
+    <span *ngIf="success">✔</span>
+    <span *ngIf="!success">✖</span>
+  </div>
+
+  <h2 *ngIf="success">Payment Successful</h2>
+
+  <h2 *ngIf="!success">Payment Failed</h2>
+
+  <p *ngIf="success">
+    Thank you for your purchase. Your music will be available shortly.
+  </p>
+
+  <p *ngIf="!success">
+    Unfortunately your payment could not be completed. No money has been
+    deducted.
+  </p>
+
+  <div class="actions" *ngIf="success">
+    <button class="btn-primary" (click)="viewPurchases()">
+      <i class="fas fa-download"></i>
+      View My Purchases
+    </button>
+
+    <button class="btn-secondary" (click)="continueShopping()">
+      <i class="fas fa-music"></i>
+      Continue Shopping
+    </button>
+  </div>
+  <div class="actions" *ngIf="!success">
+    <button class="btn-primary" (click)="checkout()">
+      <i class="fas fa-redo"></i>
+      Try Again
+    </button>
+
+    <button class="btn-secondary" (click)="continueShopping()">
+      <i class="fas fa-music"></i>
+      Continue Shopping
+    </button>
+  </div>
+</div>

@@ -112,7 +112,7 @@
           </div>
 
           <div class="release-footer">
-            <span class="date" *ngIf="release.scheduleDate; else released">
+            <span class="date" *ngIf="!release.isPublished; else released">
               <i class="fa-regular fa-calendar"></i>
               Coming out on {{ release.scheduleDate | date: "dd MMM yyyy" }}
             </span>

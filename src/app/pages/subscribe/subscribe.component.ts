@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-    selector: 'app-subscribe',
-    imports: [CommonModule, FormsModule],
-    templateUrl: './subscribe.component.html',
-    styleUrl: './subscribe.component.css'
+  selector: 'app-subscribe',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './subscribe.component.html',
+  styleUrl: './subscribe.component.css',
 })
 export class SubscribeComponent {
   email: string = '';
@@ -27,7 +27,6 @@ export class SubscribeComponent {
             horizontalPosition: 'right',
             verticalPosition: 'top',
           });
-          debugger;
         } else if (response.statusCode === 409) {
           this.snackBar.open(response.message, 'Close', {
             duration: 3000,

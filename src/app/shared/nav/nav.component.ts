@@ -3,10 +3,12 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { PlayerService } from '../../../services/shared/player.service';
 import { filter } from 'rxjs';
+import { BagAnimationComponent } from '../bag-animation/bag-animation.component';
+import { PurchaseService } from '../../../services/shared/purchase.service';
 
 @Component({
   selector: 'app-nav',
-  imports: [CommonModule],
+  imports: [CommonModule, BagAnimationComponent],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
@@ -14,22 +16,30 @@ export class NavComponent {
   constructor(
     private router: Router,
     public player: PlayerService,
+    public purchaseService: PurchaseService,
   ) {}
 
-  isMusicRelease = false;
+  isMobileView = false;
   show = true;
+  bagCount = 0;
+  isCountZero = false;
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const url = this.router.url.toLowerCase();
-        this.isMusicRelease =
-          url.includes('/music') ||
-          url.includes('/release') ||
-          url.includes('/checkout');
-      });
+    this.purchaseService.bagCount$.subscribe((count) => {
+      this.bagCount = count;
+      if (this.bagCount === 0) {
+        this.isCountZero = true;
+      } else {
+        this.isCountZero = false;
+      }
+    });
+    this.isMobileView = this.isMobile();
   }
+
+  isMobile(): boolean {
+    return window.innerWidth <= 800;
+  }
+
   gotoMusic(): void {
     this.router.navigate(['/music']);
   }
@@ -50,7 +60,6 @@ export class NavComponent {
     this.router.navigate(['/upload']);
   }
   checkout() {
-    debugger;
     this.router.navigate(['/checkout']);
   }
 

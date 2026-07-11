@@ -1,0 +1,44 @@
+.artwork-popup {
+  position: absolute;
+  bottom: 150px;
+  right: -8px;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+
+  animation: dockAnimation 1.3s forwards;
+}
+
+@keyframes dockAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(48px) scale(0.25);
+  }
+}
+@media screen and (max-width: 768px) {
+  .artwork-popup {
+    bottom: 120px !important;
+    right: 2px !important;
+  }
+}

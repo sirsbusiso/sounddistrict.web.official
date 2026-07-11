@@ -45,7 +45,15 @@
       <i class="bi bi-apple"></i>
     </a>
     <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
-    <a (click)="checkout()" target="_blank"><i class="bi bi-bag-fill"></i></a>
+    <a class="bag-wrapper" (click)="checkout()" #bagIcon>
+      <i class="fa-solid fa-bag-shopping"></i>
+
+      <span class="badge" *ngIf="!isCountZero">
+        {{ bagCount }}
+      </span>
+
+      <app-bag-animation></app-bag-animation>
+    </a>
   </div>
 </header>
 <div class="mobile-header">
@@ -54,12 +62,20 @@
       <img src="main-logo-2.png" alt="Sound District" />
     </a>
 
-    <div class="mobile-short" *ngIf="isMusicRelease">
+    <div class="mobile-short" *ngIf="isMobileView">
       <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
-      <a (click)="checkout()" target="_blank"><i class="bi bi-bag-fill"></i></a>
+      <a class="bag-wrapper" (click)="checkout()" #bagIcon>
+        <i class="fa-solid fa-bag-shopping"></i>
+
+        <span class="badge" *ngIf="!isCountZero">
+          {{ bagCount }}
+        </span>
+
+        <app-bag-animation></app-bag-animation>
+      </a>
     </div>
 
-    <div class="mobile-social" *ngIf="!isMusicRelease">
+    <div class="mobile-social" *ngIf="!isMobileView">
       <a
         href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
         target="_blank"
