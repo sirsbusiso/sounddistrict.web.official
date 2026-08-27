@@ -76,31 +76,73 @@
       </ng-container>
     </div>
 
-    <div class="right">
+    <form #checkoutForm="ngForm" class="right">
       <h3>Your Details</h3>
 
-      <label>Name</label>
-      <input [(ngModel)]="name" type="text" />
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        #nameCtrl="ngModel"
+        required
+        minlength="2"
+        placeholder="Enter your name"
+      />
 
-      <label>Email</label>
-      <input [(ngModel)]="email" type="email" />
+      <small
+        class="error"
+        *ngIf="nameCtrl.invalid && (nameCtrl.touched || nameCtrl.dirty)"
+      >
+        <span *ngIf="nameCtrl.errors?.['required']"> Name is required. </span>
+
+        <span *ngIf="nameCtrl.errors?.['minlength']">
+          Name must be at least 2 characters.
+        </span>
+      </small>
+
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        #emailCtrl="ngModel"
+        required
+        email
+        placeholder="Enter your email"
+      />
+
+      <small
+        class="error"
+        *ngIf="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)"
+      >
+        <span *ngIf="emailCtrl.errors?.['required']"> Email is required. </span>
+
+        <span *ngIf="emailCtrl.errors?.['email']">
+          Please enter a valid email address.
+        </span>
+      </small>
 
       <div class="summary">
         <div>
           <span>Total</span>
-
           <strong> R {{ purchaseTotal | number: "1.2-2" : "en-ZA" }} </strong>
         </div>
       </div>
-
+      <span *ngIf="isValid === false" class="error">
+        Please enter a valid email address.
+      </span>
       <button
+        type="button"
         class="pay"
         (click)="checkout()"
-        [disabled]="!purchaseService.hasItems()"
+        [disabled]="checkoutForm.invalid || !purchaseService.hasItems()"
       >
         Proceed to Payment
       </button>
-    </div>
+    </form>
   </div>
 </div>
 

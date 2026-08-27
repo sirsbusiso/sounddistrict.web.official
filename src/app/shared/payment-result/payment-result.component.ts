@@ -12,6 +12,7 @@ import { PurchaseService } from '../../../services/shared/purchase.service';
 })
 export class PaymentResultComponent implements OnInit {
   success = false;
+  accountUrl = 'https://accounts.sounddistrict.co.za';
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +34,7 @@ export class PaymentResultComponent implements OnInit {
   }
 
   viewPurchases(): void {
-    this.router.navigate(['/purchases']);
+    window.open(this.accountUrl, '_blank');
   }
 
   checkout() {

@@ -18,8 +18,9 @@ export class SubscribeComponent {
   ) {}
 
   subscribe(): void {
-    this.subscriptionService.subscribeToNewsletter(this.email).subscribe({
+    this.subscriptionService.subscribeToLists(this.email).subscribe({
       next: (response) => {
+        this.email = '';
         if (response.statusCode === 200) {
           this.snackBar.open(response.message, 'Close', {
             duration: 3000,

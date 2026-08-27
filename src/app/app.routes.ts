@@ -57,4 +57,11 @@ export const routes: Routes = [
         (m) => m.PaymentResultComponent,
       ),
   },
+  {
+    path: 'unsubscribe/:requestId',
+    loadComponent: () =>
+      import('./pages/unsubscribe/unsubscribe.component').then(
+        (m) => m.UnsubscribeComponent,
+      ),
+  },
 ];

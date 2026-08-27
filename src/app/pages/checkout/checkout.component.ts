@@ -30,6 +30,7 @@ export class CheckoutComponent implements OnInit {
   email = '';
 
   purchaseTotal = 0;
+  isValid = true;
 
   constructor(
     private router: Router,
@@ -39,7 +40,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.purchase = this.purchaseService.getFromCookie()!;
-    console.log(this.purchase);
     if (!this.purchase) {
       this.router.navigate(['/music']);
       return;
@@ -71,6 +71,10 @@ export class CheckoutComponent implements OnInit {
         })),
       ],
     };
+    if (!request.fullName || !request.email || request.items.length === 0) {
+      this.isValid = false;
+      return;
+    }
 
     this.musicPurchaseService.checkout(request).subscribe({
       next: (response) => {

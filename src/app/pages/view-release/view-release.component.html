@@ -10,7 +10,7 @@
           class="musicRelease-ribbon"
           *ngIf="!musicRelease.isPublished && musicRelease.scheduleDate"
         >
-          COMING SOON
+          FORTH COMING
         </div>
       </div>
 
@@ -87,9 +87,6 @@
     </div>
   </div>
 </section>
-<!-- ===========================================
-     TRACKS
-=========================================== -->
 
 <div class="tracks-section">
   <div class="section-title">
@@ -164,63 +161,48 @@
       Coming Soon
     </span>
   </div>
+</div>
+<div class="track-mobile-card" *ngFor="let track of musicRelease?.tracks">
+  <div class="track-mobile-play">
+    <button
+      class="play-btn"
+      *ngIf="musicRelease?.isPublished"
+      (click)="play(track)"
+    >
+      <i
+        class="fa-solid"
+        [ngClass]="isPlaying(track) ? 'fa-pause' : 'fa-play'"
+      ></i>
+    </button>
 
-  <div class="track-row-mobile" *ngFor="let track of musicRelease?.tracks">
-    <div class="mobile-header">
-      <button
-        class="play-btn"
-        *ngIf="musicRelease?.isPublished"
-        (click)="play(track)"
-      >
-        <i
-          class="fa-solid"
-          [ngClass]="isPlaying(track) ? 'fa-pause' : 'fa-play'"
-        >
-        </i>
-      </button>
-
-      <div class="play-placeholder" *ngIf="!musicRelease?.isPublished">
-        <i class="fa-solid fa-lock"></i>
-      </div>
-
-      <div class="mobile-track">
-        <h4>{{ track.title }}</h4>
-
-        <small>
-          {{ track.musicalKey }}
-
-          •
-
-          {{ track.bpm }} BPM
-        </small>
-      </div>
-    </div>
-
-    <div class="mobile-footer">
-      <span>
-        {{ formatDuration(track.durationSeconds) }}
-      </span>
-
-      <span>
-        <i class="bi bi-headphones"></i>
-        {{ getPreviewCount(track) }}
-      </span>
-
-      <strong> R {{ track.price | number: "1.2-2" : "en-ZA" }} </strong>
-
-      <button
-        class="mobile-buy-btn"
-        (click)="buyTrack(track)"
-        *ngIf="musicRelease?.isPublished"
-      >
-        Buy
-      </button>
-
-      <span class="mobile-coming" *ngIf="!musicRelease?.isPublished">
-        Coming Soon
-      </span>
+    <div class="play-placeholder" *ngIf="!musicRelease?.isPublished">
+      <i class="fa-solid fa-lock"></i>
     </div>
   </div>
+
+  <div class="track-mobile-info">
+    <h4>{{ track.title }}</h4>
+    <div class="track-mobile-price">
+      R {{ track.price | number: "1.2-2" : "en-ZA" }}
+    </div>
+    <small>
+      {{ track.musicalKey }}
+      •
+      {{ track.bpm }} BPM
+    </small>
+  </div>
+
+  <button
+    class="track-mobile-buy"
+    *ngIf="musicRelease?.isPublished"
+    (click)="buyTrack(track)"
+  >
+    <i class="fa-solid fa-bag-shopping"></i>
+  </button>
+
+  <button class="track-mobile-buy" *ngIf="!musicRelease?.isPublished" disabled>
+    <i class="fa-solid fa-lock"></i>
+  </button>
 </div>
 <!-- ===========================================
      ABOUT

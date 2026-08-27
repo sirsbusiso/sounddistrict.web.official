@@ -23,4 +23,19 @@ export class ShareService {
     }
     navigator.clipboard.writeText(url);
   }
+
+  shareRelease(slug: string, title: string, description: string): void {
+    const url = `${this.baseUrl}/release/${slug}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title,
+        text: description,
+        url,
+      });
+
+      return;
+    }
+    navigator.clipboard.writeText(url);
+  }
 }

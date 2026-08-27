@@ -279,7 +279,7 @@ export class PlayerService {
 
     navigator.mediaSession.metadata = new MediaMetadata({
       title: track.title,
-      artist: 'Sound District Music Show',
+      artist: track.artistName ?? 'Sound District',
       album: 'Sound District Music Show',
       artwork: [
         {

@@ -6,6 +6,8 @@
   max-width: 1300px;
   margin: auto;
   padding: 0 25px;
+
+  margin-top: 50px;
 }
 
 .musicRelease-title {
@@ -13,16 +15,39 @@
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
-  margin-top: 150px;
+  margin-bottom: 12px;
 }
 
 .musicRelease-title h1 {
   margin: 0;
+  color: #fff;
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.1;
+  font-weight: 700;
 }
 
+.musicRelease-type {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 34px;
+
+  padding: 0 16px;
+
+  border-radius: 999px;
+
+  background: var(--btn-primary);
+
+  color: #fff;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
+}
 .musicRelease-type {
   background: #d70040;
   color: #fff;
@@ -88,31 +113,69 @@
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
 }
 
+.musicRelease-artwork {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px; /* Match your image if it has rounded corners */
+}
+
+.musicRelease-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .musicRelease-ribbon {
   position: absolute;
 
   top: 22px;
   left: -42px;
 
-  width: 170px;
-  height: 34px;
+  width: 160px;
+  height: 32px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  background: var(--primary-color);
+  background: var(--btn-primary);
 
-  color: white;
+  color: #fff;
 
   font-size: 11px;
   font-weight: 700;
-
   letter-spacing: 1px;
+  text-transform: uppercase;
 
   transform: rotate(-45deg);
 
-  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+/* Small shine */
+
+.musicRelease-ribbon::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0)
+  );
+
+  pointer-events: none;
 }
 
 .musicRelease-info h1 {
@@ -436,189 +499,6 @@
   font-weight: 600;
 }
 
-/* ===========================================
-   MOBILE
-=========================================== */
-
-@media (max-width: 768px) {
-  .tracks-section {
-    max-width: 100%;
-    padding: 0 16px;
-  }
-  /* ==========================================
-   MOBILE TRACKS
-========================================== */
-
-  .desktop-track {
-    display: none;
-  }
-
-  .desktop-track-mobile {
-    display: block;
-
-    margin-bottom: 14px;
-
-    padding: 16px;
-
-    background: var(--dark-grey);
-
-    border: 1px solid rgba(255, 255, 255, 0.06);
-
-    border-radius: 14px;
-
-    transition: 0.25s;
-  }
-
-  .desktop-track-mobile:last-child {
-    margin-bottom: 0;
-  }
-
-  /* =======================
-   TOP
-======================= */
-
-  .mobile-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .mobile-track-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .mobile-track-info h4 {
-    margin: 0 0 5px;
-
-    color: #fff;
-
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .mobile-track-info small {
-    color: var(--light-grey);
-
-    font-size: 0.82rem;
-  }
-
-  /* =======================
-   PLAY
-======================= */
-
-  .desktop-track-mobile .play-btn,
-  .desktop-track-mobile .play-placeholder {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-  }
-
-  .desktop-track-mobile .play-btn {
-    background: rgba(255, 255, 255, 0.08);
-
-    border: none;
-
-    color: #fff;
-  }
-
-  .desktop-track-mobile .play-btn:hover {
-    background: var(--primary-color);
-  }
-
-  .desktop-track-mobile .play-placeholder {
-    color: #777;
-  }
-
-  /* =======================
-   BOTTOM
-======================= */
-
-  .mobile-bottom {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-top: 16px;
-
-    padding-top: 14px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-
-    font-size: 0.85rem;
-  }
-
-  .mobile-bottom span {
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    color: #999;
-  }
-
-  .mobile-bottom i {
-    color: var(--primary-color);
-  }
-
-  .mobile-bottom strong {
-    color: var(--primary-color);
-
-    font-size: 0.95rem;
-
-    font-weight: 700;
-  }
-
-  /* =======================
-   COMING SOON
-======================= */
-
-  .mobile-coming {
-    margin-top: 14px;
-
-    display: flex;
-
-    justify-content: center;
-
-    padding-top: 12px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .mobile-coming span {
-    padding: 6px 14px;
-
-    border-radius: 999px;
-
-    background: rgba(255, 79, 163, 0.12);
-
-    color: var(--primary-color);
-
-    font-size: 0.8rem;
-
-    font-weight: 600;
-  }
-}
-
-/* ==========================================
-   ABOUT
-========================================== */
-
 .about-section {
   max-width: 900px;
   margin: 90px auto;
@@ -721,6 +601,10 @@
   color: #fff;
 }
 
+.track-mobile-card {
+  display: none;
+}
+
 .info-card strong,
 .info-card span {
   color: #fff;
@@ -759,9 +643,7 @@
     margin-top: 80px;
   }
 
-  /* =========================
-     HERO
-  ========================= */
+  /* HERO */
 
   .musicRelease-hero {
     grid-template-columns: 1fr;
@@ -794,27 +676,15 @@
     margin: 0 auto 15px;
   }
 
-  .musicRelease-info h1 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-
+  .musicRelease-info h1,
   .musicRelease-info h2 {
     font-size: 1.2rem;
-    margin-bottom: 20px;
   }
 
-  .musicRelease-meta {
+  .musicRelease-meta,
+  .musicRelease-date,
+  .musicRelease-buttons {
     justify-content: center;
-    gap: 15px;
-    font-size: 0.9rem;
-  }
-
-  .musicRelease-date {
-    justify-content: center;
-    font-size: 0.9rem;
-    margin-bottom: 25px;
   }
 
   .musicRelease-description {
@@ -824,23 +694,22 @@
     margin: 0 auto 25px;
   }
 
-  .musicRelease-buttons {
-    justify-content: center;
-  }
-
   .btn-buy-musicRelease,
   .btn-coming {
     width: 100%;
     max-width: 320px;
   }
 
-  /* =========================
-     TRACKS
-  ========================= */
-
   .tracks-section {
     margin-top: 50px;
     max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .section-title {
+    padding: 0 2px;
+    margin-bottom: 18px;
   }
 
   .section-title h2 {
@@ -868,26 +737,14 @@
     display: none;
   }
 
-  /* =========================
-     ABOUT
-  ========================= */
+  /* CONTENT */
 
-  .about-section {
-    margin: 60px auto;
-  }
-
-  .about-section h2 {
-    font-size: 1.8rem;
-  }
-
-  /* =========================
-     RELEASE INFO
-  ========================= */
-
+  .about-section,
   .musicRelease-information {
     margin: 60px auto;
   }
 
+  .about-section h2,
   .musicRelease-information h2 {
     font-size: 1.8rem;
   }
@@ -901,10 +758,6 @@
     padding: 20px;
   }
 
-  /* =========================
-     RELATED
-  ========================= */
-
   .related-releases {
     margin: 70px auto;
   }
@@ -915,106 +768,10 @@
   }
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
+/* ===========================
+   SMALL TABLET
+=========================== */
 
-@media (max-width: 576px) {
-  .musicRelease-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px; /* Smaller space between title and badge */
-    text-align: center;
-    margin-bottom: 12px;
-  }
-
-  .musicRelease-title h1 {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
-  .musicRelease-type {
-    margin: 0;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    line-height: 1;
-  }
-}
-@media (max-width: 576px) {
-  .musicRelease-info {
-    text-align: center;
-  }
-
-  .musicRelease-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px; /* Smaller space between title and badge */
-    text-align: center;
-    margin-bottom: 12px;
-    margin-top: -8px;
-  }
-
-  .musicRelease-title h1 {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
-  .musicRelease-type {
-    margin: 0;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    line-height: 1;
-  }
-  .musicRelease-artist {
-    font-size: 1.15rem;
-    margin-bottom: 20px;
-    color: #d2d2d2;
-  }
-
-  .musicRelease-meta {
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .musicRelease-meta span {
-    justify-content: center;
-    font-size: 0.95rem;
-  }
-
-  .musicRelease-date {
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 24px;
-    font-size: 0.95rem;
-  }
-
-  .musicRelease-description {
-    text-align: center;
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 30px;
-  }
-
-  .musicRelease-buttons {
-    width: 100%;
-  }
-
-  .musicRelease-buttons button {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
 @media (max-width: 870px) {
   .musicRelease-page {
     padding: 75px 0 40px;
@@ -1028,7 +785,6 @@
   .musicRelease-description {
     display: none;
   }
-  /* ================= HERO ================= */
 
   .musicRelease-hero {
     gap: 22px;
@@ -1036,7 +792,6 @@
 
   .musicRelease-artwork {
     max-width: 240px;
-    margin: 0 auto;
   }
 
   .musicRelease-artwork img {
@@ -1044,12 +799,10 @@
   }
 
   .musicRelease-ribbon {
-    width: 145px;
-    height: 28px;
-
-    top: 18px;
-    left: -42px;
-
+    top: 16px;
+    left: -80px;
+    width: 140px;
+    height: 26px;
     font-size: 9px;
     letter-spacing: 0.8px;
   }
@@ -1067,38 +820,17 @@
 
   .musicRelease-info h2 {
     font-size: 1rem;
-    margin-bottom: 18px;
     color: #bbb;
   }
-
-  /* ================= META ================= */
 
   .musicRelease-meta {
     gap: 10px;
     align-items: center;
   }
 
-  .musicRelease-meta span {
-    font-size: 0.9rem;
-  }
-
+  .musicRelease-meta span,
   .musicRelease-date {
-    justify-content: center;
-    text-align: center;
-    font-size: 0.85rem;
-    margin-bottom: 22px;
-  }
-
-  .musicRelease-description {
     font-size: 0.9rem;
-    line-height: 1.8;
-    text-align: left;
-  }
-
-  /* ================= BUTTON ================= */
-
-  .musicRelease-buttons {
-    width: 100%;
   }
 
   .btn-buy-musicRelease,
@@ -1108,18 +840,12 @@
     font-size: 0.95rem;
   }
 
-  /* ================= TRACKS ================= */
-
   .tracks-section {
     margin-top: 45px;
   }
 
   .section-title {
     margin-bottom: 18px;
-  }
-
-  .section-title h2 {
-    font-size: 1rem;
   }
 
   .section-title span {
@@ -1131,18 +857,6 @@
     width: 40px;
     height: 40px;
   }
-
-  .track-info h4 {
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-  }
-
-  .track-info small {
-    font-size: 0.8rem;
-    color: var(--light-grey);
-  }
-
-  /* ================= ABOUT ================= */
 
   .about-section {
     margin: 50px auto;
@@ -1160,8 +874,6 @@
     line-height: 1.8;
   }
 
-  /* ================= INFO ================= */
-
   .info-grid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -1172,21 +884,19 @@
     border-radius: 12px;
   }
 
-  /* ================= RELATED ================= */
-
   .related-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 
   .related-card img {
     border-radius: 12px;
-    margin-bottom: 10px;
   }
 
   .related-card h4 {
     font-size: 0.95rem;
-    margin-bottom: 4px;
+  }
+  .desktop-track {
+    display: none;
   }
 
   .related-card small {
@@ -1196,245 +906,219 @@
 }
 
 /* ===========================
-   DESKTOP / MOBILE SWITCH
+   MOBILE
 =========================== */
-
-.desktop-track {
-  display: grid;
-}
-
-.track-row-mobile {
-  display: none;
-}
-.track-header {
-  display: none;
-}
-
-.track-row-mobile {
-  display: none;
-}
 
 @media (max-width: 576px) {
   .desktop-track {
     display: none;
   }
+  .track-mobile-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 
-  .track-header {
-    display: none;
-  }
-
-  .track-row-mobile {
-    display: block;
-
-    padding: 14px 0;
+    padding: 18px 16px;
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .mobile-header {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
+  .track-mobile-play {
+    flex-shrink: 0;
   }
 
-  .mobile-track {
+  .track-mobile-info {
     flex: 1;
+    min-width: 0;
   }
 
-  .mobile-track h4 {
-    margin: 0 0 5px;
+  .track-mobile-info h4 {
+    margin: 0 0 6px;
 
     color: #fff;
 
     font-size: 1rem;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .mobile-track small {
-    color: #aba9a9;
+  .track-mobile-info small {
+    display: block;
+
+    color: #9b9b9b;
 
     font-size: 0.82rem;
+
+    margin-bottom: 8px;
   }
 
-  .mobile-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .track-mobile-price {
+    color: var(--primary-color);
 
-    gap: 12px;
+    font-weight: 700;
 
-    margin-top: 10px;
-
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
-  .mobile-buy-btn {
-    height: 34px;
-
-    padding: 0 16px;
+  .track-mobile-buy {
+    width: 42px;
+    height: 42px;
 
     border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    transition: 0.2s;
+  }
+
+  .track-mobile-buy:hover {
+    background: var(--btn-primary);
+  }
+
+  .track-mobile-buy:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .musicRelease-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .musicRelease-title h1 {
+    margin: 0;
+    width: 100%;
+
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+
+    word-break: break-word;
+  }
+
+  .musicRelease-type {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    padding: 6px 14px;
 
     border-radius: 999px;
 
     background: var(--btn-primary);
 
-    color: var(--border);
+    color: #fff;
 
-    font-size: 0.8rem;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-  }
-
-  .mobile-buy-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .mobile-coming {
-    color: var(--primary-color);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
   }
-  .mobile-footer strong {
-    color: var(--primary-color);
+  .musicRelease-ribbon {
+    position: absolute;
 
+    top: 14px;
+    left: -38px;
+
+    width: 130px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--btn-primary);
+
+    color: #fff;
+
+    font-size: 8px;
     font-weight: 700;
-  }
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 
-  .mobile-footer i {
-    color: var(--primary-color);
+    transform: rotate(-45deg);
 
-    margin-right: 5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+
+    z-index: 2;
+    pointer-events: none;
   }
-}
-@media (max-width: 576px) {
-  /* ===========================
-     RELEASE INFORMATION
-  ============================ */
 
   .musicRelease-information {
-    margin: 60px 0;
+    margin: 50px 16px;
   }
 
   .musicRelease-information h2 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 24px;
-    align-items: center;
-    padding-left: 5%;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding: 0;
   }
 
   .info-grid {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
   }
 
   .info-card {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
-    padding: 18px;
+    padding: 14px 16px;
 
-    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
 
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    transition: 0.25s;
-  }
-
-  .info-card:active {
-    background: rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
   }
 
   .label {
     margin: 0;
 
-    font-size: 0.75rem;
+    color: #8c8c8c;
+
+    font-size: 0.72rem;
 
     font-weight: 600;
 
-    color: #888;
+    letter-spacing: 1px;
 
     text-transform: uppercase;
-
-    letter-spacing: 1px;
   }
 
   .info-card strong,
   .info-card span {
     color: #fff;
 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 
     font-weight: 600;
 
     text-align: right;
 
     max-width: 55%;
-  }
-}
-@media (max-width: 576px) {
-  .related-releases {
-    margin-top: 60px;
-  }
-
-  .related-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 14px;
-  }
-
-  .related-card {
-    cursor: pointer;
-  }
-
-  .related-card img {
-    width: 100%;
-
-    aspect-ratio: 1;
-
-    object-fit: cover;
-
-    border-radius: 12px;
-
-    margin-bottom: 10px;
-  }
-
-  .related-card h4 {
-    margin: 0 0 4px;
-
-    color: #fff;
-
-    font-size: 0.9rem;
-
-    line-height: 1.3;
-
-    display: -webkit-box;
-
-    -webkit-line-clamp: 2;
-
-    -webkit-box-orient: vertical;
 
     overflow: hidden;
-  }
-
-  .related-card small {
-    color: #888;
-
-    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

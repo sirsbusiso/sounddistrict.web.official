@@ -136,7 +136,7 @@ export class ViewReleaseComponent {
     try {
       const description = `Buy ${release.title} exclusively on Sound District.`;
 
-      this.shareService.shareEpisode(release.slug, release.title, description);
+      this.shareService.shareRelease(release.slug, release.title, description);
     } catch (error) {
       console.error('Share failed:', error);
     }
