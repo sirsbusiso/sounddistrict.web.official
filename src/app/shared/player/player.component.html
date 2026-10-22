@@ -1,117 +1,150 @@
-<div
-  class="player"
-  [class.expanded]="player.expanded$ | async"
-  [style.background]="player.playerBackground$ | async"
-  [style.borderTop]="player.getPlayerBorder()"
-  (touchend)="preventDoubleTapZoom($event)"
-  *ngIf="player.currentTrack$ | async as track"
->
-  <button
-    class="player-toggle"
-    (click)="player.toggleExpanded()"
-    *ngIf="!isMusic"
+<div class="player-shell" *ngIf="player.currentTrack$ | async as track">
+  <div
+    class="player"
+    [class.expanded]="player.expanded$ | async"
+    [class.playing]="player.isPlaying$ | async"
+    [style.background]="player.playerBackground$ | async"
+    [style.borderTop]="player.getPlayerBorder()"
+    (click)="openPlayer()"
   >
-    <i
-      class="bi"
-      [ngClass]="
-        (player.expanded$ | async) ? 'bi-chevron-down' : 'bi-chevron-up'
-      "
-    >
-    </i>
-  </button>
+    <div class="player-left">
+      <div class="player-artwork">
+        <img [src]="track.artworkUrl" [alt]="track.title" />
 
-  <!-- Artwork -->
+        <div class="playing-bars" *ngIf="player.isPlaying$ | async">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
-  <div class="player-left">
-    <img [src]="track.artworkUrl" [alt]="track.title" />
+      <div class="player-info">
+        <span class="player-status">
+          <i class="bi bi-broadcast"></i>
+          NOW PLAYING
+        </span>
 
-    <div>
-      <h4 (click)="openEpisode(track.slug)">{{ track.title }}</h4>
+        <div class="player-title-wrapper">
+          <h4 class="player-title" (click)="openEpisode(track.slug)">
+            {{ track.title }}
+          </h4>
+        </div>
 
-      <small (click)="onSubtitleClick(track)">
-        {{ track.artistName || "Sound District Music Show" }}
-      </small>
+        <small class="player-artist" (click)="onSubtitleClick(track)">
+          {{ track.artistName || "Sound District Music Show" }}
+        </small>
+      </div>
     </div>
-  </div>
 
-  <!-- Progress -->
+    <!-- ===================================== -->
+    <!-- CENTER -->
+    <!-- ===================================== -->
 
-  <div class="player-progress">
-    <span>{{ formatTime(player.currentTime$ | async) }}</span>
+    <div class="player-center">
+      <div class="player-buttons">
+        <button
+          class="control-button"
+          *ngIf="player.expanded$ | async"
+          (click)="player.skipBackward(15)"
+          title="Back 15 seconds"
+        >
+          <i class="bi bi-arrow-counterclockwise"></i>
+          <span>15</span>
+        </button>
 
-    <input
-      type="range"
-      min="0"
-      [max]="player.duration$ | async"
-      [value]="sliderValue"
-      (pointerdown)="dragging = true"
-      (pointerup)="onSeek()"
-      (input)="sliderValue = +$any($event.target).value"
-    />
+        <button
+          class="play-button"
+          (click)="player.toggle(track)"
+          aria-label="Play or Pause"
+        >
+          <i
+            class="bi"
+            [ngClass]="
+              (player.isPlaying$ | async) ? 'bi-pause-fill' : 'bi-play-fill'
+            "
+          ></i>
+        </button>
 
-    <span>{{ formatTime(player.duration$ | async) }}</span>
-  </div>
+        <button
+          class="control-button"
+          *ngIf="player.expanded$ | async"
+          (click)="player.skipForward(30)"
+          title="Forward 30 seconds"
+        >
+          <i class="bi bi-arrow-clockwise"></i>
+          <span>30</span>
+        </button>
+      </div>
 
-  <div class="player-center">
-    @if ((player.expanded$ | async) && !isMusic) {
-      <button
-        class="skip-back-button"
-        (click)="player.skipBackward(15)"
-        title="Back 15 seconds"
-      >
-        <i class="bi bi-arrow-counterclockwise"></i>
-        <span>15</span>
-      </button>
-    }
+      <div class="player-progress">
+        <span class="time">
+          {{ formatTime(player.currentTime$ | async) }}
+        </span>
 
-    <button class="play-button" (click)="player.toggle(track)">
-      <i
-        class="bi"
-        [ngClass]="{
-          'bi-play-fill': !(player.isPlaying$ | async),
-          'bi-pause-fill': player.isPlaying$ | async,
-        }"
-      >
-      </i>
-    </button>
+        <input
+          class="player-slider"
+          type="range"
+          min="0"
+          [max]="(player.duration$ | async) || 0"
+          [value]="sliderValue"
+          [style.--progress]="
+            (sliderValue * 100) / ((player.duration$ | async) || 1) + '%'
+          "
+          (pointerdown)="dragging = true"
+          (pointerup)="onSeek()"
+          (input)="sliderValue = +$any($event.target).value"
+        />
 
-    @if (player.expanded$ | async) {
-      <button
-        class="skip-forward-button"
-        (click)="player.skipForward(30)"
-        title="Forward 30 seconds"
-      >
-        <i class="bi bi-arrow-clockwise"></i>
-        <span>30</span>
-      </button>
-    } @else {
-      <button
-        *ngIf="!isMusic"
-        class="mini-skip-button"
-        (click)="player.skipForward(30)"
-        title="Forward 30 seconds"
-      >
-        <i class="bi bi-arrow-clockwise"></i>
-        <span>30</span>
-      </button>
-    }
-  </div>
-  <div class="player-stats">
-    <span *ngIf="!isMusic">
-      <i class="bi bi-headphones"></i>
+        <span class="time">
+          {{ formatTime(player.duration$ | async) }}
+        </span>
+      </div>
+    </div>
 
-      {{ track.plays | number }}
-    </span>
-    <span *ngIf="isMusic">
-      <i class="bi bi-headphones"></i>
+    <!-- ===================================== -->
+    <!-- RIGHT -->
+    <!-- ===================================== -->
 
-      {{ previewCount }}
-    </span>
+    <div class="player-right">
+      <div class="player-stats">
+        <span *ngIf="!isMusic">
+          <i class="bi bi-headphones"></i>
+          {{ track.plays | number }}
+        </span>
 
-    <span *ngIf="!isMusic">
-      <i class="bi bi-download"></i>
+        <span *ngIf="!isMusic">
+          <i class="bi bi-download"></i>
+          {{ track.downloads | number }}
+        </span>
 
-      {{ track.downloads | number }}
-    </span>
+        <span *ngIf="isMusic">
+          <i class="bi bi-headphones"></i>
+          {{ previewCount }}
+        </span>
+      </div>
+
+      <div class="player-actions">
+        <button
+          class="icon-button"
+          title="Download"
+          *ngIf="!isMusic"
+          (click)="downloadTrack(track)"
+        >
+          <i class="bi bi-download"></i>
+        </button>
+
+        <button class="icon-button" title="Share" (click)="shareTrack(track)">
+          <i class="bi bi-share"></i>
+        </button>
+
+        <!-- <div class="volume-control">
+          <button class="icon-button" title="Volume">
+            <i class="bi bi-volume-up-fill"></i>
+          </button>
+
+          <input class="volume-slider" type="range" min="0" max="100" />
+        </div> -->
+      </div>
+    </div>
   </div>
 </div>

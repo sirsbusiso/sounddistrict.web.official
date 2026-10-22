@@ -1,292 +1,269 @@
+/*==================================================
+SOUND DISTRICT NAVBAR
+==================================================*/
+
 .top-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 18px;
+  left: 32px;
+  right: 32px;
 
-  z-index: 1000;
+  height: 82px;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
-  padding: 20px 60px;
+  padding: 0 28px;
 
-  background: var(--dark-grey);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  border-radius: 22px;
 
-  border-bottom: var(--dark-grey);
-}
-.mobile-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  background: rgba(10, 10, 10, 0.92);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+
   z-index: 1000;
-  background: #6d6d6d;
 }
+/*==================================================
+LOGO
+==================================================*/
 
-.left-menu,
-.right-menu {
+.logo {
   display: flex;
   align-items: center;
-  gap: 30px;
-}
-
-.left-menu a {
-  color: #cfcfcf;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-  transition: 0.3s;
-}
-
-.left-menu a:hover {
-  color: #fff;
+  justify-self: start;
   cursor: pointer;
 }
 
 .logo img {
-  height: 60px;
-  width: auto;
-  display: block;
+  height: 42px;
+  transition: var(--transition);
+
+  filter: drop-shadow(0 6px 16px rgba(119, 136, 153, 0.12));
 }
 
-.right-menu a {
-  color: #d7d7d7;
+.logo:hover img {
+  transform: scale(1.03);
 
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.3s ease;
+  filter: drop-shadow(0 0 20px rgba(124, 255, 203, 0.22));
 }
+/*==================================================
+NAVIGATION
+==================================================*/
 
-.right-menu a:hover {
-  color: #fff;
-
-  transform: translateY(-2px);
-}
-
-@media (max-width: 991px) {
-  .top-nav {
-    padding: 18px 20px;
-  }
-
-  .left-menu {
-    display: none;
-  }
-
-  .right-menu {
-    gap: 18px;
-  }
-
-  .right-menu a {
-    font-size: 22px;
-  }
-
-  .logo img {
-    height: 42px;
-  }
-}
-.mobile-header {
-  display: none;
-}
-
-@media (max-width: 991px) {
-  .top-nav {
-    display: none;
-  }
-
-  .mobile-header {
-    display: block;
-    background: var(--dark-grey);
-    border-bottom: var(--dark-grey);
-  }
-
-  .mobile-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 18px 20px;
-
-    border-bottom: 1px solid var(--dark-grey);
-  }
-
-  .mobile-logo img {
-    height: 36px;
-  }
-
-  .mobile-social {
-    display: flex;
-    gap: 16px;
-  }
-
-  .mobile-social a {
-    color: #d7d7d7;
-    font-size: 20px;
-
-    transition: 0.3s;
-  }
-
-  .mobile-social a:hover {
-    color: #fff;
-  }
-
-  .mobile-short {
-    display: flex;
-    gap: 16px;
-  }
-
-  .mobile-short a {
-    color: #d7d7d7;
-    font-size: 20px;
-
-    transition: 0.3s;
-  }
-
-  .mobile-shorta:hover {
-    color: #fff;
-  }
-
-  .mobile-menu {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    padding: 18px 15px;
-  }
-
-  .mobile-menu a {
-    color: #d7d7d7;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .mobile-menu a:hover {
-    color: #fff;
-    cursor: pointer;
-  }
-}
-.upload-btn {
-  margin-left: 12px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  height: 36px;
-  padding: 0 14px;
-
-  border-radius: 999px;
-
-  background: var(--btn-primary);
-  color: var(--border) !important;
-
-  font-size: 0.8rem !important ;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
-.upload-btn i {
-  font-size: 0.9rem;
-}
-
-.upload-btn:hover {
-  transform: translateY(-1px);
-}
-
-.mobile-upload-btn {
-  width: calc(100% - 32px);
-
-  margin: 18px 16px 0;
-
-  height: 48px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: var(--primary-color);
-
-  color: #fff;
-
-  font-weight: 600;
+.nav-links {
+  flex: 1;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 
+  gap: 32px;
+}
+.nav-links a {
+  color: var(--light-grey);
+
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
   cursor: pointer;
 }
 
-.mobile-upload-btn:hover {
-  opacity: 0.95;
+.nav-links a::after {
+  background: var(--color-primary);
 }
-.donate-btn {
-  display: inline-flex;
+.nav-links a::after {
+  background: var(--color-primary);
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links a:hover {
+  color: #7cffcb;
+
+  /* background: rgba(124, 255, 203, 0.08); */
+
+  transform: translateY(-1px);
+}
+/*==================================================
+RIGHT SIDE
+==================================================*/
+
+.nav-actions {
+  display: flex;
   align-items: center;
-  gap: 6px;
 
-  height: 36px;
-  padding: 0 16px;
+  gap: 14px;
 
-  border: 1px solid #1b1f3b;
+  margin-left: 48px;
+}
+/*==================================================
+SEARCH
+==================================================*/
+
+.search-box {
+  width: 250px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 18px;
+
   border-radius: 999px;
 
-  background: #1b1f3b;
+  background: rgba(255, 255, 255, 0.04);
 
-  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
+  transition: 0.3s;
 }
 
-.donate-btn i {
-  color: var(--primary-color);
+.search-box:hover {
+  background: rgba(255, 255, 255, 0.06);
+
+  border-color: rgba(124, 255, 203, 0.15);
+}
+
+.search-box i {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.search-box input {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  background: none;
+
+  color: #fff;
+
   font-size: 0.9rem;
 }
 
-.donate-btn:hover {
-  background: rgba(255, 70, 96, 0.12);
-  border-color: var(--primary-color);
+.search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+/*==================================================
+JOIN BUTTON
+==================================================*/
 
-  color: var(--primary-color) !important;
+.join-button {
+  position: relative;
 
-  transform: translateY(-2px);
+  overflow: hidden;
+
+  height: 48px;
+
+  padding: 0 30px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #00c46a, #00d875 55%, #7cffcb);
+
+  color: #fff;
+
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+
+  cursor: pointer;
+
+  transition: 0.35s;
+
+  box-shadow: 0 14px 30px rgba(0, 196, 106, 0.28);
 }
 
-.bag-wrapper {
+.join-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 20px 42px rgba(0, 196, 106, 0.4);
+}
+/*==================================================
+LOGIN
+==================================================*/
+
+.login-button {
+  height: 48px;
+
+  padding: 0 26px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #fff;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.login-button:hover {
+  color: #7cffcb;
+
+  border-color: rgba(124, 255, 203, 0.2);
+
+  background: rgba(124, 255, 203, 0.05);
+}
+/*==================================================
+SHOPPING BAG
+==================================================*/
+
+.bag-button {
   position: relative;
-  display: inline-flex;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  color: #fff;
+
+  transition: 0.3s;
 }
 
+.bag-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(124, 255, 203, 0.15);
+
+  color: #7cffcb;
+}
 .badge {
   position: absolute;
 
-  top: -6px;
-  right: -8px;
+  top: -5px;
+  right: -5px;
 
-  min-width: 20px;
+  width: 20px;
   height: 20px;
 
   display: flex;
@@ -295,58 +272,370 @@
 
   border-radius: 50%;
 
-  color: white;
-  background: #d70040;
+  border: 2px solid #080b10;
 
-  font-size: 11px;
+  background: linear-gradient(135deg, #00c46a, #7cffcb);
+
+  color: #fff;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+}
+/*==================================================
+DONATE BUTTON
+==================================================*/
+
+.donate-button {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 22px;
+
+  border: 1px solid rgba(255, 80, 120, 0.18);
+  border-radius: 999px;
+
+  background: rgba(255, 80, 120, 0.08);
+
+  color: #ff7b9c;
+
+  font-size: 0.95rem;
   font-weight: 600;
 
-  animation:
-    badgePulse 10s infinite,
-    badgeColor 10s infinite;
-}
-.badge {
-  animation:
-    badgePulse 5s infinite,
-    badgeColor 5s infinite;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
 }
 
-@keyframes badgePulse {
-  0%,
-  85%,
-  100% {
-    transform: scale(1);
-  }
-
-  90% {
-    transform: scale(1.2);
-  }
-
-  95% {
-    transform: scale(0.95);
-  }
-
-  98% {
-    transform: scale(1.1);
-  }
+.donate-button i {
+  font-size: 0.9rem;
 }
 
-@keyframes badgeColor {
-  0%,
-  85%,
-  100% {
-    background: #d70040;
+.donate-button:hover {
+  background: rgba(255, 80, 120, 0.16);
+
+  border-color: rgba(255, 80, 120, 0.35);
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 28px rgba(255, 80, 120, 0.22);
+}
+/*==================================================
+MOBILE HEADER
+==================================================*/
+
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .top-nav {
+    display: none;
   }
 
-  90% {
-    background: #28a745;
+  .mobile-header {
+    display: block;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1200;
+
+    background: #0a0a0a;
   }
 
-  95% {
-    background: #ffc107;
+  .mobile-top {
+    height: 72px;
+
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  98% {
-    background: #d70040;
+  .mobile-logo img {
+    height: 38px;
   }
+
+  .icon-button,
+  .hamburger-button {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #fff;
+  }
+
+  /*==================================================
+OVERLAY
+==================================================*/
+
+  .mobile-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(8, 11, 16, 0.96);
+
+    backdrop-filter: blur(30px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: 0.35s;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+  }
+
+  .mobile-overlay.open {
+    opacity: 1;
+
+    visibility: visible;
+  }
+
+  /*==================================================
+MENU
+==================================================*/
+
+  .mobile-menu {
+    width: 100%;
+
+    max-width: 340px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 26px;
+
+    animation: menuIn 0.35s ease;
+  }
+
+  .mobile-menu a {
+    color: #fff;
+
+    font-size: 1.35rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+  }
+
+  .mobile-menu a:hover {
+    color: var(--color-primary);
+
+    transform: translateY(-2px);
+  }
+
+  .mobile-menu hr {
+    width: 100px;
+
+    border: none;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /*==================================================
+SEARCH
+==================================================*/
+
+  .mobile-search {
+    width: 260px;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #fff;
+  }
+
+  /*==================================================
+BUTTONS
+==================================================*/
+
+  .mobile-buttons {
+    display: flex;
+
+    gap: 12px;
+  }
+
+  .mobile-join,
+  .mobile-donate {
+    width: 120px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    font-weight: 700;
+  }
+
+  .mobile-join {
+    background: linear-gradient(135deg, #00c46a, #00d875 55%, #7cffcb);
+
+    color: #fff;
+  }
+
+  .mobile-donate {
+    background: rgba(255, 80, 120, 0.16);
+
+    border-color: rgba(255, 80, 120, 0.35);
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+  }
+
+  .mobile-login {
+    width: 252px;
+
+    height: 48px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: none;
+
+    color: #fff;
+
+    font-weight: 600;
+  }
+
+  /*==================================================
+SOCIALS
+==================================================*/
+
+  .mobile-socials {
+    display: flex;
+
+    gap: 18px;
+  }
+
+  .mobile-socials a {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #fff;
+
+    font-size: 1.15rem;
+
+    transition: 0.25s;
+  }
+
+  .mobile-socials a:hover {
+    background: var(--color-primary);
+
+    color: #fff;
+  }
+
+  /*==================================================
+ANIMATION
+==================================================*/
+
+  @keyframes menuIn {
+    from {
+      opacity: 0;
+
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+
+      transform: none;
+    }
+  }
+}
+.hamburger-button i {
+  font-size: 1.5rem;
+  transition: transform 0.25s ease;
+}
+
+.hamburger-button:hover i {
+  transform: rotate(90deg);
+}
+.mobile-close {
+  position: absolute;
+
+  top: 24px;
+  right: 24px;
+
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #fff;
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.mobile-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  transform: rotate(90deg) scale(1.05);
+}
+
+.mobile-close i {
+  line-height: 1;
 }

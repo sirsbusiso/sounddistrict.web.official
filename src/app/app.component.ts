@@ -7,6 +7,7 @@ import { filter } from 'rxjs';
 import { FooterComponent } from './shared/footer/footer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { PlayerService } from '../services/shared/player.service';
+import { PlayerSheetComponent } from './shared/player-sheet/player-sheet.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { PlayerService } from '../services/shared/player.service';
     CommonModule,
     FooterComponent,
     LoaderComponent,
+    PlayerSheetComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

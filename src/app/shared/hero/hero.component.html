@@ -1,49 +1,162 @@
-<section class="hero" *ngIf="tracks.length">
-  <div class="hero-artwork">
-    <img
-      [src]="tracks[currentTrack].artworkUrl"
-      [alt]="tracks[currentTrack].title"
-    />
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-circle hero-circle-3"></div>
+
+    <div class="hero-grid-pattern"></div>
+  </div>
+  <div class="container hero-grid">
+    <!-- Left -->
+    <div class="hero-content">
+      <div class="hero-pill">
+        <i class="bi bi-broadcast"></i>
+        <span>Sound District Music Show</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-brand">
+          <span class="sound">Sound</span>
+          <span class="district">District</span>
+        </span>
+
+        <span class="hero-rotating">
+          <span class="hero-slide">
+            <span>We Are The Music</span>
+            <span>We Are The Sound</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="hero-description">
+        Stream exclusive podcasts, underground DJ mixes, curated playlists and
+        independent music releases from South Africa's growing electronic music
+        community.
+      </p>
+
+      <div class="hero-actions">
+        <button
+          class="hero-primary"
+          (click)="player.toggle(tracks[currentTrack])"
+        >
+          <i
+            class="bi"
+            [ngClass]="
+              (player.currentTrack$ | async)?.slug ===
+                tracks[currentTrack]?.slug && (player.isPlaying$ | async)
+                ? 'bi-pause-fill'
+                : 'bi-play-fill'
+            "
+          ></i>
+
+          <span>
+            {{
+              (player.currentTrack$ | async)?.slug ===
+                tracks[currentTrack]?.slug && (player.isPlaying$ | async)
+                ? "Pause"
+                : "Start Listening"
+            }}
+          </span>
+        </button>
+
+        <button
+          class="hero-secondary"
+          (click)="goToEpisode(tracks[currentTrack])"
+        >
+          Browse Episodes
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <h3>{{ totalEpisodes }}+</h3>
+          <span>Episodes</span>
+        </div>
+
+        <div class="hero-stat">
+          <h3>{{ totalArtists }}+</h3>
+          <span>Artists</span>
+        </div>
+
+        <div class="hero-stat">
+          <h3>{{ totalHours }}+</h3>
+          <span>Hours of Music</span>
+        </div>
+
+        <div class="hero-stat">
+          <h3>24/7</h3>
+          <span>Streaming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hero-showcase">
+      <div class="hero-artwork">
+        <img
+          [src]="tracks[currentTrack].artworkUrl"
+          [alt]="tracks[currentTrack].title"
+        />
+      </div>
+
+      <!-- Floating Card -->
+      <div class="featured-card">
+        <span class="featured-label"> Episode </span>
+
+        <!-- <div class="track-title">
+          <h3>
+            {{ tracks[currentTrack].title }}
+          </h3>
+        </div> -->
+
+        <p>
+          Episode #{{ getEpisodeNumber(tracks[currentTrack].title) }} •
+          {{ tracks[currentTrack].genre || "House Music" }} •
+          {{ formatTime(tracks[currentTrack].duration) }}
+        </p>
+      </div>
+
+      <!-- Player Card -->
+      <div class="player-card">
+        <div class="player-card-top">
+          <img
+            [src]="tracks[currentTrack].artworkUrl"
+            [alt]="tracks[currentTrack].title"
+          />
+
+          <div>
+            <span>Episode</span>
+
+            <h4>
+              {{ tracks[currentTrack].title }}
+            </h4>
+
+            <small>
+              {{ formatTime(tracks[currentTrack].duration) }}
+            </small>
+          </div>
+        </div>
+
+        <div class="mini-progress">
+          <div class="mini-progress-fill"></div>
+        </div>
+
+        <button class="mini-play" (click)="player.toggle(tracks[currentTrack])">
+          <i
+            class="bi"
+            [ngClass]="
+              (player.currentTrack$ | async)?.slug ===
+                tracks[currentTrack].slug && (player.isPlaying$ | async)
+                ? 'bi-pause-fill'
+                : 'bi-play-fill'
+            "
+          ></i>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-content">
-    <span class="hero-subtitle"> LISTEN TO OUR MIXES </span>
-
-    <h1>
-      {{ tracks[currentTrack].title }}
-    </h1>
-
-    <p>
-      Curated underground house music, exclusive guest mixes and the latest
-      Sound District podcast.
-    </p>
-
-    <div class="hero-buttons">
-      <button class="hero-btn" (click)="player.toggle(tracks[currentTrack])">
-        <!-- @if (player.isPlaying$ | async) {
-          <i class="bi bi-pause-fill"></i>
-        } @else {
-         
-        } -->
-        <i class="bi bi-play-fill"></i>Play Mix
-        <!-- {{ (player.isPlaying$ | async) ? "Pause Mix" : "Play Mix" }} -->
-      </button>
-
-      <a class="hero-outline" (click)="goToEpisode(tracks[currentTrack])">
-        Episode Details
-      </a>
-    </div>
-    <div class="hero-progress-wrapper">
-      <div class="hero-progress">
-        <div
-          class="hero-progress-fill"
-          [style.width.%]="((currentTrack + 1) / tracks.length) * 100"
-        ></div>
-      </div>
-
-      <div class="hero-progress-text">
-        {{ currentTrack + 1 }} / {{ tracks.length }}
-      </div>
-    </div>
+  <div class="hero-scroll">
+    <span>Scroll to Explore</span>
+    <i class="bi bi-chevron-down"></i>
   </div>
 </section>

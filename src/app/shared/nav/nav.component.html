@@ -1,51 +1,39 @@
 <header class="top-nav">
-  <div class="left-menu">
-    <a (click)="gotoHome()">Home</a>
-    <a (click)="gotoMusic()">Music</a>
-    <a (click)="gotoPodcast()">Podcasts</a>
-    <a (click)="gotoShop()">Store</a>
-    <a class="donate-btn" (click)="gotoDonate()">
-      <i class="bi bi-heart-fill"></i>
-      Donate
-    </a>
-  </div>
-
-  <a href="index.html" class="logo">
+  <!-- Logo -->
+  <a class="logo" (click)="gotoHome()">
     <img src="main-logo-2.png" alt="Sound District" />
   </a>
 
-  <div class="right-menu">
-    <a
-      href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
-      target="_blank"
+  <!-- Navigation -->
+  <nav class="nav-links">
+    <a (click)="gotoMusic()">Music</a>
+    <a (click)="gotoPodcast()">Podcasts</a>
+    <a (click)="gotoShop()">Store</a>
+  </nav>
+
+  <!-- Right -->
+  <div class="nav-actions">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input type="text" placeholder="Search episodes, artists, music..." />
+    </div>
+
+    <button class="join-button">Join</button>
+
+    <button class="donate-button" (click)="gotoDonate()">
+      <i class="fa-solid fa-heart"></i>
+      <span>Donate</span>
+    </button>
+
+    <button class="login-button" (click)="goToAccount()">Log In</button>
+
+    <button
+      class="bag-button"
+      (click)="checkout()"
+      #bagIcon
+      aria-label="Shopping Bag"
     >
-      <i class="bi bi-facebook"></i>
-    </a>
-
-    <a href="https://instagram.com/sounddistrict.za" target="_blank">
-      <i class="bi bi-instagram"></i>
-    </a>
-
-    <a href="https://www.youtube.com/@sounddistrictza" target="_blank">
-      <i class="bi bi-youtube"></i>
-    </a>
-
-    <a href="https://x.com/sounddistrict_" target="_blank">
-      <i class="bi bi-twitter-x"></i>
-    </a>
-
-    <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank">
-      <i class="fa-brands fa-tiktok"></i>
-    </a>
-
-    <a
-      href="https://podcasts.apple.com/us/podcast/sound-district-music-show/id1692342838"
-      target="_blank"
-    >
-      <i class="bi bi-apple"></i>
-    </a>
-    <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
-    <a class="bag-wrapper" (click)="checkout()" #bagIcon>
       <i class="fa-solid fa-bag-shopping"></i>
 
       <span class="badge" *ngIf="!isCountZero">
@@ -53,61 +41,108 @@
       </span>
 
       <app-bag-animation></app-bag-animation>
-    </a>
+    </button>
   </div>
 </header>
-<div class="mobile-header">
+
+<!-- ===========================
+Mobile
+=========================== -->
+
+<header class="mobile-header">
   <div class="mobile-top">
-    <a href="index.html" class="mobile-logo">
+    <button class="hamburger-button" (click)="toggleMenu()">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="mobile-logo" (click)="gotoHome()">
       <img src="main-logo-2.png" alt="Sound District" />
     </a>
 
-    <div class="mobile-short" *ngIf="isMobileView">
-      <a (click)="goToAccount()"><i class="fa-solid fa-user"></i></a>
-      <a class="bag-wrapper" (click)="checkout()" #bagIcon>
-        <i class="fa-solid fa-bag-shopping"></i>
+    <button
+      class="icon-button bag-button"
+      (click)="checkout()"
+      #bagIcon
+      aria-label="Shopping Bag"
+    >
+      <i class="fa-solid fa-bag-shopping"></i>
 
-        <span class="badge" *ngIf="!isCountZero">
-          {{ bagCount }}
-        </span>
+      <span class="badge" *ngIf="!isCountZero">
+        {{ bagCount }}
+      </span>
 
-        <app-bag-animation></app-bag-animation>
-      </a>
-    </div>
-
-    <div class="mobile-social" *ngIf="!isMobileView">
-      <a
-        href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
-        target="_blank"
-        ><i class="bi bi-facebook"></i
-      ></a>
-      <a href="https://instagram.com/sounddistrict.za" target="_blank"
-        ><i class="bi bi-instagram"></i
-      ></a>
-      <a href="https://www.youtube.com/@sounddistrictza" target="_blank"
-        ><i class="bi bi-youtube"></i
-      ></a>
-      <a href="https://x.com/sounddistrict_" target="_blank"
-        ><i class="bi bi-twitter-x"></i
-      ></a>
-      <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank"
-        ><i class="fa-brands fa-tiktok"></i
-      ></a>
-      <a
-        href="https://podcasts.apple.com/us/podcast/sound-district-music-show/id1692342838"
-        target="_blank"
-        ><i class="bi bi-apple"></i
-      ></a>
-    </div>
+      <app-bag-animation></app-bag-animation>
+    </button>
   </div>
 
-  <nav class="mobile-menu">
-    <a (click)="gotoMusic()">Music</a>
-    <a (click)="gotoPodcast()">Podcasts</a>
-    <a (click)="gotoShop()">Store</a>
-    <a class="donate-btn" (click)="gotoDonate()">
-      <i class="bi bi-heart-fill"></i>
-      Donate
-    </a>
-  </nav>
-</div>
+  <!-- Full Screen Menu -->
+  <div class="mobile-overlay" [class.open]="isMenuOpen">
+    <!-- Close Button -->
+    <button class="mobile-close" (click)="closeMenu()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+
+    <div class="mobile-menu">
+      <a (click)="gotoHome(); closeMenu()">Home</a>
+
+      <a (click)="gotoMusic(); closeMenu()">Music</a>
+
+      <a (click)="gotoPodcast(); closeMenu()">Podcasts</a>
+
+      <a (click)="gotoShop(); closeMenu()">Store</a>
+
+      <hr />
+      <!-- 
+      <button class="mobile-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Search</span>
+      </button> -->
+
+      <div class="mobile-buttons">
+        <button class="mobile-join">Join</button>
+
+        <button class="mobile-donate" (click)="gotoDonate(); closeMenu()">
+          Donate
+        </button>
+      </div>
+
+      <button class="mobile-login" (click)="goToAccount(); closeMenu()">
+        Log In
+      </button>
+
+      <hr />
+
+      <div class="mobile-socials">
+        <a href="https://instagram.com/sounddistrict.za" target="_blank">
+          <i class="bi bi-instagram"></i>
+        </a>
+
+        <a
+          href="https://www.facebook.com/people/Sound-District/61576446847394/"
+          target="_blank"
+        >
+          <i class="bi bi-facebook"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@sounddistrictza" target="_blank">
+          <i class="bi bi-youtube"></i>
+        </a>
+
+        <a href="https://x.com/sounddistrict_" target="_blank">
+          <i class="bi bi-twitter-x"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <a
+          href="https://podcasts.apple.com/us/podcast/sound-district-music-show/id1692342838"
+          target="_blank"
+        >
+          <i class="bi bi-apple"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

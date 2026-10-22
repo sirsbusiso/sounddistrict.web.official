@@ -23,7 +23,10 @@ import { PlayerService } from '../../../services/shared/player.service';
 export class HeroComponent implements OnInit, OnDestroy {
   tracks: Track[] = [];
   currentTrack = 0;
-
+  totalEpisodes = 0;
+  totalArtists = 0;
+  totalHours = 24;
+  streamingLabel = '24/7';
   private intervalId: ReturnType<typeof setInterval> | null = null;
   private destroy$ = new Subject<void>();
 
@@ -41,7 +44,56 @@ export class HeroComponent implements OnInit, OnDestroy {
   goToEpisode(track: Track): void {
     this.router.navigate(['/episode', track.slug]);
   }
+  private calculateStats(): void {
+    // Episodes
+    this.totalEpisodes = this.tracks.length;
 
+    // Artists from title
+    const artists = this.tracks
+      .map((track) => {
+        const match = track.title.match(/Mixed by (.+)$/i);
+        return match ? match[1].trim() : null;
+      })
+      .filter((artist): artist is string => !!artist);
+
+    this.totalArtists = new Set(artists).size;
+
+    // Total hours
+    const totalSeconds = this.tracks.reduce(
+      (sum, track) => sum + Number(track.duration),
+      0,
+    );
+
+    this.totalHours = Math.round(totalSeconds / 3600);
+  }
+
+  formatTime(duration: string | number | null | undefined): string {
+    if (duration == null) {
+      return '00:00';
+    }
+
+    const totalSeconds = Number(duration);
+
+    if (isNaN(totalSeconds)) {
+      return '00:00';
+    }
+
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    if (hours > 0) {
+      return `${hours}h ${minutes}m`;
+    }
+
+    return `${minutes}m ${seconds}s`;
+  }
+
+  getEpisodeNumber(title: string): string {
+    const match = title.match(/#(\d+)/);
+
+    return match ? match[1] : '';
+  }
   private getPodcasts(): void {
     this.podcastService
       .getTracks()
@@ -50,6 +102,12 @@ export class HeroComponent implements OnInit, OnDestroy {
         next: (response) => {
           if (response.statusCode === 200) {
             this.tracks = response.data ?? [];
+
+            this.calculateStats();
+
+            if (isPlatformBrowser(this.platformId) && this.tracks.length > 1) {
+              this.startSlider();
+            }
             if (isPlatformBrowser(this.platformId) && this.tracks.length > 1) {
               this.startSlider();
             }

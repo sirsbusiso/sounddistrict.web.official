@@ -36,6 +36,16 @@ export class NavComponent {
     this.isMobileView = this.isMobile();
   }
 
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+
   isMobile(): boolean {
     return window.innerWidth <= 800;
   }
@@ -67,8 +77,9 @@ export class NavComponent {
     const returnUrl = encodeURIComponent(window.location.href);
 
     window.open(
-      `https://accounts.sounddistrict.co.za?returnUrl=${returnUrl}`,
-      '_self',
+      `https://accounts.sounddistrict.co.za?returnUrl=${encodeURIComponent(returnUrl)}`,
+      '_blank',
+      'noopener,noreferrer',
     );
   }
 }

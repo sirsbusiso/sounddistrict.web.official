@@ -1,23 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
-/* ------------------------------
-   GLOBAL STYLES
--------------------------------*/
+/*==================================================
+GLOBAL STYLES
+==================================================*/
 
 :root {
-  --background: #0a0a0a;
-  --surface: #111111;
-  --surface-light: #171717;
+  /* Backgrounds */
+  --background: #f0f8ff;
+  --surface: #ffffff;
+  --surface-light: #f8fbff;
 
-  --border: #242424;
+  /* Borders */
+  --border: #d3d3d3;
 
+  /* Text */
   --white: #ffffff;
-  --light-grey: #cfcfcf;
-  --grey: #9a9a9a;
-  --dark-grey: #6b6b6b;
-  --btn-primary: #3cbce7;
-  --btn-hover: #171717;
-  --color-primary: #7dd3fc;
-  --color-primary-hover: #38bdf8;
+  --light-grey: #d3d3d3;
+  --grey: #a9a9a9;
+  --dark-grey: #778899;
+  --black: #111827;
+
+  /* Brand */
+  --btn-primary: #778899;
+  --btn-hover: #667788;
+
+  --color-primary: #778899;
+  --color-primary-hover: #667788;
+
+  --color-secondary: #b0c4de;
+  --color-accent: #f0f8ff;
+
+  /* Effects */
   --transition: 0.3s ease;
 }
 
@@ -28,18 +40,23 @@
 }
 
 html {
+  height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--dark-grey);
-  color: var(--white);
+  margin: 0;
+
+  min-height: 100%;
+
+  background: var(--background);
+  color: var(--black);
 
   font-family: "Inter", sans-serif;
 
-  overflow-x: hidden;
-
   line-height: 1.6;
+
+  overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,25 +72,25 @@ section {
 }
 
 a {
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
 
-  transition: var(--transition);
+  transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--light-grey);
+  color: var(--color-primary);
 }
 
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 button {
-  cursor: pointer;
-
   border: none;
+
+  cursor: pointer;
 
   font-family: inherit;
 }
@@ -90,41 +107,31 @@ hr {
   border-top: 1px solid var(--border);
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
-}
-/* Backdrop */
+/*==================================================
+ANGULAR MATERIAL DIALOG
+==================================================*/
 
 .upload-dialog-backdrop {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
 }
 
-/* Dialog */
-
 .upload-dialog-panel .mat-mdc-dialog-container,
 .upload-dialog-panel .mat-mdc-dialog-surface {
-  background: #181818 !important;
-  color: #fff;
+  background: var(--surface) !important;
+  color: var(--black);
+
+  border: 1px solid var(--border);
 
   border-radius: 24px;
   overflow: hidden;
 
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
 }
-
-/* Remove Material padding */
 
 .upload-dialog-panel .mat-mdc-dialog-content {
   padding: 0 !important;
 }
-
-/* Desktop animation */
 
 .upload-dialog-panel .mat-mdc-dialog-container {
   animation: dialogIn 0.3s ease;
@@ -142,7 +149,9 @@ body {
   }
 }
 
-/* Mobile */
+/*==================================================
+MOBILE
+==================================================*/
 
 @media (max-width: 768px) {
   .upload-dialog-panel .mat-mdc-dialog-container,

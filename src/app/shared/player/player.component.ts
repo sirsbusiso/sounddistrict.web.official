@@ -3,6 +3,8 @@ import { PlayerService } from '../../../services/shared/player.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Track } from '../../../models/podcast/podcast.models';
+import { Subject, takeUntil } from 'rxjs';
+
 @Component({
   selector: 'app-player',
   imports: [CommonModule],
@@ -30,11 +32,33 @@ export class PlayerComponent {
   }
 
   isExpanded = false;
-
+  private destroy$ = new Subject<void>();
   private lastTouchEnd = 0;
 
   dragging = false;
   sliderValue = 0;
+
+  ngOnInit(): void {
+    this.player.currentTime$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((time) => {
+        if (!this.dragging) {
+          this.sliderValue = time;
+        }
+      });
+
+    this.player.currentTrack$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((track) => {
+        this.isMusic = track?.isMusic ?? false;
+      });
+
+    this.player.previewCount$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((previews) => {
+        this.previewCount = previews;
+      });
+  }
 
   onSeek() {
     this.dragging = false;
@@ -93,5 +117,43 @@ export class PlayerComponent {
     } else {
       this.openEpisode(track.slug);
     }
+  }
+  async shareTrack(track: Track): Promise<void> {
+    const url = `${window.location.origin}/episode/${track.slug}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: track.title,
+          text: `Listen to ${track.title} on Sound District.`,
+          url,
+        });
+
+        return;
+      } catch {
+        return;
+      }
+    }
+
+    await navigator.clipboard.writeText(url);
+
+    alert('Episode link copied to clipboard.');
+  }
+  downloadTrack(track: Track): void {
+    if (!track.downloadUrl) {
+      return;
+    }
+
+    window.open(track.downloadUrl, '_blank');
+  }
+
+  openPlayer(): void {
+    if (window.innerWidth <= 768) {
+      this.player.expand();
+    }
+  }
+
+  closePlayer(): void {
+    this.player.collapse();
   }
 }

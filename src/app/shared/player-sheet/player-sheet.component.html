@@ -1,0 +1,139 @@
+<div
+  class="player-sheet"
+  [class.open]="player.expanded$ | async"
+  *ngIf="player.currentTrack$ | async as track"
+>
+  <!-- ===================================== -->
+  <!-- HEADER -->
+  <!-- ===================================== -->
+
+  <div class="sheet-header">
+    <button class="sheet-close" (click)="player.collapse()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+  <!-- ===================================== -->
+  <!-- CONTENT -->
+  <!-- ===================================== -->
+
+  <div class="sheet-content">
+    <!-- Artwork -->
+
+    <div class="sheet-artwork">
+      <img [src]="track.artworkUrl" [alt]="track.title" />
+
+      <div class="playing-bars" *ngIf="player.isPlaying$ | async">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Track -->
+
+    <div class="sheet-info">
+      <span class="sheet-status">
+        <i class="bi bi-broadcast"></i>
+        NOW PLAYING
+      </span>
+
+      <h2 class="sheet-title" (click)="openEpisode(track.slug)">
+        {{ track.title }}
+      </h2>
+
+      <p class="sheet-artist" (click)="openEpisode(track.slug)">
+        {{ track.artistName || "Sound District Music Show" }}
+      </p>
+    </div>
+
+    <!-- Progress -->
+
+    <div class="sheet-progress">
+      <span class="time">
+        {{ formatTime(player.currentTime$ | async) }}
+      </span>
+
+      <input
+        class="player-slider"
+        type="range"
+        min="0"
+        [max]="(player.duration$ | async) || 0"
+        [value]="sliderValue"
+        [style.--progress]="
+          (sliderValue * 100) / ((player.duration$ | async) || 1) + '%'
+        "
+        (pointerdown)="dragging = true"
+        (pointerup)="player.seek(sliderValue); dragging = false"
+        (input)="sliderValue = +$any($event.target).value"
+      />
+
+      <span class="time">
+        {{ formatTime(player.duration$ | async) }}
+      </span>
+    </div>
+
+    <!-- Controls -->
+
+    <div class="sheet-controls">
+      <button class="control-button" (click)="player.skipBackward(15)">
+        <i class="bi bi-arrow-counterclockwise"></i>
+        <span class="skip-number">15</span>
+      </button>
+
+      <button
+        class="play-button"
+        (click)="player.toggle(track)"
+        aria-label="Play or Pause"
+      >
+        <i
+          class="bi"
+          [ngClass]="
+            (player.isPlaying$ | async) ? 'bi-pause-fill' : 'bi-play-fill'
+          "
+        ></i>
+      </button>
+
+      <button class="control-button" (click)="player.skipForward(30)">
+        <i class="bi bi-arrow-clockwise"></i>
+        <span class="skip-number">30</span>
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <!-- 
+    <div class="sheet-stats">
+      <span *ngIf="!isMusic">
+        <i class="bi bi-headphones"></i>
+        {{ track.plays | number }}
+      </span>
+
+      <span *ngIf="!isMusic">
+        <i class="bi bi-download"></i>
+        {{ track.downloads | number }}
+      </span>
+
+      <span *ngIf="isMusic">
+        <i class="bi bi-headphones"></i>
+        {{ previewCount }}
+      </span>
+    </div> -->
+
+    <!-- Actions -->
+
+    <div class="sheet-actions">
+      <button
+        class="action-button"
+        *ngIf="!isMusic"
+        (click)="downloadTrack(track)"
+        title="Download"
+      >
+        <i class="bi bi-download"></i>
+      </button>
+
+      <button class="action-button" (click)="shareTrack(track)" title="Share">
+        <i class="bi bi-share"></i>
+      </button>
+    </div>
+  </div>
+</div>
