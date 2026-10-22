@@ -46,7 +46,9 @@ export class PlayerSheetComponent {
   }
 
   openEpisode(slug: string): void {
-    this.router.navigate(['/episodes', slug]);
+    this.player.collapse();
+
+    this.router.navigate(['/episode', slug]);
   }
 
   onSubtitleClick(track: any): void {

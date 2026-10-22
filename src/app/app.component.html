@@ -3,7 +3,7 @@
   <app-loader></app-loader>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
-  <app-player></app-player>
+  <app-player *ngIf="!(menu.isOpen$ | async)"></app-player>
   <app-player-sheet></app-player-sheet>
 
   <!-- <a

@@ -5,6 +5,7 @@ import { PlayerService } from '../../../services/shared/player.service';
 import { filter } from 'rxjs';
 import { BagAnimationComponent } from '../bag-animation/bag-animation.component';
 import { PurchaseService } from '../../../services/shared/purchase.service';
+import { MenuService } from '../../../services/shared/menu.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +18,7 @@ export class NavComponent {
     private router: Router,
     public player: PlayerService,
     public purchaseService: PurchaseService,
+    public menu: MenuService,
   ) {}
 
   isMobileView = false;
@@ -38,14 +40,17 @@ export class NavComponent {
 
   isMenuOpen = false;
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+
+    this.isMenuOpen ? this.menu.open() : this.menu.close();
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.isMenuOpen = false;
-  }
 
+    this.menu.close();
+  }
   isMobile(): boolean {
     return window.innerWidth <= 800;
   }

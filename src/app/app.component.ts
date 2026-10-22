@@ -8,6 +8,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { PlayerService } from '../services/shared/player.service';
 import { PlayerSheetComponent } from './shared/player-sheet/player-sheet.component';
+import { MenuService } from '../services/shared/menu.service';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent {
   constructor(
     public router: Router,
     public player: PlayerService,
+    public menu: MenuService,
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

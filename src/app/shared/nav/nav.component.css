@@ -392,6 +392,8 @@ OVERLAY
 
     inset: 0;
 
+    z-index: 20000;
+
     background: rgba(8, 11, 16, 0.96);
 
     backdrop-filter: blur(30px);
@@ -414,7 +416,6 @@ OVERLAY
 
     visibility: visible;
   }
-
   /*==================================================
 MENU
 ==================================================*/
@@ -431,7 +432,7 @@ MENU
     align-items: center;
 
     gap: 26px;
-
+    z-index: 11000;
     animation: menuIn 0.35s ease;
   }
 
