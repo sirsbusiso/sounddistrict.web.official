@@ -1,156 +1,367 @@
+/*==================================================
+SUBSCRIBE SECTION
+==================================================*/
+
 .subscribe-section {
-  padding: 100px 25px;
+  padding: 120px 20px;
 }
 
 .subscribe-content {
   max-width: 900px;
-  margin: auto;
-  padding: 70px 50px;
-
+  margin: 0 auto;
   text-align: center;
-
-  background: var(--dark-grey);
-  border: 1px solid var(--dark-grey);
-  border-radius: 28px;
 }
+
+/*==================================================
+LABEL
+==================================================*/
 
 .subscribe-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+
+  padding: 10px 22px;
+  margin-bottom: 28px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   color: var(--color-primary);
-  font-size: 0.9rem;
-  font-weight: 600;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
+
+.subscribe-label i {
+  font-size: 0.9rem;
+}
+
+/*==================================================
+TITLE
+==================================================*/
 
 .subscribe-content h2 {
-  margin: 18px 0;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  color: #fff;
+  margin: 0;
+
+  color: var(--color-primary);
+
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 700;
+
+  line-height: 0.95;
+  letter-spacing: -0.05em;
 }
+
+/*==================================================
+TEXT
+==================================================*/
 
 .subscribe-content p {
-  max-width: 650px;
-  margin: auto;
+  max-width: 620px;
 
-  color: #bdbdbd;
-  line-height: 1.8;
+  margin: 26px auto 50px;
+
+  color: var(--color-primary);
+
+  font-size: 1.05rem;
+  line-height: 1.9;
 }
+
+/*==================================================
+FORM
+==================================================*/
 
 .subscribe-form {
-  margin-top: 40px;
-
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  align-items: center;
+
+  gap: 14px;
+
+  max-width: 760px;
+  margin: auto;
+
+  padding: 14px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
+
+  backdrop-filter: blur(20px);
 }
+
+/*==================================================
+INPUT
+==================================================*/
+
+/*==================================================
+SUBSCRIBE INPUT
+==================================================*/
 
 .subscribe-form input {
   flex: 1;
-  max-width: 450px;
+
+  width: 100%;
+  min-width: 0;
 
   height: 58px;
 
   padding: 0 20px;
 
-  background: var(--light-grey);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
+  border: 1px solid rgba(0, 196, 106, 0.55);
+  border-radius: 16px;
 
-  color: var(--border);
+  background: #fff;
+
+  color: var(--color-primary);
+
+  font-size: 1rem;
+
   outline: none;
+
+  transition: 0.3s ease;
+
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.subscribe-form input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .subscribe-form input:focus {
-  border-color: var(--border);
+  border-color: var(--color-primary);
+
+  box-shadow: 0 0 0 4px rgba(0, 196, 106, 0.12);
 }
 
+/*==================================================
+BUTTON
+==================================================*/
+
 .subscribe-form button {
-  height: 58px;
-  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  flex-shrink: 0;
+
+  height: 64px;
+
+  padding: 0 12px 0 28px;
 
   border: none;
-  border-radius: 999px;
 
-  background: var(--btn-primary);
-  color: var(--border);
+  cursor: pointer;
+
+  border-radius: 14px;
+
+  background: #fff;
+
+  color: #111;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  transition: all 0.35s ease;
+}
+
+/*==================================================
+BUTTON ICON
+==================================================*/
+
+.button-icon {
+  width: 42px;
+  height: 42px;
 
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 
-  font-weight: 600;
-  cursor: pointer;
+  background: #111;
 
-  transition: 0.25s;
+  color: #fff;
+
+  transition: 0.35s ease;
+}
+
+.button-icon i {
+  font-size: 1rem;
+
+  transition: transform 0.35s ease;
 }
 
 .subscribe-form button:hover {
-  background: var(--btn-hover);
-  color: var(--white);
-  transform: translateY(-2px);
+  background: var(--color-primary);
 }
+
+.subscribe-form button:hover .button-icon {
+  background: #fff;
+  color: #111;
+}
+
+.subscribe-form button:hover i {
+  transform: translate(3px, -3px);
+}
+
+/*==================================================
+FOOTNOTE
+==================================================*/
 
 .subscribe-content small {
   display: block;
-  margin-top: 20px;
-  color: #8a8a8a;
+
+  margin-top: 26px;
+
+  color: var(--color-primary);
+
+  font-size: 0.85rem;
+
+  letter-spacing: 0.05em;
 }
+
+/*==================================================
+TABLET
+==================================================*/
+
 @media (max-width: 768px) {
   .subscribe-section {
-    padding: 40px 20px;
+    padding: 90px 20px;
   }
 
-  .subscribe-content {
-    padding: 35px 20px;
-    border-radius: 20px;
+  .subscribe-content h2 {
+    font-size: 2.4rem;
+  }
+
+  .subscribe-content p {
+    margin: 20px auto 36px;
+
+    font-size: 0.95rem;
+  }
+
+  .subscribe-form {
+    padding: 10px;
+
+    gap: 10px;
+  }
+
+  /*==================================================
+SUBSCRIBE MOBILE
+==================================================*/
+  @media (max-width: 768px) {
+    .subscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .subscribe-form input {
+      width: 100%;
+
+      height: 60px;
+
+      padding: 0 22px;
+
+      border-radius: 18px;
+
+      font-size: 16px;
+
+      font-weight: 500;
+
+      line-height: 60px;
+    }
+
+    .subscribe-form button {
+      width: 100%;
+
+      height: 60px;
+
+      border-radius: 18px;
+
+      font-size: 1rem;
+
+      font-weight: 600;
+    }
+  }
+
+  .subscribe-form button {
+    height: 58px;
+
+    padding: 0 10px 0 22px;
+
+    font-size: 0.8rem;
+  }
+}
+
+/*==================================================
+MOBILE
+==================================================*/
+
+@media (max-width: 576px) {
+  .subscribe-section {
+    padding: 70px 16px;
   }
 
   .subscribe-label {
-    font-size: 0.75rem;
+    padding: 8px 18px;
+
+    font-size: 0.65rem;
   }
 
   .subscribe-content h2 {
     font-size: 2rem;
-    line-height: 1.25;
-    margin: 15px 0;
   }
 
   .subscribe-content p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+
     line-height: 1.7;
-    margin-bottom: 30px;
   }
 
   .subscribe-form {
-    display: flex;
     flex-direction: column;
+
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+
     gap: 14px;
-    width: 100%;
   }
 
   .subscribe-form input {
-    flex: unset;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0;
-    height: 52px;
-    box-sizing: border-box;
+    width: 100%;
+
+    height: 58px;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .subscribe-form button {
     width: 100%;
-    height: 52px;
-    border-radius: 30px;
+    background: var(--color-primary);
     justify-content: center;
-    font-size: 0.95rem;
+
+    height: 58px;
   }
 
-  .subscribe-content small {
-    margin-top: 20px;
-    font-size: 0.85rem;
+  .button-icon {
+    width: 38px;
+    height: 38px;
   }
 }

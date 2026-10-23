@@ -58,10 +58,7 @@
           </span>
         </button>
 
-        <button
-          class="hero-secondary"
-          (click)="goToEpisode(tracks[currentTrack])"
-        >
+        <button class="hero-secondary" (click)="goToEpisodes()">
           Browse Episodes
         </button>
       </div>
@@ -108,7 +105,7 @@
           </h3>
         </div> -->
 
-        <p>
+        <p (click)="goToEpisode(tracks[currentTrack])">
           Episode #{{ getEpisodeNumber(tracks[currentTrack].title) }} •
           {{ tracks[currentTrack].genre || "House Music" }} •
           {{ formatTime(tracks[currentTrack].duration) }}
@@ -126,7 +123,7 @@
           <div>
             <span>Episode</span>
 
-            <h4>
+            <h4 (click)="goToEpisode(tracks[currentTrack])">
               {{ tracks[currentTrack].title }}
             </h4>
 

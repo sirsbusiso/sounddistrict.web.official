@@ -17,7 +17,7 @@ SOUND DISTRICT NAVBAR
 
   border-radius: 22px;
 
-  background: rgba(10, 10, 10, 0.92);
+  background: var(--color-primary);
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 
@@ -172,9 +172,9 @@ JOIN BUTTON
 
   border-radius: 999px;
 
-  background: linear-gradient(135deg, #00c46a, #00d875 55%, #7cffcb);
+  background: #fff;
 
-  color: #fff;
+  color: var(--color-primary);
 
   font-weight: 700;
 
@@ -346,7 +346,7 @@ MOBILE HEADER
 
     z-index: 1200;
 
-    background: #0a0a0a;
+    background: var(--color-primary);
   }
 
   .mobile-top {
@@ -394,7 +394,7 @@ OVERLAY
 
     z-index: 20000;
 
-    background: rgba(8, 11, 16, 0.96);
+    background: var(--color-primary);
 
     backdrop-filter: blur(30px);
 
@@ -511,9 +511,9 @@ BUTTONS
   }
 
   .mobile-join {
-    background: linear-gradient(135deg, #00c46a, #00d875 55%, #7cffcb);
+    background: #fff;
 
-    color: #fff;
+    color: var(--color-primary);
   }
 
   .mobile-donate {

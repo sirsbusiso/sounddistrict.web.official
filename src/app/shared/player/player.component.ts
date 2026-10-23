@@ -14,6 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class PlayerComponent {
   isMusic = false;
   previewCount = 0;
+
   constructor(
     public player: PlayerService,
     private router: Router,

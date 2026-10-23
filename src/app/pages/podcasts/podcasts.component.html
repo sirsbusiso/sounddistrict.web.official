@@ -1,9 +1,18 @@
 <section class="podcasts-page">
   <div class="container">
+    <!--==================================
+    PAGE HEADER
+    ===================================-->
+
     <div class="page-header">
+      <span class="page-label">
+        <i class="bi bi-broadcast"></i>
+        Sound District Music Show
+      </span>
+
       <h1>Podcast Episodes</h1>
-      <p>Explore every episode of the Sound District Music Show.</p>
     </div>
+
     <div class="podcast-search">
       <i class="bi bi-search"></i>
 
@@ -40,52 +49,106 @@
       </div>
     </div>
     <div class="podcast-list">
-      <article class="podcast-card" *ngFor="let podcast of pagedTracks">
-        <img
-          [src]="podcast.artworkUrl"
-          [alt]="podcast.title"
-          (click)="openEpisode(podcast.slug)"
-        />
+      <article class="podcast-item" *ngFor="let podcast of pagedTracks">
+        <!-- Artwork -->
 
-        <div class="podcast-content">
-          <span class="genre">{{ podcast.genre }}</span>
+        <div class="podcast-artwork" (click)="openEpisode(podcast.slug)">
+          <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 
+          <!-- Hover -->
+          <div class="podcast-hover">
+            <button
+              class="play-btn"
+              (click)="player.toggle(podcast); $event.stopPropagation()"
+              aria-label="Play Episode"
+            >
+              <i
+                class="bi"
+                [ngClass]="
+                  (player.currentTrack$ | async)?.slug === podcast.slug &&
+                  (player.isPlaying$ | async)
+                    ? 'bi-pause-fill'
+                    : 'bi-play-fill'
+                "
+              ></i>
+            </button>
+          </div>
+          <!-- Genre -->
+
+          <div class="podcast-genre">
+            {{ podcast.genre }}
+          </div>
+
+          <!-- Duration -->
+
+          <div class="podcast-time">
+            <i class="bi bi-clock"></i>
+
+            {{ formatDuration(podcast.duration) }}
+          </div>
+        </div>
+
+        <!-- Info -->
+
+        <div class="podcast-info">
           <h3 (click)="openEpisode(podcast.slug)">
             {{ podcast.title }}
           </h3>
 
-          <div class="meta">
-            <span>{{ podcast.createdAt | date: "dd MMM yyyy" }}</span>
-            <span>•</span>
-            <span>{{ formatDuration(podcast.duration) }}</span>
+          <div class="podcast-footer">
+            <div class="podcast-meta">
+              <span class="podcast-category">
+                {{ podcast.genre }}
+              </span>
+
+              <span class="divider">•</span>
+
+              <span class="podcast-date">
+                <i class="bi bi-calendar3"></i>
+                {{ podcast.createdAt | date: "dd MMM yyyy" }}
+              </span>
+            </div>
+
+            <button class="view-btn" (click)="openEpisode(podcast.slug)">
+              <span>View</span>
+              <i class="bi bi-arrow-up-right"></i>
+            </button>
           </div>
-
-          <p>{{ podcast.description | slice: 0 : 180 }}...</p>
-
-          <button class="listen-btn" (click)="openEpisode(podcast.slug)">
-            View More
-          </button>
         </div>
       </article>
     </div>
+
+    <!--==================================
+    PAGINATION
+    ===================================-->
 
     <div class="pagination">
       <button
         class="page-btn"
         (click)="previousPage()"
         [disabled]="currentPage === 1"
+        aria-label="Previous page"
       >
-        <i class="bi bi-chevron-left"></i>
+        <i class="bi bi-arrow-left"></i>
       </button>
 
-      <div class="page-info">Page {{ currentPage }} of {{ totalPages }}</div>
+      <div class="page-indicator">
+        <span>Page</span>
+
+        <strong>{{ currentPage }}</strong>
+
+        <span>of</span>
+
+        <strong>{{ totalPages }}</strong>
+      </div>
 
       <button
         class="page-btn"
         (click)="nextPage()"
         [disabled]="currentPage === totalPages"
+        aria-label="Next page"
       >
-        <i class="bi bi-chevron-right"></i>
+        <i class="bi bi-arrow-right"></i>
       </button>
     </div>
   </div>

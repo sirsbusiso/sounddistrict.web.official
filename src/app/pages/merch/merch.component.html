@@ -1,21 +1,44 @@
 <section class="featured-merch">
   <div class="section-header">
-    <h2>Wear the Sound</h2>
-    <p>Official Sound District merchandise.</p>
+    <span class="section-label">OFFICIAL COLLECTION</span>
+
+    <h2>Wear The Sound</h2>
+
+    <p>Premium oversized apparel inspired by Sound District.</p>
   </div>
 
   <div class="merch-grid">
-    <a *ngFor="let item of merch" class="merch-card">
-      <img [src]="item.productImages[0].imageUrl" [alt]="item.name" />
+    <a
+      class="merch-item"
+      *ngFor="let item of merch"
+      (click)="gotoProductDetails(item.slug)"
+    >
+      <div class="merch-image">
+        <span class="merch-tag">NEW</span>
 
-      <div class="merch-overlay">
-        <span> R {{ item.price | number: "1.2-2" : "en-ZA" }} ZAR </span>
-        <h3>{{ item.name }}</h3>
+        <img [src]="item.productImages[0].imageUrl" [alt]="item.name" />
 
-        <button class="shop-btn" (click)="gotoProductDetails(item.slug)">
-          Shop Now
-          <i class="bi bi-arrow-right"></i>
-        </button>
+        <div class="merch-overlay">
+          <div class="merch-details">
+            <h3>{{ item.name }}</h3>
+
+            <p>Premium Apparel</p>
+          </div>
+
+          <div class="merch-footer">
+            <span class="price">
+              R {{ item.price | number: "1.2-2" : "en-ZA" }}
+            </span>
+
+            <div class="shop-link">
+              <span>Shop</span>
+
+              <div class="shop-arrow">
+                <i class="bi bi-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </a>
   </div>

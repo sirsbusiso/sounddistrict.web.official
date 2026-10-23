@@ -153,4 +153,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       clearInterval(this.intervalId);
     }
   }
+  goToEpisodes() {
+    this.router.navigate(['/podcasts']);
+  }
 }

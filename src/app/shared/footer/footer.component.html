@@ -1,91 +1,204 @@
 <footer class="footer">
+  <!-- Animated Top Wave -->
+
+  <div class="footer-wave"></div>
+
   <div class="footer-container">
+    <!--==================================================
+    BRAND
+    ==================================================-->
+
+    <div class="footer-hero">
+      <img src="main-logo-2.png" class="footer-logo" alt="Sound District" />
+
+      <span class="footer-tag"> WE ARE THE MUSIC </span>
+
+      <h2>South Africa's Home For House Music.</h2>
+
+      <p>
+        Discover exclusive Deep House, Soulful House and Afro House podcasts,
+        music releases, merchandise and unforgettable experiences from Sound
+        District.
+      </p>
+    </div>
+
+    <!--==================================================
+    LINKS
+    ==================================================-->
+
     <div class="footer-grid">
-      <!-- Brand -->
+      <!-- Explore -->
 
       <div class="footer-column">
-        <img src="main-logo-2.png" class="footer-logo" alt="Sound District" />
-
-        <p>
-          Discover the latest Deep House, Soulful House and Afro House mixes,
-          exclusive merchandise and curated podcasts from Sound District.
-        </p>
-
-        <div class="footer-social">
-          <a
-            href="https://www.facebook.com/people/Sound-District/61576446847394/?mibextid=wwXIfr&rdid=DuVbLNc6CBtvElmM&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1966DGi1Nb%2F%3Fmibextid%3DwwXIfr"
-            target="_blank"
-          >
-            <i class="bi bi-facebook"></i>
-          </a>
-
-          <a href="https://instagram.com/sounddistrict.za" target="_blank">
-            <i class="bi bi-instagram"></i>
-          </a>
-
-          <a href="https://www.youtube.com/@sounddistrictza" target="_blank">
-            <i class="bi bi-youtube"></i>
-          </a>
-
-          <a href="https://x.com/sounddistrict_" target="_blank">
-            <i class="bi bi-twitter-x"></i>
-          </a>
-
-          <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-
-          <a
-            href="https://podcasts.apple.com/us/podcast/sound-district-music-show/id1692342838"
-            target="_blank"
-          >
-            <i class="bi bi-apple"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-column">
-        <h4>Explore</h4>
+        <h4>
+          <i class="bi bi-compass"></i>
+          Explore
+        </h4>
 
         <a (click)="gotoHome()">Home</a>
+
         <a (click)="gotoMusic()">Music</a>
+
         <a (click)="gotoPodcast()">Podcasts</a>
+
         <a (click)="gotoShop()">Store</a>
+
         <a (click)="gotoDonate()">Donate</a>
       </div>
 
-      <div class="footer-column">
-        <h4>Contact</h4>
+      <!-- Community -->
 
-        <p>
-          <i class="bi bi-geo-alt"></i>
-          Johannesburg, South Africa
-        </p>
+      <div class="footer-column">
+        <h4>
+          <i class="bi bi-people"></i>
+          Community
+        </h4>
+
+        <a>Become A Guest DJ</a>
+
+        <a>Newsletter</a>
+
+        <a>Collaborate</a>
+
+        <a>Merchandise</a>
+
+        <a>Support Sound District</a>
+      </div>
+
+      <!-- Contact -->
+
+      <div class="footer-column">
+        <h4>
+          <i class="bi bi-chat-dots"></i>
+          Contact
+        </h4>
 
         <a href="mailto:info@sounddistrict.co.za" class="contact-link">
           <i class="bi bi-envelope"></i>
-          info&#64;sounddistrict.co.za
+
+          info@sounddistrict.co.za
         </a>
 
         <a href="tel:+27712505601" class="contact-link">
           <i class="bi bi-telephone"></i>
+
           +27 71 250 5601
+        </a>
+
+        <a
+          href="https://wa.me/27712505601"
+          target="_blank"
+          class="contact-link"
+        >
+          <i class="bi bi-whatsapp"></i>
+
+          WhatsApp
+        </a>
+
+        <p class="footer-contact">
+          <i class="bi bi-geo-alt"></i>
+
+          Johannesburg, South Africa
+        </p>
+      </div>
+
+      <!-- Follow -->
+
+      <div class="footer-column">
+        <h4>
+          <i class="bi bi-share"></i>
+          Follow Us
+        </h4>
+
+        <a href="https://instagram.com/sounddistrict.za" target="_blank">
+          <i class="bi bi-instagram"></i>
+          Instagram
+        </a>
+
+        <a
+          href="https://www.facebook.com/people/Sound-District/61576446847394/"
+          target="_blank"
+        >
+          <i class="bi bi-facebook"></i>
+          Facebook
+        </a>
+
+        <a href="https://www.tiktok.com/@sounddistrict.za" target="_blank">
+          <i class="fa-brands fa-tiktok"></i>
+          TikTok
+        </a>
+
+        <a href="https://www.youtube.com/@sounddistrictza" target="_blank">
+          <i class="bi bi-youtube"></i>
+          YouTube
+        </a>
+
+        <a
+          href="https://podcasts.apple.com/us/podcast/sound-district-music-show/id1692342838"
+          target="_blank"
+        >
+          <i class="bi bi-apple"></i>
+          Apple Podcasts
+        </a>
+
+        <a href="https://x.com/sounddistrict_" target="_blank">
+          <i class="bi bi-twitter-x"></i>
+          X
         </a>
       </div>
     </div>
 
+    <!--==================================================
+    NEWSLETTER
+    ==================================================-->
+
+    <div class="footer-newsletter">
+      <div>
+        <h3>Stay Connected</h3>
+
+        <p>
+          Receive new podcast episodes, exclusive music releases and updates.
+        </p>
+      </div>
+
+      <form class="subscribe-form" (ngSubmit)="subscribe()">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Your email address"
+          required
+        />
+
+        <button type="submit">
+          Join Now
+
+          <span class="button-icon">
+            <i class="bi bi-arrow-up-right"></i>
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <!--==================================================
+    BOTTOM
+    ==================================================-->
+
     <div class="footer-bottom">
-      <p>© {{ currentYear }} Sound District. All rights reserved.</p>
-      <p class="developer">
+      <p>
+        © {{ currentYear }}
+        Sound District. All Rights Reserved.
+      </p>
+
+      <p>
         Designed & Developed by
+
         <strong>Khayelihle Ntanzi</strong>
 
-        <a
-          href="https://instagram.com/sirsbusiso"
-          target="_blank"
-          aria-label="Instagram"
-        >
-          <i class="bi bi-instagram"></i>
+        @
+
+        <a href="https://www.ntanzidigital.co.za" target="_blank">
+          Ntanzi Digital
         </a>
       </p>
 

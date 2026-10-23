@@ -8,7 +8,7 @@ import { Track } from '../../../models/podcast/podcast.models';
 
 @Component({
   selector: 'app-podcasts',
-  imports: [SlicePipe, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './podcasts.component.html',
   styleUrl: './podcasts.component.css',
 })
@@ -17,7 +17,7 @@ export class PodcastsComponent {
   pagedTracks: Track[] = [];
 
   currentPage = 1;
-  pageSize = 5;
+  pageSize = 6;
   searchTerm = '';
 
   searchResults: Track[] = [];

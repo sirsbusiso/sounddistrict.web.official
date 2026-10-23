@@ -1,15 +1,15 @@
 <section class="subscribe-section">
   <div class="subscribe-content">
     <span class="subscribe-label">
-      <i class="bi bi-envelope-heart"></i>
-      Stay Connected
+      <i class="bi bi-stars"></i>
+      JOIN THE COMMUNITY
     </span>
 
-    <h2>Never Miss a New Mix</h2>
+    <h2>Be First to Hear What's Next</h2>
 
     <p>
-      Subscribe to receive the latest Sound District podcast episodes, exclusive
-      mixes, merchandise releases and special announcements.
+      Get new podcast episodes, exclusive DJ mixes, early merchandise drops and
+      special announcements delivered straight to your inbox.
     </p>
 
     <form class="subscribe-form" (ngSubmit)="subscribe()">
@@ -17,16 +17,19 @@
         type="email"
         [(ngModel)]="email"
         name="email"
-        placeholder="Enter your email address"
+        placeholder="Your email address"
         required
       />
 
       <button type="submit">
-        Subscribe
-        <i class="bi bi-arrow-right"></i>
+        Join Now
+
+        <span class="button-icon">
+          <i class="bi bi-arrow-up-right"></i>
+        </span>
       </button>
     </form>
 
-    <small> No spam. Only good music. </small>
+    <small> Join thousands of house music lovers. Unsubscribe anytime. </small>
   </div>
 </section>

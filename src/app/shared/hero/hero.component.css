@@ -498,7 +498,7 @@ FEATURED CARD
   color: var(--black);
 
   font-size: 1.65rem;
-
+  cursor: pointer;
   line-height: 1.35;
 
   font-weight: 800;
@@ -507,86 +507,11 @@ FEATURED CARD
 .featured-card p {
   color: var(--dark-grey);
 
-  font-size: 0.85rem;
-
+  font-size: 0.95rem;
+  cursor: pointer;
   line-height: 1.8;
 }
-.hero-scroll {
-  position: absolute;
 
-  left: 50%;
-  bottom: 40px;
-
-  transform: translateX(-50%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  gap: 12px;
-
-  color: rgba(255, 255, 255, 0.75);
-
-  animation: floatScroll 2.5s ease-in-out infinite;
-}
-
-.scroll-mouse {
-  width: 30px;
-  height: 48px;
-
-  border: 2px solid rgba(255, 255, 255, 0.5);
-
-  border-radius: 50px;
-
-  display: flex;
-  justify-content: center;
-
-  padding-top: 8px;
-}
-
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-
-  border-radius: 20px;
-
-  background: var(--color-primary);
-
-  animation: wheel 2s infinite;
-}
-
-.hero-scroll span {
-  font-size: 0.8rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.2em;
-
-  text-transform: uppercase;
-}
-
-@keyframes wheel {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-}
-
-@keyframes floatScroll {
-  0%,
-  100% {
-    transform: translate(-50%, 0);
-  }
-
-  50% {
-    transform: translate(-50%, 8px);
-  }
-}
 /*==================================================
 PLAYER CARD
 ==================================================*/
@@ -654,7 +579,7 @@ PLAYER CARD
   font-size: 1.2rem;
 
   font-weight: 800;
-
+  cursor: pointer;
   line-height: 1.45;
 }
 
