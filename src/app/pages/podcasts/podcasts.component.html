@@ -55,7 +55,6 @@
         <div class="podcast-artwork" (click)="openEpisode(podcast.slug)">
           <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
 
-          <!-- Hover -->
           <div class="podcast-hover">
             <button
               class="play-btn"
@@ -73,47 +72,60 @@
               ></i>
             </button>
           </div>
-          <!-- Genre -->
-
-          <div class="podcast-genre">
-            {{ podcast.genre }}
-          </div>
-
-          <!-- Duration -->
-
-          <div class="podcast-time">
-            <i class="bi bi-clock"></i>
-
-            {{ formatDuration(podcast.duration) }}
-          </div>
         </div>
 
-        <!-- Info -->
+        <!-- Content -->
 
         <div class="podcast-info">
+          <span class="podcast-category">
+            {{ podcast.genre }}
+          </span>
+
           <h3 (click)="openEpisode(podcast.slug)">
             {{ podcast.title }}
           </h3>
+          <p class="podcast-description">
+            {{ podcast.description }}
+          </p>
+          <div class="podcast-meta">
+            <span>
+              <i class="bi bi-calendar3"></i>
+              {{ podcast.createdAt | date: "dd MMM yyyy" }}
+            </span>
 
-          <div class="podcast-footer">
-            <div class="podcast-meta">
-              <span class="podcast-category">
-                {{ podcast.genre }}
-              </span>
-
-              <span class="divider">•</span>
-
-              <span class="podcast-date">
-                <i class="bi bi-calendar3"></i>
-                {{ podcast.createdAt | date: "dd MMM yyyy" }}
-              </span>
-            </div>
-
-            <button class="view-btn" (click)="openEpisode(podcast.slug)">
-              <span>View</span>
-              <i class="bi bi-arrow-up-right"></i>
-            </button>
+            <span>
+              <i class="bi bi-clock"></i>
+              {{ formatDuration(podcast.duration) }}
+            </span>
           </div>
+        </div>
+
+        <!-- Actions -->
+
+        <div class="podcast-actions">
+          <button
+            class="icon-btn"
+            (click)="player.toggle(podcast); $event.stopPropagation()"
+            aria-label="Play Episode"
+          >
+            <i
+              class="bi"
+              [ngClass]="
+                (player.currentTrack$ | async)?.slug === podcast.slug &&
+                (player.isPlaying$ | async)
+                  ? 'bi-pause-fill'
+                  : 'bi-play-fill'
+              "
+            ></i>
+          </button>
+
+          <button
+            class="icon-btn"
+            (click)="openEpisode(podcast.slug); $event.stopPropagation()"
+            aria-label="Open Episode"
+          >
+            <i class="bi bi-arrow-right"></i>
+          </button>
         </div>
       </article>
     </div>
