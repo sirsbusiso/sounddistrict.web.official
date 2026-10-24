@@ -1,161 +1,196 @@
 @if (track) {
-  <section class="episode-details">
-    <div class="episode-container">
-      <!-- Artwork -->
+  <section class="episode-page">
+    <div class="container">
+      <!--==================================
+    HERO
+    ===================================-->
 
-      <div class="episode-artwork">
-        <img [src]="track.artworkUrl" [alt]="track.title" />
-      </div>
-
-      <!-- Hero Content -->
-
-      <div class="episode-content">
-        <span class="episode-type">
-          <i class="bi bi-broadcast"></i>
-          Podcast Episode
-        </span>
-
-        <h1>{{ track.title }}</h1>
-
-        <div class="episode-meta">
-          <div class="meta-item">
-            <i class="bi bi-person-circle"></i>
-            <span>{{ getArtistName(track.title) }}</span>
-          </div>
-
-          <div class="meta-item">
-            <i class="bi bi-calendar3"></i>
-            <span>{{ track.createdAt | date: "dd MMM yyyy" }}</span>
-          </div>
-
-          <div class="meta-item">
-            <i class="bi bi-clock"></i>
-            <span>{{ formatDuration(track.duration) }}</span>
-          </div>
-
-          <div class="meta-item">
-            <i class="bi bi-music-note-beamed"></i>
-            <span>{{ track.genre }}</span>
-          </div>
-
-          <div class="meta-item" *ngIf="track.bpm">
-            <i class="bi bi-speedometer2"></i>
-            <span>{{ track.bpm }} BPM</span>
-          </div>
-
-          <div class="meta-item" *ngIf="track.key">
-            <i class="bi bi-key"></i>
-            <span>{{ track.key }}</span>
-          </div>
+      <section class="episode-hero">
+        <div class="episode-artwork">
+          <img [src]="track.artworkUrl" [alt]="track.title" />
         </div>
 
-        <div class="episode-actions">
-          <button class="btn-primary" (click)="player.toggle(track)">
-            <i
-              class="bi"
-              [ngClass]="{
-                'bi-play-fill': !(
-                  (player.isPlaying$ | async) &&
-                  (player.currentTrack$ | async)?.streamUrl === track.streamUrl
-                ),
-                'bi-pause-fill':
-                  (player.isPlaying$ | async) &&
-                  (player.currentTrack$ | async)?.streamUrl === track.streamUrl,
-              }"
-            ></i>
-            {{
-              (player.isPlaying$ | async) &&
-              (player.currentTrack$ | async)?.streamUrl === track.streamUrl
-                ? "Pause"
-                : "Play"
-            }}
-          </button>
-          <button class="btn-secondary" (click)="downloadTrack(track)">
-            <i class="bi bi-download"></i>
-            Download
-          </button>
+        <div class="episode-content">
+          <span class="episode-type">
+            <i class="bi bi-broadcast"></i>
+            Podcast Episode
+          </span>
 
-          <button class="btn-secondary" (click)="shareEpisode(track)">
-            <i class="bi bi-share"></i>
-            Share
-          </button>
+          <h1>{{ track.title }}</h1>
+
+          <div class="episode-meta">
+            <div class="meta-item">
+              <i class="bi bi-person-circle"></i>
+              <span>{{ getArtistName(track.title) }}</span>
+            </div>
+
+            <div class="meta-item">
+              <i class="bi bi-calendar3"></i>
+              <span>{{ track.createdAt | date: "dd MMM yyyy" }}</span>
+            </div>
+
+            <div class="meta-item">
+              <i class="bi bi-clock"></i>
+              <span>{{ formatDuration(track.duration) }}</span>
+            </div>
+
+            <div class="meta-item">
+              <i class="bi bi-music-note-beamed"></i>
+              <span>{{ track.genre }}</span>
+            </div>
+
+            <div class="meta-item" *ngIf="track.bpm">
+              <i class="bi bi-speedometer2"></i>
+              <span>{{ track.bpm }} BPM</span>
+            </div>
+
+            <div class="meta-item" *ngIf="track.key">
+              <i class="bi bi-key"></i>
+              <span>{{ track.key }}</span>
+            </div>
+          </div>
+
+          <div class="episode-actions">
+            <button class="btn-primary" (click)="player.toggle(track)">
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-play-fill': !(
+                    (player.isPlaying$ | async) &&
+                    (player.currentTrack$ | async)?.streamUrl ===
+                      track.streamUrl
+                  ),
+                  'bi-pause-fill':
+                    (player.isPlaying$ | async) &&
+                    (player.currentTrack$ | async)?.streamUrl ===
+                      track.streamUrl,
+                }"
+              ></i>
+
+              {{
+                (player.isPlaying$ | async) &&
+                (player.currentTrack$ | async)?.streamUrl === track.streamUrl
+                  ? "Pause"
+                  : "Play"
+              }}
+            </button>
+
+            <button class="btn-secondary" (click)="downloadTrack(track)">
+              <i class="bi bi-download"></i>
+              Download
+            </button>
+
+            <button class="btn-secondary" (click)="shareEpisode(track)">
+              <i class="bi bi-share"></i>
+              Share
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <section class="episode-body">
-    <div class="episode-description">
-      <h2>About this Episode</h2>
+      <!--==================================
+    BODY
+    ===================================-->
 
-      <p>{{ track.description }}</p>
-    </div>
+      <section class="episode-body">
+        <div class="episode-description">
+          <h2>About this Episode</h2>
 
-    <!-- Uncomment if you want the info card later -->
-
-    <!--
-  <aside class="episode-sidebar">
-
-      <h3>Episode Information</h3>
-
-      <div class="info-row">
-          <span>Genre</span>
-          <strong>{{ track.genre }}</strong>
-      </div>
-
-      <div class="info-row">
-          <span>Artist</span>
-          <strong>{{ getArtistName(track.title) }}</strong>
-      </div>
-
-      <div class="info-row">
-          <span>Released</span>
-          <strong>{{ track.createdAt | date:'dd MMM yyyy' }}</strong>
-      </div>
-
-      <div class="info-row">
-          <span>Duration</span>
-          <strong>{{ formatDuration(track.duration) }}</strong>
-      </div>
-
-  </aside>
-  --></section>
-  <section class="more-episodes" *ngIf="artistRelated.length">
-    <div class="section-header">
-      <h2>From this artist</h2>
-    </div>
-    <div class="episode-grid">
-      <div
-        class="episode-card"
-        *ngFor="let podcast of artistRelated"
-        (click)="openEpisode(podcast)"
-      >
-        <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
-
-        <div class="episode-card-content">
-          <h4>{{ podcast.title }}</h4>
+          <p>{{ track.description }}</p>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="more-episodes">
-    <div class="section-header">
-      <h2>More Episodes</h2>
 
-      <a (click)="viewAllEpisodes()"> View All </a>
-    </div>
-    <div class="episode-grid">
-      <div
-        class="episode-card"
-        *ngFor="let podcast of relatedTracks"
-        (click)="openEpisode(podcast)"
-      >
-        <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
+        <aside class="episode-sidebar">
+          <h3>Episode Information</h3>
 
-        <div class="episode-card-content">
-          <h4>{{ podcast.title }}</h4>
+          <div class="info-row">
+            <span>Artist</span>
+            <strong>{{ getArtistName(track.title) }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Genre</span>
+            <strong>{{ track.genre }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Released</span>
+            <strong>{{ track.createdAt | date: "dd MMM yyyy" }}</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Duration</span>
+            <strong>{{ formatDuration(track.duration) }}</strong>
+          </div>
+
+          <div class="info-row" *ngIf="track.bpm">
+            <span>BPM</span>
+            <strong>{{ track.bpm }}</strong>
+          </div>
+
+          <div class="info-row" *ngIf="track.key">
+            <span>Key</span>
+            <strong>{{ track.key }}</strong>
+          </div>
+        </aside>
+      </section>
+
+      <!--==================================
+    FROM THIS ARTIST
+    ===================================-->
+
+      <section class="more-episodes" *ngIf="artistRelated.length">
+        <div class="section-header">
+          <h2>More from {{ getArtistName(track.title) }}</h2>
         </div>
-      </div>
+
+        <div class="episode-grid">
+          <div
+            class="episode-card"
+            *ngFor="let podcast of artistRelated"
+            (click)="openEpisode(podcast)"
+          >
+            <div class="episode-card-image">
+              <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
+            </div>
+
+            <div class="episode-card-content">
+              <h4>{{ podcast.title }}</h4>
+
+              <span>{{ podcast.genre }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--==================================
+    MORE EPISODES
+    ===================================-->
+
+      <section class="more-episodes">
+        <div class="section-header">
+          <h2>More Episodes</h2>
+
+          <a (click)="viewAllEpisodes()">View All</a>
+        </div>
+
+        <div class="episode-grid">
+          <div
+            class="episode-card"
+            *ngFor="let podcast of relatedTracks"
+            (click)="openEpisode(podcast)"
+          >
+            <div class="episode-card-image">
+              <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
+            </div>
+
+            <div class="episode-card-content">
+              <h4>{{ podcast.title }}</h4>
+
+              <span>{{ podcast.genre }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 }

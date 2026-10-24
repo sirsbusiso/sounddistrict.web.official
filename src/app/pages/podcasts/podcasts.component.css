@@ -8,6 +8,7 @@ PAGE
   background: transparent;
 
   min-height: 100vh;
+  margin-bottom: 30px;
 }
 
 .podcasts-page .container {
@@ -109,7 +110,7 @@ SEARCH
 
   border: 1px solid var(--color-primary);
 
-  background: #fff;
+  background: transparent;
 
   color: var(--color-primary);
 
@@ -655,7 +656,7 @@ MOBILE
 
 @media (max-width: 768px) {
   .podcasts-page {
-    padding: 105px 0 60px;
+    padding: 80px 0 60px;
   }
 
   .podcasts-page .container {

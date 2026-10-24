@@ -81,6 +81,19 @@
         </h4>
       </div>
 
+      <!-- Stats -->
+
+      <div class="player-stats">
+        <span class="player-stat" *ngIf="track.plays">
+          <i class="bi bi-play-fill"></i>
+          {{ track.plays | number }}
+        </span>
+
+        <span class="player-stat" *ngIf="track.downloads && !isMusic">
+          <i class="bi bi-download"></i>
+          {{ track.downloads | number }}
+        </span>
+      </div>
       <!-- Actions -->
 
       <div class="player-actions">

@@ -348,12 +348,40 @@
 
 /* Hide old layout */
 
-.player-status,
-.player-artist,
-.player-info,
-.player-stats,
-.playing-bars {
-  display: none !important;
+.player-stats {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-right: 12px;
+
+  flex-shrink: 0;
+}
+
+.player-stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 0.75rem;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  white-space: nowrap;
+}
+
+.player-stat i {
+  color: var(--color-primary);
+
+  font-size: 0.8rem;
+}
+
+.player-stat:hover {
+  color: #fff;
 }
 /*==================================================
   ACTIONS
@@ -465,6 +493,13 @@
 @media (max-width: 768px) {
   .player {
     height: 72px !important;
+  }
+  .player-status,
+  .player-artist,
+  .player-info,
+  .player-stats,
+  .playing-bars {
+    display: none !important;
   }
 
   .player-progress-top {
