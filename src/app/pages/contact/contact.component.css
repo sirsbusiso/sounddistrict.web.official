@@ -43,7 +43,7 @@
 
 .contact-item i {
   font-size: 1.5rem;
-  color: var(--color-primary);
+  color: var(--btn-primary);
 }
 
 .contact-item h4 {
@@ -79,7 +79,7 @@
 }
 
 .contact-socials a:hover {
-  background: var(--color-primary);
+  background: var(--btn-primary);
   color: var(--border);
 }
 
@@ -99,7 +99,7 @@
 
   padding: 16px 18px;
 
-  background: #0f0f0f;
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
 
@@ -109,7 +109,7 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--color-primary);
+  border-color: var(--btn-primary);
 }
 
 .contact-form button {

@@ -56,8 +56,8 @@
 
   padding: 0 20px;
 
-  background: var(--light-grey);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--dark-grey);
+  border: 1px solid var(--btn-primary);
   border-radius: 999px;
 
   color: var(--border);
@@ -65,7 +65,7 @@
 }
 
 .subscribe-form input:focus {
-  border-color: var(--border);
+  border-color: var(--btn-hover);
 }
 
 .subscribe-form button {

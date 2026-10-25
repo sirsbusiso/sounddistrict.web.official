@@ -46,6 +46,11 @@
       [value]="sliderValue"
       (pointerdown)="dragging = true"
       (pointerup)="onSeek()"
+      [style.--progress]="
+        (((player.currentTime$ | async) || 0) * 100) /
+          ((player.duration$ | async) || 1) +
+        '%'
+      "
       (input)="sliderValue = +$any($event.target).value"
     />
 

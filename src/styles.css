@@ -2,25 +2,26 @@
 /* ------------------------------
    GLOBAL STYLES
 -------------------------------*/
-
 :root {
-  --background: #0a0a0a;
-  --surface: #111111;
-  --surface-light: #171717;
+  --background: #f5f5f7;
+  --surface: #ffffff;
+  --surface-light: #fbfbfd;
 
-  --border: #242424;
+  --border: #e5e5e7;
 
   --white: #ffffff;
-  --light-grey: #cfcfcf;
-  --grey: #9a9a9a;
-  --dark-grey: #6b6b6b;
-  --btn-primary: #3cbce7;
-  --btn-hover: #171717;
-  --color-primary: #7dd3fc;
-  --color-primary-hover: #38bdf8;
+  --light-grey: #6e6e73;
+  --grey: #8e8e93;
+  --dark-grey: #1d1d1f;
+
+  --btn-primary: #0071e3;
+  --btn-hover: #0062c4;
+
+  --color-primary: #1d1d1f;
+  --color-primary-hover: #000000;
+
   --transition: 0.3s ease;
 }
-
 * {
   margin: 0;
   padding: 0;

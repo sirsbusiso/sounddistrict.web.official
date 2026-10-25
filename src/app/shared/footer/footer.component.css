@@ -61,7 +61,7 @@
 }
 
 .footer-column a:hover {
-  color: var(--primary-color);
+  color: var(--btn-hover);
 }
 
 .footer-column i {

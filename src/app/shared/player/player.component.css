@@ -7,7 +7,7 @@
   width: 100%;
   height: 90px;
 
-  background: var(--dark-grey);
+  background: var(--dark-grey) !important;
 
   border-top: 1px solid var(--dark-grey);
 
@@ -82,48 +82,74 @@
   transform: scale(1.1);
 }
 
-/* ===========================
-   PROGRESS
-=========================== */
+/*========================================
+PROGRESS
+========================================*/
 
 .player-progress {
   display: flex;
-  align-items: center;
-  gap: 15px;
 
-  width: 420px;
+  align-items: center;
+
+  gap: 14px;
+
+  width: min(460px, 100%);
 }
 
 .player-progress span {
-  color: #9a9a9a;
-  font-size: 13px;
   min-width: 42px;
+
   text-align: center;
+
+  color: var(--light-grey);
+
+  font-size: 0.75rem;
+
+  font-weight: 500;
+
+  font-variant-numeric: tabular-nums;
 }
 
+/*========================================
+SLIDER
+========================================*/
+
 .player-progress input[type="range"] {
+  --progress: 0%;
+
   flex: 1;
 
-  -webkit-appearance: none;
+  height: 6px;
+
   appearance: none;
 
-  height: 4px;
-
-  background: #2d2d2d;
+  -webkit-appearance: none;
 
   border-radius: 999px;
 
   outline: none;
 
   cursor: pointer;
+
+  background: linear-gradient(
+    to right,
+    var(--btn-primary) 0%,
+    var(--btn-primary) var(--progress),
+    rgba(255, 255, 255, 0.12) var(--progress),
+    rgba(255, 255, 255, 0.12) 100%
+  );
+
+  transition: background 0.2s ease;
 }
 
-/* Chrome */
+/*========================================
+CHROME / EDGE
+========================================*/
 
 .player-progress input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
+  height: 6px;
 
-  background: #3b3b3b;
+  background: transparent;
 
   border-radius: 999px;
 }
@@ -132,40 +158,66 @@
   -webkit-appearance: none;
 
   width: 14px;
+
   height: 14px;
+
+  margin-top: -4px;
+
+  border: 2px solid var(--surface);
 
   border-radius: 50%;
 
-  background: #ffffff;
+  background: var(--btn-primary);
 
-  margin-top: -5px;
+  box-shadow: 0 0 0 4px rgba(0, 196, 106, 0.15);
 
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
-.player-progress input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+.player-progress input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+
+  box-shadow: 0 0 0 6px rgba(0, 196, 106, 0.2);
 }
 
-/* Firefox */
+/*========================================
+FIREFOX
+========================================*/
 
 .player-progress input[type="range"]::-moz-range-track {
-  height: 4px;
+  height: 6px;
 
-  background: #3b3b3b;
+  background: rgba(255, 255, 255, 0.12);
+
+  border-radius: 999px;
+}
+
+.player-progress input[type="range"]::-moz-range-progress {
+  height: 6px;
+
+  background: var(--btn-primary);
 
   border-radius: 999px;
 }
 
 .player-progress input[type="range"]::-moz-range-thumb {
   width: 14px;
+
   height: 14px;
 
-  border: none;
+  border: 2px solid var(--surface);
 
   border-radius: 50%;
 
-  background: #fff;
+  background: var(--btn-primary);
+
+  box-shadow: 0 0 0 4px rgba(0, 196, 106, 0.15);
+
+  transition: all 0.25s ease;
+}
+
+.player-progress input[type="range"]:hover::-moz-range-thumb {
+  transform: scale(1.15);
 }
 
 .player-toggle {

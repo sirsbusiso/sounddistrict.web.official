@@ -276,7 +276,7 @@
   height: 34px;
   border-radius: 50%;
   border: none;
-  background: var(--light-grey);
+  background: red;
   color: var(--border);
   cursor: pointer;
   transition: var(--transition);
@@ -339,8 +339,8 @@
   margin-top: 30px;
   border: none;
   border-radius: 10px;
-  background: var(--color-primary);
-  color: #111;
+  background: var(--btn-primary);
+  color: #fff;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
