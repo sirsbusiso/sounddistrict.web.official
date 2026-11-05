@@ -1,0 +1,577 @@
+/* ==========================================
+   STATS
+========================================== */
+
+.stats-section {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 40px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.stat-card {
+  position: relative;
+
+  padding: 50px 30px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 24px;
+
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+}
+
+.stat-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: var(--btn-primary);
+
+  transform: scaleX(0);
+
+  transform-origin: left;
+
+  transition: transform 0.35s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(255, 255, 255, 0.14);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-card h2 {
+  margin: 0 0 12px;
+
+  font-size: clamp(2.8rem, 5vw, 4rem);
+
+  font-weight: 800;
+
+  color: var(--btn-primary);
+
+  line-height: 1;
+}
+
+.stat-card span {
+  display: block;
+
+  color: #a8a8a8;
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 991px) {
+  .stats-section {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+    padding: 0 20px;
+
+    margin: 70px auto;
+  }
+
+  .stat-card {
+    padding: 35px 25px;
+  }
+
+  .stat-card h2 {
+    font-size: 2.5rem;
+  }
+
+  .stat-card span {
+    font-size: 0.9rem;
+  }
+}
+/* ==========================================
+   PLATFORMS
+========================================== */
+
+.platform-section {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 40px;
+}
+
+.platform-container {
+  text-align: center;
+}
+
+.platform-container > p {
+  max-width: 760px;
+  margin: 20px auto 60px;
+  color: #9d9d9d;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.platform-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 32px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 24px;
+
+  text-align: left;
+
+  transition: 0.35s ease;
+
+  overflow: hidden;
+}
+
+.platform-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: var(--btn-primary);
+
+  transform: scaleX(0);
+
+  transition: 0.35s ease;
+}
+
+.platform-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.05);
+}
+
+.platform-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.platform-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 22px;
+
+  text-decoration: none;
+
+  color: inherit;
+}
+.platform-logo {
+  width: 46px;
+  height: 46px;
+
+  object-fit: contain;
+  object-position: center;
+
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+/*==================================================
+HEARTHIS
+==================================================*/
+.platform-card.hearthis .platform-logo {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(98%) saturate(6418%)
+    hue-rotate(354deg) brightness(99%) contrast(118%);
+}
+
+/*==================================================
+APPLE PODCASTS
+==================================================*/
+
+.platform-card.apple .platform-logo {
+  filter: brightness(0) saturate(100%) invert(37%) sepia(97%) saturate(2075%)
+    hue-rotate(255deg) brightness(104%) contrast(98%);
+}
+
+/*==================================================
+POCKET CASTS
+==================================================*/
+
+.platform-card.pocketcasts .platform-logo {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(95%) saturate(2850%)
+    hue-rotate(320deg) brightness(104%) contrast(98%);
+}
+
+/*==================================================
+RSS
+==================================================*/
+
+.platform-card.rss .platform-logo {
+  filter: brightness(0) saturate(100%) invert(61%) sepia(87%) saturate(1740%)
+    hue-rotate(352deg) brightness(100%) contrast(98%);
+}
+
+/*==================================================
+YOUTUBE
+==================================================*/
+
+.platform-card.youtube .platform-logo {
+  filter: brightness(0) saturate(100%) invert(13%) sepia(100%) saturate(7460%)
+    hue-rotate(0deg) brightness(102%) contrast(118%);
+}
+
+.platform-header h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 1.2rem;
+
+  font-weight: 700;
+
+  transition: 0.35s ease;
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
+.platform-card p {
+  margin: 0;
+
+  color: #9d9d9d;
+
+  line-height: 1.8;
+
+  font-size: 0.95rem;
+
+  flex: 1;
+}
+
+/* ==========================================
+   HOVER
+========================================== */
+
+.platform-header:hover .platform-logo {
+  transform: scale(1.08);
+
+  filter: grayscale(0%);
+}
+
+.hearthis:hover h3 {
+  color: #ff5500;
+}
+
+.apple:hover h3 {
+  color: #b150ff;
+}
+
+.pocketcasts:hover h3 {
+  color: #ef4056;
+}
+
+.rss:hover h3 {
+  color: #f26522;
+}
+
+.youtube:hover h3 {
+  color: #ff0000;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 1200px) {
+  .platform-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .platform-section {
+    padding: 0 20px;
+    margin: 80px auto;
+  }
+
+  .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .platform-card {
+    padding: 24px;
+  }
+
+  .platform-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .platform-header h3 {
+    font-size: 1rem;
+  }
+
+  .platform-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.platform-section .section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 20px;
+
+  margin-bottom: 22px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: var(--btn-primary);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.platform-section .section-tag i {
+  font-size: 1rem;
+}
+
+.platform-section h2 {
+  margin: 0 0 20px;
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+
+  color: #fff;
+
+  letter-spacing: -1px;
+}
+
+.platform-section > .platform-container > p {
+  max-width: 720px;
+
+  margin: 0 auto 60px;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+@media (max-width: 768px) {
+  .platform-section .section-tag {
+    padding: 8px 16px;
+    margin-bottom: 18px;
+
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+
+  .platform-section .section-tag i {
+    font-size: 0.9rem;
+  }
+
+  .platform-section h2 {
+    margin-bottom: 16px;
+
+    font-size: 2.1rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .platform-section > .platform-container > p {
+    max-width: 100%;
+
+    margin: 0 auto 40px;
+
+    padding: 0 12px;
+
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+}
+/*==================================================
+HEARTHIS
+==================================================*/
+
+.platform-card.hearthis:hover {
+  background: #e31c24;
+  border-color: #e31c24;
+}
+
+.platform-card.hearthis:hover::before {
+  background: #fff;
+}
+
+.platform-card.hearthis:hover h3,
+.platform-card.hearthis:hover p,
+.platform-card.hearthis:hover span {
+  color: #fff;
+}
+
+.platform-card.hearthis:hover .platform-logo {
+  filter: brightness(0) invert(1);
+}
+
+/*==================================================
+APPLE PODCASTS
+==================================================*/
+
+.platform-card.apple:hover {
+  background: #a243f6;
+  border-color: #a243f6;
+}
+
+.platform-card.apple:hover::before {
+  background: #fff;
+}
+
+.platform-card.apple:hover h3,
+.platform-card.apple:hover p,
+.platform-card.apple:hover span {
+  color: #fff;
+}
+
+.platform-card.apple:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/*==================================================
+YOUTUBE
+==================================================*/
+
+.platform-card.youtube:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+}
+
+.platform-card.youtube:hover::before {
+  background: #fff;
+}
+
+.platform-card.youtube:hover h3,
+.platform-card.youtube:hover p,
+.platform-card.youtube:hover span {
+  color: #fff;
+}
+
+.platform-card.youtube:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/*==================================================
+POCKET CASTS
+==================================================*/
+
+.platform-card.pocketcasts:hover {
+  background: #f43e8c;
+  border-color: #f43e8c;
+}
+
+.platform-card.pocketcasts:hover::before {
+  background: #fff;
+}
+
+.platform-card.pocketcasts:hover h3,
+.platform-card.pocketcasts:hover p,
+.platform-card.pocketcasts:hover span {
+  color: #fff;
+}
+
+.platform-card.pocketcasts:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/*==================================================
+RSS
+==================================================*/
+
+.platform-card.rss:hover {
+  background: #f26522;
+  border-color: #f26522;
+}
+
+.platform-card.rss:hover::before {
+  background: #fff;
+}
+
+.platform-card.rss:hover h3,
+.platform-card.rss:hover p,
+.platform-card.rss:hover span {
+  color: #fff;
+}
+
+.platform-card.rss:hover img {
+  filter: brightness(0) invert(1);
+}

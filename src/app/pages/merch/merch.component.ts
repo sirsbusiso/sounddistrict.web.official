@@ -4,10 +4,10 @@ import { ProductDto } from '../../../models/merch/merch.models';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-merch',
-    imports: [CommonModule],
-    templateUrl: './merch.component.html',
-    styleUrl: './merch.component.css'
+  selector: 'app-merch',
+  imports: [CommonModule],
+  templateUrl: './merch.component.html',
+  styleUrl: './merch.component.css',
 })
 export class MerchComponent {
   merch: ProductDto[] = [];
@@ -17,6 +17,8 @@ export class MerchComponent {
     this.loadMerch();
   }
 
+  originalImages: Record<string, string> = {};
+
   loadMerch(): void {
     this.merchService.getAllProducts().subscribe({
       next: (response) => {
@@ -25,8 +27,24 @@ export class MerchComponent {
         this.shuffle(products);
 
         this.merch = products.slice(0, 2);
+
+        this.merch.forEach((product) => {
+          this.loadOriginalImage(product.slug);
+        });
       },
     });
+  }
+
+  loadOriginalImage(slug: string): void {
+    this.merchService.getOriginalImageBySlug(slug).subscribe({
+      next: (imageUrl) => {
+        imageUrl && (this.originalImages[slug] = imageUrl.imageUrl);
+      },
+    });
+  }
+
+  getOriginalImage(slug: string): string {
+    return this.originalImages[slug] ?? '';
   }
 
   private shuffle<T>(array: T[]): void {

@@ -6,7 +6,7 @@
 
   <div class="merch-grid">
     <a *ngFor="let item of merch" class="merch-card">
-      <img [src]="item.productImages[0].imageUrl" [alt]="item.name" />
+      <img [src]="getOriginalImage(item.slug)" [alt]="item.name" />
 
       <div class="merch-overlay">
         <span> R {{ item.price | number: "1.2-2" : "en-ZA" }} ZAR </span>

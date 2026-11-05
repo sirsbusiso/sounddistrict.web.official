@@ -1,32 +1,60 @@
 <section class="subscribe-section">
+  <div class="subscribe-glow"></div>
+
   <div class="subscribe-content">
-    <span class="subscribe-label">
-      <i class="bi bi-envelope-heart"></i>
-      Stay Connected
+    <span class="subscribe-badge">
+      <span class="live-dot"></span>
+      JOIN THE COMMUNITY
     </span>
 
-    <h2>Never Miss a New Mix</h2>
+    <h2>
+      Be First to Hear
+      <span>What's Next.</span>
+    </h2>
 
     <p>
-      Subscribe to receive the latest Sound District podcast episodes, exclusive
-      mixes, merchandise releases and special announcements.
+      Get new podcast episodes, exclusive DJ mixes, unreleased music,
+      merchandise drops and special announcements delivered straight to your
+      inbox.
     </p>
 
     <form class="subscribe-form" (ngSubmit)="subscribe()">
-      <input
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Enter your email address"
-        required
-      />
+      <div class="subscribe-input">
+        <i class="bi bi-envelope"></i>
+
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Enter your email address"
+          required
+        />
+      </div>
 
       <button type="submit">
         Subscribe
+
         <i class="bi bi-arrow-right"></i>
       </button>
     </form>
 
-    <small> No spam. Only good music. </small>
+    <div class="subscribe-features">
+      <div class="feature">
+        <i class="bi bi-broadcast"></i>
+        <span>New Episodes</span>
+      </div>
+
+      <div class="feature">
+        <i class="bi bi-vinyl"></i>
+        <span>Exclusive Mixes</span>
+      </div>
+
+      <div class="feature">
+        <i class="bi bi-bag"></i>
+        <span>Merch Drops</span>
+      </div>
+    </div>
+
+    <small> No spam. Unsubscribe anytime. </small>
   </div>
 </section>

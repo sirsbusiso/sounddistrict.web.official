@@ -103,7 +103,7 @@ export class EpisodeComponent implements OnInit {
   async shareEpisode(track: Track): Promise<void> {
     try {
       var description = `Listen to ${track.title} exclusively on Sound District.`;
-      this.shareService.shareEpisode(track.slug, track.title, description);
+      this.shareService.shareEpisode(track.slug);
     } catch (error) {
       console.error('Share failed:', error);
     }

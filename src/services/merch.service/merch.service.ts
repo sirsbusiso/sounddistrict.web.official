@@ -20,4 +20,9 @@ export class MerchService {
       `${this.baseUrl}/getAllProducts`,
     );
   }
+  getOriginalImageBySlug(slug: string) {
+    return this.http.get<{ imageUrl: string }>(
+      `${this.baseUrl}/GetOriginalImageBySlug/${slug}`,
+    );
+  }
 }

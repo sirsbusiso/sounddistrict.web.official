@@ -12,11 +12,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { Track } from '../../../models/podcast/podcast.models';
 import { PodcastService } from '../../../services/podcast.service/podcast.service';
 import { PlayerService } from '../../../services/shared/player.service';
+import { StatsComponent } from '../stats/stats.component';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StatsComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
@@ -26,7 +27,9 @@ export class HeroComponent implements OnInit, OnDestroy {
 
   private intervalId: ReturnType<typeof setInterval> | null = null;
   private destroy$ = new Subject<void>();
-
+  totalEpisodes = 0;
+  totalArtists = 0;
+  totalHours = 0;
   constructor(
     private podcastService: PodcastService,
     public player: PlayerService,
@@ -50,6 +53,30 @@ export class HeroComponent implements OnInit, OnDestroy {
         next: (response) => {
           if (response.statusCode === 200) {
             this.tracks = response.data ?? [];
+
+            // Statistics
+            this.totalEpisodes = this.tracks.length;
+
+            const artists = new Set<string>();
+
+            const totalDuration = this.tracks.reduce((total, track) => {
+              const artist = this.getArtistName(track.title)
+                .trim()
+                .toLowerCase();
+
+              if (artist) {
+                artists.add(artist);
+              }
+
+              return total + Number(track.duration ?? 0);
+            }, 0);
+
+            this.totalHours = Math.round(totalDuration / 3600);
+            this.totalArtists = artists.size;
+            this.totalEpisodes = this.tracks.length;
+
+            this.totalArtists = artists.size;
+
             if (isPlatformBrowser(this.platformId) && this.tracks.length > 1) {
               this.startSlider();
             }
@@ -57,9 +84,29 @@ export class HeroComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.error('Failed to load podcasts:', err);
+
           this.tracks = [];
+          this.totalEpisodes = 0;
+          this.totalArtists = 0;
+          this.totalHours = 0;
         },
       });
+  }
+
+  private getArtistName(title: string): string {
+    // Mixed by ...
+    const mixedByMatch = title.match(/mixed by\s+(.+)$/i);
+    if (mixedByMatch) {
+      return mixedByMatch[1].trim();
+    }
+
+    // Everything after the last dash
+    const dashIndex = title.lastIndexOf(' - ');
+    if (dashIndex !== -1) {
+      return title.substring(dashIndex + 3).trim();
+    }
+
+    return '';
   }
 
   private startSlider(): void {

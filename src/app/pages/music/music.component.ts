@@ -42,15 +42,25 @@ export class MusicComponent {
     this.musicReleaseService.getAll().subscribe({
       next: (response) => {
         if (response) {
-          this.releases = response.data.filter((x) => {
-            const hasTracks = (x.tracks?.length ?? 0) > 0;
+          this.releases = response.data
+            .filter((x) => {
+              const hasTracks = (x.tracks?.length ?? 0) > 0;
 
-            const isReleased = x.isPublished && x.releaseDate != null;
+              const isReleased = x.isPublished && x.releaseDate != null;
+              const isScheduled = !x.isPublished && x.scheduleDate != null;
 
-            const isScheduled = !x.isPublished && x.scheduleDate != null;
+              return hasTracks && (isReleased || isScheduled);
+            })
+            .sort((a, b) => {
+              const dateA = new Date(
+                a.releaseDate ?? a.scheduleDate!,
+              ).getTime();
+              const dateB = new Date(
+                b.releaseDate ?? b.scheduleDate!,
+              ).getTime();
 
-            return hasTracks && (isReleased || isScheduled);
-          });
+              return dateB - dateA; // Latest first
+            });
         }
       },
     });

@@ -1,4 +1,27 @@
 <section class="hero" *ngIf="tracks.length">
+  <div class="hero-particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <div class="hero-artwork">
     <img
       [src]="tracks[currentTrack].artworkUrl"
@@ -47,3 +70,9 @@
     </div>
   </div>
 </section>
+<app-stats
+  [totalEpisodes]="totalEpisodes"
+  [totalArtists]="totalArtists"
+  [totalHours]="totalHours"
+>
+</app-stats>

@@ -7,15 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShareService {
   private http = inject(HttpClient);
-  private websiteUrl = 'https://sounddistrict.co.za/share';
+  private websiteUrl = 'https://sounddistrict.co.za';
 
-  shareEpisode(slug: string, title: string, description: string): void {
+  shareEpisode(slug: string): void {
     const url = `${this.websiteUrl}/episode/${encodeURIComponent(slug)}`;
 
     if (navigator.share) {
       navigator.share({
-        title,
-        text: description,
         url,
       });
       return;
@@ -24,13 +22,11 @@ export class ShareService {
     navigator.clipboard.writeText(url);
   }
 
-  shareRelease(slug: string, title: string, description: string): void {
+  shareRelease(slug: string): void {
     const url = `${this.websiteUrl}/release/${encodeURIComponent(slug)}`;
 
     if (navigator.share) {
       navigator.share({
-        title,
-        text: description,
         url,
       });
       return;
