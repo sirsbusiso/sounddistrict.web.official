@@ -8,6 +8,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { PlayerService } from '../services/shared/player.service';
 import { CtaComponent } from './shared/cta/cta.component';
+import { AnalyticsService } from '../services/shared/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -32,14 +33,17 @@ export class AppComponent {
   constructor(
     public router: Router,
     public player: PlayerService,
+    private analytics: AnalyticsService,
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
+      .subscribe((event: NavigationEnd) => {
         window.scrollTo({
           top: 0,
           behavior: 'smooth',
         });
+
+        this.analytics.trackPageView(event.urlAfterRedirects);
       });
   }
 

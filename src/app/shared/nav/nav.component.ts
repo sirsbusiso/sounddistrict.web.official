@@ -40,6 +40,9 @@ export class NavComponent {
     return window.innerWidth <= 800;
   }
 
+  gotoArticles(): void {
+    this.router.navigate(['/news']);
+  }
   gotoMusic(): void {
     this.router.navigate(['/music']);
   }

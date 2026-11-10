@@ -64,4 +64,18 @@ export const routes: Routes = [
         (m) => m.UnsubscribeComponent,
       ),
   },
+  {
+    path: 'news',
+    loadComponent: () =>
+      import('./pages/articles/articles.component').then(
+        (m) => m.ArticlesComponent,
+      ),
+  },
+  // {
+  //   path: 'news/:slug',
+  //   loadComponent: () =>
+  //     import('./pages/view-article/view-article.component').then(
+  //       (m) => m.ViewArticleComponent,
+  //     ),
+  // },
 ];
