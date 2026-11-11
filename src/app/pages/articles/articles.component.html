@@ -12,48 +12,48 @@
     @if (loading) {
       <div class="loading">Loading latest news...</div>
     } @else {
-      @if (articles.length > 0) {
-        <article class="featured-card" (click)="openArticle(articles[0].slug)">
+      @if (featuredArticle) {
+        <article
+          class="featured-card"
+          (click)="openArticle(featuredArticle.slug)"
+        >
           <button
             class="share-btn"
-            (click)="shareArticle(articles[0].slug); $event.stopPropagation()"
+            (click)="
+              shareArticle(featuredArticle.slug); $event.stopPropagation()
+            "
             aria-label="Share article"
           >
             <i class="bi bi-share-fill"></i>
           </button>
 
           <div class="featured-image">
-            <img [src]="articles[0].coverImageUrl" [alt]="articles[0].title" />
+            <img
+              [src]="featuredArticle.coverImageUrl"
+              [alt]="featuredArticle.title"
+            />
           </div>
 
           <div class="featured-content">
             <span class="category">
-              {{ articles[0].category }}
+              {{ featuredArticle.category }}
             </span>
 
-            <h2>
-              {{ articles[0].title }}
-            </h2>
+            <h2>{{ featuredArticle.title }}</h2>
 
             <p class="summary">
-              {{ articles[0].summary }}
+              {{ featuredArticle.summary }}
             </p>
 
             <div class="featured-footer">
               <div class="meta">
-                <span>
-                  {{ articles[0].publishedDate | date: "dd MMM yyyy" }}
+                <span class="article-age">
+                  {{ featuredArticle.publishedDate | timeAgo }}
                 </span>
-
                 <span>•</span>
 
-                <span> {{ articles[0].viewCount | number }} views </span>
+                <span>{{ featuredArticle.viewCount | number }} views</span>
               </div>
-
-              <span class="read-more">
-                Read Story
-                <span class="arrow">→</span>
-              </span>
             </div>
           </div>
         </article>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="news-grid">
-        @for (article of articles.slice(1); track article.id) {
+        @for (article of pagedArticles; track article.id) {
           <article class="news-card" (click)="openArticle(article.slug)">
             <button
               class="share-btn"
@@ -76,27 +76,22 @@
 
             <div class="card-image">
               <img [src]="article.coverImageUrl" [alt]="article.title" />
-
-              <span class="category">
-                {{ article.category }}
-              </span>
             </div>
 
             <div class="card-content">
               <h3>
                 {{ article.title }}
               </h3>
-
-              <p>
-                {{ article.summary }}
-              </p>
-
               <div class="card-footer">
-                <span>
-                  {{ article.publishedDate | date: "dd MMM yyyy" }}
+                <span class="category">
+                  {{ article.category }}
                 </span>
 
-                <span class="read-more"> Read Story → </span>
+                <span class="separator">•</span>
+
+                <span class="article-age">
+                  {{ article?.publishedDate | timeAgo }}
+                </span>
               </div>
             </div>
           </article>
@@ -104,4 +99,29 @@
       </div>
     }
   </div>
+  @if (totalPages > 1) {
+    <div class="pagination">
+      <button
+        class="page-btn"
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        ← Previous
+      </button>
+
+      <span class="page-info"> {{ currentPage }} / {{ totalPages }} </span>
+
+      <button
+        class="page-btn"
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        Next →
+      </button>
+    </div>
+  }
 </section>
+<!-- Floating Search -->
+
+<app-search [articles]="articles" (itemSelected)="openSearchResult($event)">
+</app-search>

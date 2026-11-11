@@ -5,10 +5,15 @@ import { Router } from '@angular/router';
 import { CommonModule, SlicePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Track } from '../../../models/podcast/podcast.models';
+import { SearchComponent } from '../../shared/search/search.component';
+import {
+  SearchResult,
+  SearchResultType,
+} from '../../../models/search/search-result.model';
 
 @Component({
   selector: 'app-podcasts',
-  imports: [SlicePipe, CommonModule, FormsModule],
+  imports: [SlicePipe, CommonModule, FormsModule, SearchComponent],
   templateUrl: './podcasts.component.html',
   styleUrl: './podcasts.component.css',
 })
@@ -63,11 +68,20 @@ export class PodcastsComponent {
     this.showResults = true;
   }
 
-  openSearchResult(track: Track): void {
-    this.showResults = false;
-    this.searchTerm = '';
+  openSearchResult(result: SearchResult): void {
+    switch (result.type) {
+      case SearchResultType.Podcast:
+        this.router.navigate(['/episode', result.slug]);
+        break;
 
-    this.openEpisode(track.slug);
+      case SearchResultType.Article:
+        this.router.navigate(['/news', result.slug]);
+        break;
+
+      case SearchResultType.Release:
+        this.router.navigate(['/release', result.slug]);
+        break;
+    }
   }
 
   loadTracks() {

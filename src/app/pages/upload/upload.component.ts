@@ -82,9 +82,6 @@ export class UploadComponent {
       return;
     }
 
-    console.log(this.selectedFile);
-    console.log(this.description);
-
     // Call your upload API here
   }
 }

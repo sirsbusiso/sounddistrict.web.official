@@ -35,7 +35,18 @@ export class NavComponent {
     });
     this.isMobileView = this.isMobile();
   }
+  showMenu = false;
+  showSocials = false;
 
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+    this.showSocials = false;
+  }
+
+  toggleSocials() {
+    this.showSocials = !this.showSocials;
+    this.showMenu = false;
+  }
   isMobile(): boolean {
     return window.innerWidth <= 800;
   }
@@ -73,5 +84,9 @@ export class NavComponent {
       `https://accounts.sounddistrict.co.za?returnUrl=${returnUrl}`,
       '_self',
     );
+  }
+  closeSheets(): void {
+    this.showMenu = false;
+    this.showSocials = false;
   }
 }

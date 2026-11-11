@@ -5,7 +5,7 @@
       <p>Discover and purchase underground house music.</p>
     </div>
 
-    <div class="music-search">
+    <!-- <div class="music-search">
       <i class="bi bi-search"></i>
 
       <input
@@ -37,7 +37,7 @@
           No episodes found.
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="music-filters">
       <button
@@ -70,7 +70,7 @@
     </div>
 
     <div class="release-list">
-      <article class="release-row" *ngFor="let release of releases">
+      <article class="release-row" *ngFor="let release of displayReleases">
         <div class="release-image">
           <div class="release-artwork">
             <img [src]="release.artworkUrl" [alt]="release.title" />
@@ -133,7 +133,7 @@
       </article>
     </div>
 
-    <div class="release-mobile" *ngFor="let release of releases">
+    <div class="release-mobile" *ngFor="let release of displayReleases">
       <img
         class="mobile-artwork"
         [src]="release.artworkUrl"
@@ -182,3 +182,5 @@
     </div>
   </div>
 </section>
+<app-search [releases]="releases" (itemSelected)="openSearchResult($event)">
+</app-search>

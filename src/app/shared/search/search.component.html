@@ -1,0 +1,44 @@
+<div class="floating-search" [class.expanded]="isOpen">
+  @if (!isOpen) {
+    <button class="search-toggle" (click)="open()" aria-label="Search">
+      <i class="bi bi-search"></i>
+    </button>
+  } @else {
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+
+      <input
+        #searchInput
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchQuery"
+        (input)="search()"
+        autocomplete="off"
+      />
+
+      <button class="close-btn" (click)="close()" aria-label="Close search">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      @if (suggestions.length > 0) {
+        <div class="search-results">
+          @for (result of suggestions; track result.id) {
+            <button class="search-item" (click)="select(result)">
+              <img [src]="result.imageUrl" [alt]="result.title" />
+
+              <div class="search-info">
+                <span class="title">
+                  {{ result.title }}
+                </span>
+
+                <span class="category">
+                  {{ result.category }}
+                </span>
+              </div>
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

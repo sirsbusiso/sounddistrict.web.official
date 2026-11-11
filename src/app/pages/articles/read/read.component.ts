@@ -5,11 +5,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Article } from '../../../../models/articles/article.model.dto';
 import { ArticleService } from '../../../services/article.service/article.service';
 import { ShareService } from '../../../services/shared/share.service';
+import { TimeAgoPipe } from '../../../utils/time-ago-pipe';
 
 @Component({
   selector: 'app-read',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TimeAgoPipe],
   templateUrl: './read.component.html',
   styleUrl: './read.component.css',
 })
@@ -62,9 +63,7 @@ export class ReadComponent implements OnInit {
     this.router.navigate(['/news', slug], { replaceUrl: true });
 
     this.articleService.getArticleBySlug(slug).subscribe({
-      next: (response: any) => {
-        console.log('Article response:', response);
-      },
+      next: (response: any) => {},
     });
   }
 
@@ -105,8 +104,6 @@ export class ReadComponent implements OnInit {
 
     this.articleService.getArticleBySlug(slug).subscribe({
       next: (response: any) => {
-        console.log('Article response:', response);
-
         this.article = response;
 
         if (this.article) {

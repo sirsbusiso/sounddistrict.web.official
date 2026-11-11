@@ -168,24 +168,19 @@
               />
             </div>
 
-            <div class="related-content">
-              <span class="related-category">
-                {{ related.category }}
-              </span>
-
+            <div
+              class="related-content"
+              (click)="loadRelatedArticle(related.slug)"
+            >
               <h3>
                 {{ related.title }}
               </h3>
-
-              <p>
-                {{ related.summary }}
-              </p>
 
               <div class="related-meta">
                 <span>
                   <i class="ph ph-calendar"></i>
 
-                  {{ related.publishedDate | date: "dd MMM yyyy" }}
+                  {{ related.publishedDate | timeAgo }}
                 </span>
 
                 <span>

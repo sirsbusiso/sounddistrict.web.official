@@ -6,10 +6,15 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MusicTrack } from '../../../models/music-track/music-track.models';
 import { ReleaseType } from '../../../models/shared/shared.models';
 import { FormsModule } from '@angular/forms';
+import {
+  SearchResult,
+  SearchResultType,
+} from '../../../models/search/search-result.model';
+import { SearchComponent } from '../../shared/search/search.component';
 
 @Component({
   selector: 'app-music',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SearchComponent],
   templateUrl: './music.component.html',
   styleUrl: './music.component.css',
 })
@@ -20,7 +25,7 @@ export class MusicComponent {
   releaseId = '';
   selectedType?: ReleaseType;
   search = '';
-
+  displayReleases: MusicRelease[] = [];
   searchResults: MusicRelease[] = [];
   showResults = false;
   constructor(
@@ -34,10 +39,18 @@ export class MusicComponent {
     this.getReleases();
   }
 
-  filter(type?: ReleaseType) {
+  filter(type?: ReleaseType): void {
     this.selectedType = type;
-  }
 
+    if (type === undefined) {
+      this.displayReleases = [...this.releases];
+      return;
+    }
+
+    this.displayReleases = this.releases.filter((x) => x.releaseType === type);
+
+    console.log(this.displayReleases);
+  }
   getReleases() {
     this.musicReleaseService.getAll().subscribe({
       next: (response) => {
@@ -61,6 +74,7 @@ export class MusicComponent {
 
               return dateB - dateA; // Latest first
             });
+          this.displayReleases = [...this.releases];
         }
       },
     });
@@ -95,5 +109,21 @@ export class MusicComponent {
       .slice(0, 8);
 
     this.showResults = true;
+  }
+
+  openSearchResult(result: SearchResult): void {
+    switch (result.type) {
+      case SearchResultType.Podcast:
+        this.router.navigate(['/episode', result.slug]);
+        break;
+
+      case SearchResultType.Article:
+        this.router.navigate(['/news', result.slug]);
+        break;
+
+      case SearchResultType.Release:
+        this.router.navigate(['/release', result.slug]);
+        break;
+    }
   }
 }

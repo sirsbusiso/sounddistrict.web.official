@@ -1,6 +1,6 @@
 .hero {
   max-width: 1400px;
-  margin: 120px auto 80px;
+  margin: 100px auto 80px !important;
   padding: 0 40px;
 
   display: grid;
@@ -39,26 +39,7 @@
   font-weight: 600;
   white-space: nowrap;
 }
-@media (max-width: 768px) {
-  .hero {
-    margin-top: 180px !important;
-  }
-  .hero-progress-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-    width: 100%;
-  }
 
-  .hero-progress {
-    flex: none;
-    width: 100%;
-  }
-
-  .hero-progress-text {
-    text-align: center;
-  }
-}
 .hero-artwork {
   position: relative;
 }
@@ -321,76 +302,15 @@
 
 @media (max-width: 991px) {
   .hero {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
 
-    gap: 40px;
+    gap: 35px;
+
+    margin: 40px auto 60px;
+    margin-top: 180px !important;
 
     padding: 20px;
-
-    margin-top: 180px !important;
-  }
-
-  .hero-artwork {
-    max-width: 420px;
-
-    margin: auto;
-  }
-
-  .hero-content {
-    text-align: center;
-  }
-
-  .hero-content p {
-    margin: auto;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-
-    flex-wrap: wrap;
-  }
-
-  .hero-progress-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .hero-progress {
-    width: 100%;
-  }
-
-  .hero-progress-text {
-    text-align: center;
-  }
-}
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 780px) {
-  .hero {
-    display: flex;
-    flex-direction: column;
-
-    gap: 35px;
-
-    margin: 40px auto 60px;
-    padding: 0 20px;
-    margin-top: 80px;
-  }
-}
-
-@media (max-width: 991px) {
-  .hero {
-    display: flex;
-    flex-direction: column;
-
-    gap: 35px;
-
-    margin: 40px auto 60px;
-    padding: 0 20px;
-    margin-top: 180px !important;
   }
 
   /* Artwork */
@@ -413,21 +333,17 @@
     padding: 0;
 
     align-items: center;
-
     text-align: center;
   }
 
   .hero-subtitle {
     font-size: 12px;
-
     letter-spacing: 3px;
-
     margin-bottom: 14px;
   }
 
   .hero-content h1 {
     font-size: 1.4rem;
-
     line-height: 1.15;
 
     max-width: 100%;
@@ -436,13 +352,12 @@
   }
 
   .hero-content p {
-    font-size: 16px;
-
-    line-height: 1.7;
-
     max-width: 100%;
 
-    margin-bottom: 35px;
+    margin: 0 auto 35px;
+
+    font-size: 16px;
+    line-height: 1.7;
   }
 
   /* Buttons */
@@ -450,7 +365,10 @@
   .hero-buttons {
     width: 100%;
 
+    display: flex;
     flex-direction: column;
+
+    justify-content: center;
 
     gap: 14px;
 
@@ -467,9 +385,13 @@
 
     font-size: 15px;
   }
+
+  /* Progress */
+
   .hero-progress-wrapper {
     flex-direction: column;
     align-items: stretch;
+
     gap: 0.5rem;
   }
 
@@ -677,5 +599,26 @@
     transform: translateY(-120vh) translateX(30px) scale(0.4);
 
     opacity: 0;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    margin: 100px auto 80px !important;
+    padding: 0 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .hero-btn,
+  .hero-outline {
+    padding: 14px;
+    font-size: 14px;
   }
 }

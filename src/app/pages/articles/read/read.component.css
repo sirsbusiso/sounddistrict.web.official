@@ -47,7 +47,7 @@
 .breadcrumb-section {
   padding: 150px 0 18px;
   color: rgba(255, 255, 255, 0.65);
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   align-items: center;
   display: flex;
 }
@@ -81,7 +81,7 @@
 }
 
 .article-header-section {
-  padding: 70px 0 60px;
+  padding: 10px 0 60px;
 }
 
 .article-header {
@@ -124,7 +124,7 @@
 .article-title {
   margin: 0;
 
-  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  font-size: clamp(2.5rem, 3vw, 4rem);
 
   line-height: 1.02;
 
@@ -132,7 +132,7 @@
 
   letter-spacing: -0.04em;
 
-  max-width: 900px;
+  max-width: 2000px;
 }
 
 /*==========================================================
@@ -142,7 +142,7 @@
 .article-summary {
   margin: 34px 0;
 
-  max-width: 760px;
+  max-width: 1500px;
 
   color: rgba(255, 255, 255, 0.72);
 
@@ -157,15 +157,15 @@
 .article-meta {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: 1rem;
 }
-
 .article-author {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1rem;
+  flex: 1;
 }
-
 .author-avatar {
   width: 58px;
 
@@ -192,10 +192,8 @@
 
 .author-details {
   display: flex;
-
-  flex-direction: column;
-
-  gap: 8px;
+  align-items: center;
+  gap: 1rem;
 }
 
 .author-name {
@@ -206,22 +204,16 @@
 
 .meta-details {
   display: flex;
-
-  gap: 24px;
-
-  flex-wrap: wrap;
-
-  color: rgba(255, 255, 255, 0.65);
-
-  font-size: 0.92rem;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .meta-details span {
   display: flex;
-
   align-items: center;
-
-  gap: 8px;
+  gap: 0.35rem;
+  white-space: nowrap;
 }
 
 .meta-details i {
@@ -275,6 +267,7 @@
 ==========================================================*/
 
 .hero-section {
+  padding: 10px 0 60px;
   padding-bottom: 80px;
 }
 
@@ -316,15 +309,17 @@
 
 @media (max-width: 768px) {
   .container {
-    width: calc(100% - 32px);
+    width: calc(100% - 48px);
   }
-
+  .author-name {
+    font-size: 0.8rem;
+  }
   .breadcrumb-section {
-    padding-top: 150px;
+    padding-top: 90px;
   }
 
   .article-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .article-summary {
@@ -343,6 +338,9 @@
 
   .hero-image {
     border-radius: 18px;
+  }
+  .breadcrumb {
+    font-size: 0.6rem !important;
   }
 }
 /*==========================================================

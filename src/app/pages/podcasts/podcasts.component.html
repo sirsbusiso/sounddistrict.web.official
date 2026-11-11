@@ -1,92 +1,65 @@
-<section class="podcasts-page">
-  <div class="container">
-    <div class="page-header">
-      <h1>Podcast Episodes</h1>
-      <p>Explore every episode of the Sound District Music Show.</p>
-    </div>
-    <div class="podcast-search">
-      <i class="bi bi-search"></i>
+<section class="podcast-list-section">
+  <div class="section-header">
+    <h2>Latest Podcasts</h2>
 
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        placeholder="Search episodes, artists or genres..."
-        (input)="onSearch()"
-        (focus)="onSearch()"
-      />
+    <p>
+      Discover interviews, exclusive mixes and house music conversations from
+      the Sound District Music Show.
+    </p>
+  </div>
 
-      <div class="search-results" *ngIf="showResults">
-        <div
-          class="search-item"
-          *ngFor="let track of searchResults"
-          (click)="openSearchResult(track)"
-        >
-          <img [src]="track.artworkUrl" [alt]="track.title" />
+  <div class="podcast-list">
+    <article
+      class="podcast-row"
+      *ngFor="let podcast of pagedTracks"
+      (click)="openEpisode(podcast.slug)"
+    >
+      <div class="podcast-image">
+        <img [src]="podcast.artworkUrl" [alt]="podcast.title" />
+      </div>
 
-          <div class="search-info">
-            <h4>{{ track.title }}</h4>
+      <div class="podcast-details">
+        <h3>{{ podcast.title }}</h3>
 
-            <small>
-              {{ getArtistName(track.title) }}
-              •
-              {{ track.genre }}
-            </small>
-          </div>
-        </div>
+        <p>{{ podcast.description | slice: 0 : 180 }}...</p>
 
-        <div class="no-results" *ngIf="!searchResults.length">
-          No episodes found.
+        <div class="podcast-meta">
+          <span>
+            <i class="bi bi-calendar3"></i>
+            {{ podcast.createdAt | date: "dd MMM yyyy" }}
+          </span>
+
+          <span>•</span>
+
+          <span>
+            <i class="bi bi-clock"></i>
+            {{ formatDuration(podcast.duration) }}
+          </span>
         </div>
       </div>
-    </div>
-    <div class="podcast-list">
-      <article class="podcast-card" *ngFor="let podcast of pagedTracks">
-        <img
-          [src]="podcast.artworkUrl"
-          [alt]="podcast.title"
-          (click)="openEpisode(podcast.slug)"
-        />
+    </article>
+  </div>
 
-        <div class="podcast-content">
-          <span class="genre">{{ podcast.genre }}</span>
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button
+      class="page-btn"
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+    >
+      <i class="bi bi-chevron-left"></i>
+    </button>
 
-          <h3 (click)="openEpisode(podcast.slug)">
-            {{ podcast.title }}
-          </h3>
+    <span class="page-number"> {{ currentPage }} / {{ totalPages }} </span>
 
-          <div class="meta">
-            <span>{{ podcast.createdAt | date: "dd MMM yyyy" }}</span>
-            <span>•</span>
-            <span>{{ formatDuration(podcast.duration) }}</span>
-          </div>
-
-          <p>{{ podcast.description | slice: 0 : 180 }}...</p>
-
-          <button class="listen-btn" (click)="openEpisode(podcast.slug)">
-            View More
-          </button>
-        </div>
-      </article>
-    </div>
-
-    <div class="pagination">
-      <button
-        class="page-btn"
-        (click)="previousPage()"
-        [disabled]="currentPage === 1"
-      >
-        <i class="bi bi-chevron-left"></i>
-      </button>
-
-      <div class="page-info">Page {{ currentPage }} of {{ totalPages }}</div>
-
-      <button
-        class="page-btn"
-        (click)="nextPage()"
-        [disabled]="currentPage === totalPages"
-      >
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
+    <button
+      class="page-btn"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      <i class="bi bi-chevron-right"></i>
+    </button>
   </div>
 </section>
+
+<app-search [podcasts]="tracks" (itemSelected)="openSearchResult($event)">
+</app-search>
