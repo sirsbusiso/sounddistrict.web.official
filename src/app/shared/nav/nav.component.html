@@ -1,10 +1,26 @@
 <header class="top-nav">
   <div class="left-menu">
-    <a (click)="gotoHome()">Home</a>
-    <a (click)="gotoMusic()">Music</a>
-    <a (click)="gotoPodcast()">Podcasts</a>
-    <a (click)="gotoArticles()">News</a>
-    <a (click)="gotoShop()">Store</a>
+    <a (click)="gotoHome()" [class.active]="router.url === '/'"> Home </a>
+
+    <a (click)="gotoMusic()" [class.active]="router.url.startsWith('/music')">
+      Music
+    </a>
+
+    <a
+      (click)="gotoPodcast()"
+      [class.active]="router.url.startsWith('/podcasts')"
+    >
+      Podcasts
+    </a>
+
+    <a (click)="gotoArticles()" [class.active]="router.url.startsWith('/news')">
+      News
+    </a>
+
+    <a (click)="gotoShop()" [class.active]="router.url.startsWith('/shop')">
+      Store
+    </a>
+
     <a class="donate-btn" (click)="gotoDonate()">
       <i class="bi bi-heart-fill"></i>
       Donate
@@ -103,13 +119,29 @@
   </div>
 
   <nav class="mobile-menu">
-    <a (click)="gotoMusic()">Music</a>
-    <a (click)="gotoPodcast()">Podcasts</a>
-    <a (click)="gotoArticles()">News</a>
-    <a (click)="gotoShop()">Store</a>
-    <a class="donate-btn" (click)="gotoDonate()">
+    <a
+      routerLink="/music"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Music
+    </a>
+
+    <a
+      routerLink="/podcasts"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Podcasts
+    </a>
+
+    <a routerLink="/news" routerLinkActive="active"> News </a>
+
+    <a routerLink="/shop" routerLinkActive="active"> Store </a>
+
+    <!-- <a class="donate-btn" (click)="gotoDonate()">
       <i class="bi bi-heart-fill"></i>
       Donate
-    </a>
+    </a> -->
   </nav>
 </div>

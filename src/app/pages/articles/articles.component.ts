@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Article } from '../../../models/articles/article.model.dto';
 import { Router } from '@angular/router';
 import { ArticleService } from '../../services/article.service/article.service';
+import { ShareService } from '../../services/shared/share.service';
 
 @Component({
   selector: 'app-articles',
@@ -15,6 +16,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private router: Router,
+    private shareService: ShareService,
   ) {}
 
   articles: Article[] = [];
@@ -32,7 +34,9 @@ export class ArticlesComponent implements OnInit {
 
     this.articleService.getArticles().subscribe({
       next: (response) => {
-        this.articles = response;
+        this.articles = (response ?? []).filter(
+          (article) => article.isPublished,
+        );
         this.loading = false;
       },
       error: () => {
@@ -41,7 +45,9 @@ export class ArticlesComponent implements OnInit {
       },
     });
   }
-
+  shareArticle(slug: string): void {
+    this.shareService.shareNews(slug);
+  }
   trackById(index: number, article: Article): string {
     return article.id;
   }

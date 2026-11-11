@@ -15,3 +15,14 @@
     <span>Upload</span>
   </a> -->
 </div>
+<div class="floating-donate" *ngIf="showDonateButton">
+  <button class="close-donate" (click)="closeDonate()" aria-label="Close">
+    <i class="bi bi-x-lg"></i>
+  </button>
+
+  <button class="donate-pill" (click)="gotoDonate()">
+    <i class="bi bi-heart-fill"></i>
+
+    <span>Support Sound District</span>
+  </button>
+</div>

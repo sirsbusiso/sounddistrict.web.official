@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { PlayerService } from '../../../services/shared/player.service';
 import { filter } from 'rxjs';
 import { BagAnimationComponent } from '../bag-animation/bag-animation.component';
@@ -8,13 +8,13 @@ import { PurchaseService } from '../../../services/shared/purchase.service';
 
 @Component({
   selector: 'app-nav',
-  imports: [CommonModule, BagAnimationComponent],
+  imports: [CommonModule, BagAnimationComponent, RouterModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
 export class NavComponent {
+  readonly router = inject(Router);
   constructor(
-    private router: Router,
     public player: PlayerService,
     public purchaseService: PurchaseService,
   ) {}

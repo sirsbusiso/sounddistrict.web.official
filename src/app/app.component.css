@@ -75,3 +75,96 @@
     font-size: 1.5rem;
   }
 }
+.floating-donate {
+  position: fixed;
+
+  right: 28px;
+
+  bottom: 28px;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  animation: donateIn 0.45s ease;
+}
+
+.donate-pill {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  height: 58px;
+
+  padding: 0 24px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #ff4d8d, var(--btn-primary));
+
+  color: #fff;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 20px 45px rgba(255, 77, 141, 0.35);
+
+  transition: 0.3s;
+}
+
+.donate-pill:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 30px 60px rgba(255, 77, 141, 0.45);
+}
+
+.donate-pill i {
+  font-size: 1.2rem;
+}
+
+.close-donate {
+  width: 36px;
+
+  height: 36px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+
+  color: #fff;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.close-donate:hover {
+  background: rgba(255, 255, 255, 0.18);
+
+  transform: rotate(90deg);
+}
+
+@keyframes donateIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

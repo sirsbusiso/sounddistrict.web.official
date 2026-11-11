@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 150px 20px;
-  background: var(--dark-grey);
+  padding: 150px 20px !important;
+  background: transparent;
   color: var(--white);
 }
 

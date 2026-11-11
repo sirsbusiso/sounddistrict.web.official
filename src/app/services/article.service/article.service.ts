@@ -56,7 +56,7 @@ export class ArticleService {
   }
 
   incrementViewCount(slug: string): Observable<void> {
-    return this.http.put<void>(`${this.api}/view/${slug}`, {});
+    return this.http.patch<void>(`${this.api}/view/${slug}`, {});
   }
 
   uploadCoverImage(articleId: string, file: File): Observable<string> {

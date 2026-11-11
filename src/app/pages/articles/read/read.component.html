@@ -1,0 +1,210 @@
+<main class="news-article" *ngIf="article">
+  <!-- Reading Progress -->
+  <div class="reading-progress">
+    <div class="reading-progress-fill"></div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <section class="breadcrumb-section">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a routerLink="/">Home</a>
+
+        <span>/</span>
+
+        <a routerLink="/news">News</a>
+
+        <span>/</span>
+
+        <span>{{ article.category }}</span>
+
+        <span>/</span>
+
+        <span class="active">
+          {{ article.title }}
+        </span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <section class="article-header-section">
+    <div class="container">
+      <!-- <span class="article-category">
+        {{ article.category }}
+      </span> -->
+
+      <h1 class="article-title">
+        {{ article.title }}
+      </h1>
+
+      <p class="article-summary">
+        {{ article.summary }}
+      </p>
+
+      <div class="article-meta">
+        <div class="article-author">
+          <div class="author-avatar">SD</div>
+
+          <div class="author-details">
+            <span class="author-name">
+              {{ article.author }}
+            </span>
+
+            <div class="meta-details">
+              <span>
+                <i class="ph ph-calendar"></i>
+
+                {{ article.publishedDate | date: "dd MMMM yyyy" }}
+              </span>
+
+              <span>
+                <i class="ph ph-eye"></i>
+
+                {{ article.viewCount | number }} Views
+              </span>
+            </div>
+          </div>
+        </div>
+        <button class="share-button" (click)="shareArticle()">
+          <i class="bi bi-share-fill"></i>
+
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Image -->
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-image">
+        <img
+          [src]="article.coverImageUrl"
+          [alt]="article.title"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Article -->
+
+  <section class="article-body">
+    <div class="container">
+      <article class="article-content">
+        <div class="article-html" [innerHTML]="article.content"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Tags -->
+
+  <section class="article-tags" *ngIf="keywords.length">
+    <div class="container">
+      <h3>Tags</h3>
+
+      <div class="tag-list">
+        <a *ngFor="let keyword of keywords">
+          {{ keyword }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author -->
+
+  <section class="author-section">
+    <div class="container">
+      <div class="author-card">
+        <div class="author-avatar large">SD</div>
+
+        <div class="author-content">
+          <span class="author-label"> Written by </span>
+
+          <h3>
+            {{ article.author }}
+          </h3>
+
+          <p>
+            Sound District covers the latest house music, artists, podcasts,
+            festivals, events and underground electronic music culture from
+            South Africa and around the world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Stories -->
+
+  <section
+    class="related-section"
+    *ngIf="relatedArticles && relatedArticles.length"
+  >
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="section-label">Continue Reading</span>
+
+          <h2>More From Sound District</h2>
+        </div>
+
+        <a routerLink="/news" class="view-all"> View All </a>
+      </div>
+
+      <div class="related-grid">
+        <article class="related-card" *ngFor="let related of relatedArticles">
+          <a class="related-link">
+            <div
+              class="related-image"
+              (click)="loadRelatedArticle(related.slug)"
+            >
+              <img
+                [src]="related.coverImageUrl"
+                [alt]="related.title"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="related-content">
+              <span class="related-category">
+                {{ related.category }}
+              </span>
+
+              <h3>
+                {{ related.title }}
+              </h3>
+
+              <p>
+                {{ related.summary }}
+              </p>
+
+              <div class="related-meta">
+                <span>
+                  <i class="ph ph-calendar"></i>
+
+                  {{ related.publishedDate | date: "dd MMM yyyy" }}
+                </span>
+
+                <span>
+                  <i class="ph ph-eye"></i>
+
+                  {{ related.viewCount | number }}
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <button
+            class="related-share"
+            (click)="shareRelatedArticle(related.slug)"
+          >
+            <i class="bi bi-share-fill"></i>
+          </button>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>

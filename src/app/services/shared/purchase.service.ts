@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CookiesService } from './cookies.service';
 import { BagAnimationService } from './bag.animation';
-import { Purchase } from '../../../models/shared/purchase.models';
+import {
+  Purchase,
+  PurchaseRelease,
+  PurchaseTrack,
+} from '../../../models/shared/purchase.models';
 
 @Injectable({
   providedIn: 'root',

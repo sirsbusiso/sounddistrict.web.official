@@ -4,15 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ShareService {
-  private websiteUrl = 'https://sounddistrict.co.za';
+  private readonly websiteUrl = 'https://sounddistrict.co.za';
 
   shareEpisode(slug: string): void {
     const url = `${this.websiteUrl}/episode/${encodeURIComponent(slug)}`;
 
     if (navigator.share) {
-      navigator.share({
-        url,
-      });
+      navigator.share({ url });
       return;
     }
 
@@ -23,9 +21,18 @@ export class ShareService {
     const url = `${this.websiteUrl}/release/${encodeURIComponent(slug)}`;
 
     if (navigator.share) {
-      navigator.share({
-        url,
-      });
+      navigator.share({ url });
+      return;
+    }
+
+    navigator.clipboard.writeText(url);
+  }
+
+  shareNews(slug: string): void {
+    const url = `${this.websiteUrl}/news/${encodeURIComponent(slug)}`;
+
+    if (navigator.share) {
+      navigator.share({ url });
       return;
     }
 

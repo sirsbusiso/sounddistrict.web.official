@@ -71,11 +71,11 @@ export const routes: Routes = [
         (m) => m.ArticlesComponent,
       ),
   },
-  // {
-  //   path: 'news/:slug',
-  //   loadComponent: () =>
-  //     import('./pages/view-article/view-article.component').then(
-  //       (m) => m.ViewArticleComponent,
-  //     ),
-  // },
+  {
+    path: 'news/:slug',
+    loadComponent: () =>
+      import('./pages/articles/read/read.component').then(
+        (m) => m.ReadComponent,
+      ),
+  },
 ];

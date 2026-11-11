@@ -9,6 +9,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { PlayerService } from '../services/shared/player.service';
 import { CtaComponent } from './shared/cta/cta.component';
 import { AnalyticsService } from '../services/shared/analytics.service';
+import { CookiesService } from './services/shared/cookies.service';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,7 @@ export class AppComponent {
     public router: Router,
     public player: PlayerService,
     private analytics: AnalyticsService,
+    private cookiesService: CookiesService,
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -46,7 +48,10 @@ export class AppComponent {
         this.analytics.trackPageView(event.urlAfterRedirects);
       });
   }
-
+  ngOnInit(): void {
+    this.showDonateButton =
+      this.cookiesService.getCookie('hideDonate') !== 'true';
+  }
   gotoUpload(): void {
     this.router.navigate(['/upload']);
   }
@@ -57,5 +62,17 @@ export class AppComponent {
     const triggerPoint = document.documentElement.scrollHeight * 0.5;
 
     this.showUploadFab = scrollPosition >= triggerPoint;
+  }
+
+  showDonateButton = false; // Initialize to false
+  // localStorage.getItem('hideDonate') !== 'true';
+
+  closeDonate(): void {
+    this.showDonateButton = false;
+
+    this.cookiesService.setCookie('hideDonate', 'true', 7);
+  }
+  gotoDonate(): void {
+    window.open('https://pay.yoco.com/sound-district', '_blank');
   }
 }
