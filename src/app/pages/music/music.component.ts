@@ -48,8 +48,6 @@ export class MusicComponent {
     }
 
     this.displayReleases = this.releases.filter((x) => x.releaseType === type);
-
-    console.log(this.displayReleases);
   }
   getReleases() {
     this.musicReleaseService.getAll().subscribe({

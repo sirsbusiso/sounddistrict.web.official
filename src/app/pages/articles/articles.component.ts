@@ -83,7 +83,6 @@ export class ArticlesComponent implements OnInit {
 
           return timeB - timeA; // Newest first
         });
-        console.log(this);
         const featured = this.articles.filter((a) => a.isFeatured);
         this.displayArticles = this.articles.filter(
           (article) => article.id !== this.featuredArticle?.id,

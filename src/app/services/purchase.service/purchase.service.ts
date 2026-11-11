@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { MusicCheckoutRequest } from '../../models/purchase/purchase.models';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
+import { MusicCheckoutRequest } from '../../../models/purchase/purchase.models';
 
 @Injectable({
   providedIn: 'root',
